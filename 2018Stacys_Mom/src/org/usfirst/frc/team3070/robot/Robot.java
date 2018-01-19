@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 
 
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -180,7 +181,7 @@ public class Robot extends IterativeRobot {
 						setLeft(0);
 						Turned = true; 
 					}
-					else if(gyro.getAngle() >= 90 && Turned == true) {
+					if(gyro.getAngle() >= 90 && Turned == true) {
 						setRight(.3);
 						setLeft(.3);
 					}
