@@ -176,7 +176,7 @@ public class Robot extends IterativeRobot {
 						setLeft(-.3);
 						
 					}
-					if(gyro.getAngle() >= 90) {
+					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
 						setRight(0);
 						setLeft(0);
 						Turned = true; 
