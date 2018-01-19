@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.AnalogGyro;
 
 
 
@@ -52,6 +54,7 @@ public class Robot extends IterativeRobot {
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM;
 	
 	
+	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
 		PATH_LCL, //Left starting position combinations
 		PATH_LWL,
@@ -78,7 +81,8 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
-	
+	//Initializing Gyros
+	Gyro gyro = new Gyro(); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -88,6 +92,8 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
+		encL.reset();
+		encR.reset();
 	}
 
 	/**
@@ -163,7 +169,12 @@ public class Robot extends IterativeRobot {
 					case PATH_RWR:
 					setRight(.5);//sets motors on the right to .5 speed
 					setLeft(.5);//sets motors on the left to .5 speed
-					if( encR(30)) {
+					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
+						setRight(.5);
+						setLeft(-.3);
+						
+					}
+					if(gyro.getAngle() >= 90) {
 						setRight(0);
 						setLeft(0);
 					}
