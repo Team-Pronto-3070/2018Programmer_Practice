@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-//fuckingotem
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -31,43 +30,44 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 	
-	final int PORT_RM = 3;
-	final int PORT_RF = 6;
+	final int PORT_RM = 3; //Right master CIM port
+	final int PORT_RF = 6; //Right follower CIM port
 	
-	final int PORT_LM = 4;
-	final int PORT_LF = 5;
+	final int PORT_LM = 4; //Left master CIM port
+	final int PORT_LF = 5; //Left follower CIM port
 	
-	final int PORT_ENC_R1 = 1;
-	final int PORT_ENC_R2 = 2;
+	final int PORT_ENC_R1 = 1; //Right encoder first port
+	final int PORT_ENC_R2 = 2; //Right encoder second port
 	
-	final int PORT_ENC_L1 = 7;
-	final int PORT_ENC_L2 = 8;
+	final int PORT_ENC_L1 = 7; //Left encoder first port
+	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
-		PATH_LCL,
+		PATH_LCL, //Left starting position combinations
 		PATH_LWL,
 		PATH_LCR,
 		PATH_LWR,
 		
-		PATH_CCL,
+		PATH_CCL, //Center starting position combinations
 		PATH_CWL,
 		PATH_CCR,
 		PATH_CWR,
 		
-		PATH_RCL,
+		PATH_RCL, //Right starting position combinations
 		PATH_RWL,
 		PATH_RCR,
 		PATH_RWR
 	}
 	
+	//Initializing encoders
+	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
+	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
 	
-	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false);
-	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false);
-	
-	TalonSRX TalRM = new TalonSRX(PORT_RM);
-	TalonSRX TalRF = new TalonSRX(PORT_RF);
-	TalonSRX TalLM = new TalonSRX(PORT_LM);
-	TalonSRX TalLF = new TalonSRX(PORT_LF);
+	//Initializing Talons
+	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
+	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
+	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
+	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -99,7 +99,7 @@ public class Robot extends IterativeRobot {
 		System.out.println("Auto selected: " + m_autoSelected);
 	}
 
-	Auto_Path emp_Path =  Auto_Path.PATH_LCL;
+	Auto_Path impPath =  Auto_Path.PATH_LCL; //Implemented path. 
 	
 	/**
 	 * This function is called periodically during autonomous.
@@ -112,7 +112,7 @@ public class Robot extends IterativeRobot {
 				break;
 			case kDefaultAuto:
 			default:
-				switch(emp_Path) {
+				switch(impPath) {
 					case PATH_LCL:
 					
 					break;
@@ -176,11 +176,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 	}
-	
+	 /**
+	  * Sets right side motors to a certain amount, given by arg
+	  */
 	void setRight(double amount) {
 		TalRM.set(ControlMode.PercentOutput, amount);
 		TalRF.set(ControlMode.Follower, PORT_RM);
 	}
+	/**
+	  * Sets left side motors to a certain amount, given by arg
+	  */
 	void setLeft(double amount) {
 		TalLM.set(ControlMode.PercentOutput, amount);
 		TalLF.set(ControlMode.Follower, PORT_LF);
