@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM;
 	
+	boolean Turned = false;
 	
 	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
@@ -177,10 +178,13 @@ public class Robot extends IterativeRobot {
 					if(gyro.getAngle() >= 90) {
 						setRight(0);
 						setLeft(0);
+						Turned = true; 
 					}
-					if(gyro.getAngle() >= 90 && setLeft() == 0) {
-						
+					else if(gyro.getAngle() >= 90 && Turned == true) {
+						setRight(.3);
+						setLeft(.3);
 					}
+					
 					break;	
 				}
 				break;
