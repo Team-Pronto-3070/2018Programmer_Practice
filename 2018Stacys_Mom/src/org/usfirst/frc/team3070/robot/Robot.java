@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Encoder;
 
 
 
@@ -33,8 +33,15 @@ public class Robot extends IterativeRobot {
 	
 	final int PORT_RM = 3;
 	final int PORT_RF = 6;
+	
 	final int PORT_LM = 4;
 	final int PORT_LF = 5;
+	
+	final int PORT_ENC_R1 = 1;
+	final int PORT_ENC_R2 = 2;
+	
+	final int PORT_ENC_L1 = 7;
+	final int PORT_ENC_L2 = 8;
 	
 	final int AUTO_PATH = 1;
 	final int PATH_L1A = 1;
@@ -51,6 +58,9 @@ public class Robot extends IterativeRobot {
 	final int PATH_R2A = 2;
 	final int PATH_R1B = 3;
 	final int PATH_R2B = 4;
+	
+	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false);
+	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false);
 	
 	TalonSRX TalRM = new TalonSRX(PORT_RM);
 	TalonSRX TalRF = new TalonSRX(PORT_RF);
@@ -99,13 +109,13 @@ public class Robot extends IterativeRobot {
 			case kDefaultAuto:
 			default:
 				switch(AUTO_PATH) {
-				case PATH_L1A:
+					case PATH_L1A:
 					
-				break;
+					break;
 				
-				case PATH_L2A:
+					case PATH_L2A:
 					
-				break;
+					break;
 				}
 				break;
 		}
