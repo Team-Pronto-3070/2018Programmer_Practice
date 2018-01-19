@@ -48,16 +48,22 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
+	final double STANDARD_SPEED = .3
+	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
+	final double DIS_TO_SWITCH = 168; //Distance in inches to the middle of the switch
+	final double DIS_TO_SCALE = 324; //Distance in inches to the middle of the scale
 	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
 	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
-	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM;
+	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
+	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
+	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
 	
 	boolean Turned = false;
 	
 	
-	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
+	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
 		PATH_LCL, //Left starting position combinations
 		PATH_LWL,
 		PATH_LCR,
@@ -132,14 +138,26 @@ public class Robot extends IterativeRobot {
 			default:
 				switch(impPath) {
 					case PATH_LCL:
-						encR.reset();
-						setRight(1);
-						setLeft(1);
-						while(encR.getDistance() * 4096)
+						setRight(STANDARD_SPEED);
+						setLeft(STANDARD_SPEED);
+						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SCALE) {
+							setRight(0);
+						}
+						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SCALE) {
+							setLeft(0);
+						}
 					break;
 				
 					case PATH_LWL:
-					
+						setRight(STANDARD_SPEED);
+						setLeft(STANDARD_SPEED);
+						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SWITCH) {
+							setRight(0);
+						}
+						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SWITCH) {
+							setLeft(0);
+						}
+						
 					break;
 					case PATH_LCR:
 					
