@@ -47,9 +47,11 @@ public class Robot extends IterativeRobot {
 	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
+	final double DIS_TO_SWITCH = 168; //Distance in inches to the closest side of the switch
 	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
 	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
-	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM;
+	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
+	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the closest side of the switch
 	
 	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
@@ -124,10 +126,15 @@ public class Robot extends IterativeRobot {
 			default:
 				switch(impPath) {
 					case PATH_LCL:
-						encR.reset();
 						setRight(1);
 						setLeft(1);
-						while(encR.getDistance() * 4096)
+						if(encR.get() / 4096 >= ROT_TO_SWITCH) {
+							setRight(0);
+						}
+						if(encL.get() / 4096 >= ROT_TO_SWITCH) {
+							setLeft(0);
+						}
+						
 					break;
 				
 					case PATH_LWL:
