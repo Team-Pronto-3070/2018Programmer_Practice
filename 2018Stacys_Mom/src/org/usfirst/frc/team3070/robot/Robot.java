@@ -148,7 +148,13 @@ public class Robot extends IterativeRobot {
 
 					break;
 					case PATH_RWR:
-				
+					setRight(.5);//sets motors on the right to .5 speed
+					setLeft(.5);//sets motors on the left to .5 speed
+					if( encR(30)) {
+						setRight(0);
+						setLeft(0);
+					}
+					
 					break;	
 				}
 				break;
