@@ -12,6 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/xsegg/wpilib/user/java/lib/CTRE_Phoenix.jar"/>
+	<classpathentry kind="lib" path="C:/Users/RyanRobotics/Desktop/CTRE_Phoenix.jar"/>
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="networktables" sourcepath="ntcore.sources"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
