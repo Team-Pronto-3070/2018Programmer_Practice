@@ -92,11 +92,11 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
-<<<<<<< HEAD
+
 	
 	//Initializing classes
 	Drive drive;
-=======
+
 	//Initializing Gyros
 	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
 >>>>>>> origin/master
