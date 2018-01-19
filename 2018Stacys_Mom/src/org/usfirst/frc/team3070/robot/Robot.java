@@ -69,6 +69,8 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	
+	//Initializing classes
+	Drive drive;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -78,6 +80,7 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF)
 	}
 
 	/**
@@ -121,6 +124,7 @@ public class Robot extends IterativeRobot {
 					
 					break;
 					case PATH_LCR:
+							
 					
 					break;
 					case PATH_LWR:
