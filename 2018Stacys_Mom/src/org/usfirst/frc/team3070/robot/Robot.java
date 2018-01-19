@@ -14,8 +14,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
+<<<<<<< HEAD
 
 
+=======
+import edu.wpi.first.wpilibj.AnalogGyro;
+>>>>>>> origin/master
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,7 +46,27 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
+<<<<<<< HEAD
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
+=======
+	final double STANDARD_SPEED = .3;
+	final int PORT_GYRO = 9;
+	
+	final double PI = 3.141; //Variable equal to pi
+	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
+	final double DIS_TO_SWITCH = 168; //Distance in inches to the middle of the switch
+	final double DIS_TO_SCALE = 324; //Distance in inches to the middle of the scale
+	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
+	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
+	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
+	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
+	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
+	
+	boolean Turned = false;
+	
+	
+	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
+>>>>>>> origin/master
 		PATH_LCL, //Left starting position combinations
 		PATH_LWL,
 		PATH_LCR,
@@ -68,9 +92,14 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+<<<<<<< HEAD
 	
 	//Initializing classes
 	Drive drive;
+=======
+	//Initializing Gyros
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+>>>>>>> origin/master
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
