@@ -30,6 +30,9 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 	
+	Joystick JoyR = new Joystick(0);
+	Joystick JoyL = new Joystick(1);
+	
 	final int PORT_RM = 3; //Right master CIM port
 	final int PORT_RF = 6; //Right follower CIM port
 	
@@ -41,6 +44,13 @@ public class Robot extends IterativeRobot {
 	
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
+	
+	final double PI = 3.141; //Variable equal to pi
+	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
+	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
+	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
+	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM;
+	
 	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
 		PATH_LCL, //Left starting position combinations
@@ -114,7 +124,10 @@ public class Robot extends IterativeRobot {
 			default:
 				switch(impPath) {
 					case PATH_LCL:
-					
+						encR.reset();
+						setRight(1);
+						setLeft(1);
+						while(encR.getDistance() * 4096)
 					break;
 				
 					case PATH_LWL:
