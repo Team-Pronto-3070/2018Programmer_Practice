@@ -43,21 +43,23 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7;
 	final int PORT_ENC_L2 = 8;
 	
-	final int AUTO_PATH = 1;
-	final int PATH_L1A = 1;
-	final int PATH_L2A = 2;
-	final int PATH_L1B = 3;
-	final int PATH_L2B = 4;
+	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
+		PATH_LCL,
+		PATH_LWL,
+		PATH_LCR,
+		PATH_LWR,
+		
+		PATH_CCL,
+		PATH_CWL,
+		PATH_CCR,
+		PATH_CWR,
+		
+		PATH_RCL,
+		PATH_RWL,
+		PATH_RCR,
+		PATH_RWR
+	}
 	
-	final int PATH_C1A = 5;
-	final int PATH_C2A = 6;
-	final int PATH_C1B = 7;
-	final int PATH_C2B = 8;
-	
-	final int PATH_R1A = 1;
-	final int PATH_R2A = 2;
-	final int PATH_R1B = 3;
-	final int PATH_R2B = 4;
 	
 	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false);
 	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false);
@@ -97,6 +99,8 @@ public class Robot extends IterativeRobot {
 		System.out.println("Auto selected: " + m_autoSelected);
 	}
 
+	Auto_Path emp_Path =  Auto_Path.PATH_LCL;
+	
 	/**
 	 * This function is called periodically during autonomous.
 	 */
@@ -108,14 +112,44 @@ public class Robot extends IterativeRobot {
 				break;
 			case kDefaultAuto:
 			default:
-				switch(AUTO_PATH) {
-					case PATH_L1A:
+				switch(emp_Path) {
+					case PATH_LCL:
 					
 					break;
 				
-					case PATH_L2A:
+					case PATH_LWL:
 					
 					break;
+					case PATH_LCR:
+					
+					break;
+					case PATH_LWR:
+						
+					break;
+					case PATH_CCL:
+						
+					break;
+					case PATH_CWL:
+						
+					break;
+					case PATH_CCR:
+						
+					break;
+					case PATH_CWR:
+					
+					break;
+					case PATH_RCL:
+						
+					break;
+					case PATH_RWL:
+						
+					break;
+					case PATH_RCR:
+
+					break;
+					case PATH_RWR:
+				
+					break;	
 				}
 				break;
 		}
