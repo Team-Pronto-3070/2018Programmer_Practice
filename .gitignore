@@ -21,6 +21,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata
+<<<<<<< HEAD
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.prx
 *.tis
 *.fdx
@@ -28,4 +29,13 @@ hs_err_pid*
 *.nrm
 *.fdt
 2018Stacys_Mom/.classpath
+<<<<<<< HEAD
+=======
+*.lock
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/write.lock
+>>>>>>> ed6f50cdd7197004d70a1aa7f2dd0ba371747096
+=======
 2018Stacys_Mom/.classpath
+>>>>>>> master
+*.nrm
+*.tis
