@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
 	final double STANDARD_SPEED = .3;
+	final int PORT_GYRO = 9;
 	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
@@ -87,7 +88,7 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	//Initializing Gyros
-	Gyro gyro = new Gyro(); 
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
