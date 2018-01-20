@@ -14,7 +14,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
+<<<<<<< HEAD
+
+
+=======
 import edu.wpi.first.wpilibj.AnalogGyro;
+>>>>>>> origin/master
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,7 +47,9 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
+<<<<<<< HEAD
 	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
+=======
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.3;
 	final double STRONG_SPEED = .5;
@@ -62,6 +69,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
+>>>>>>> origin/master
 		PATH_LCL, //Left starting position combinations
 		PATH_LWL,
 		PATH_LCR,
@@ -86,9 +94,32 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
+<<<<<<< HEAD
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	//Initializing Gyro
 	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+=======
+<<<<<<< HEAD
+	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+
+	
+	//Initializing classes
+	Drive drive;
+
+=======
+	TalonSRX TalLF = new TalonSRX(PORT_LF), //Left follower Talon
+>>>>>>> 5fcf67594971b9eb512c7ab086b4a3edd88bddab
+	//Initializing Gyros
+<<<<<<< HEAD
+	 Gyro gyro = new AnalogGyro(); 
+=======
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+>>>>>>> master
+>>>>>>> 5fcf67594971b9eb512c7ab086b4a3edd88bddab
+>>>>>>> origin/branchbranch
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -142,6 +173,7 @@ public class Robot extends IterativeRobot {
 					
 					break;
 					case PATH_LCR:
+							
 					
 					break;
 					case PATH_LWR:
@@ -169,6 +201,7 @@ public class Robot extends IterativeRobot {
 
 					break;
 					case PATH_RWR:
+<<<<<<< HEAD
 					setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
 					setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
 					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
@@ -186,6 +219,9 @@ public class Robot extends IterativeRobot {
 						setLeft(STANDARD_SPEED);
 					}
 					
+=======
+				
+>>>>>>> origin/branchbranch
 					break;	
 				}
 				break;
