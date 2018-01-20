@@ -16,26 +16,38 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 	 /**
 	  * Sets right side motors to a certain amount, given by arg
 	  */
+	boolean noMovement;
 	void setRight(double amount) {
+		if(noMovement==false) {
 		TalRM.set(ControlMode.PercentOutput, amount);
 		TalRF.set(ControlMode.Follower, PORT_RM);
+	}
 	}
 	/**
 	  * Sets left side motors to a certain amount, given by arg
 	  */
 	void setLeft(double amount) {
+		if (noMovement==false) {
 		TalLM.set(ControlMode.PercentOutput, amount);
 		TalLF.set(ControlMode.Follower, PORT_LF);
 	}
-	void stop(boolean stoping) {
+	}
+	void stop(boolean stopping) {
+		if(stopping==true) {
 		setRight(0);
 		setLeft(0);
+		noMovement = true;
+	}else {
+		noMovement = false;
+	}
+		
 	}
 	void move(double moving) {
+		if(noMovement==false) {
 		TalLM.set(ControlMode.PercentOutput, moving);
 		TalLF.set(ControlMode.Follower, PORT_LF);
 		TalRM.set(ControlMode.PercentOutput, moving);
 		TalRF.set(ControlMode.Follower, PORT_RM);
-		
+		}
 	}
 }
