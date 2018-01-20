@@ -17,9 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
-
-
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -48,7 +45,7 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
-	final double STANDARD_SPEED = .3
+	final double STANDARD_SPEED = .3;
 	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
