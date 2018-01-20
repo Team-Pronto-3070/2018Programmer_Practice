@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
+@SuppressWarnings("unused")
 public class Robot extends IterativeRobot {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
@@ -213,8 +214,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
-		
+		double amount = (-1 * (JoyR.getRawAxis(1) * (-1 * (JoyR.getRawAxis(2) / 2))));
+		if(amount >= .2) {
+			setRight(amount);
+		}
+		amount = (-1 * (JoyL.getRawAxis(1) * (-1 * (JoyL.getRawAxis(2) / 2))));
+		if(amount >= .2) {
+			setLeft(amount);
+		}
 	}
 
 	/**
