@@ -43,7 +43,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		}
 	}
 		
-	void move(double moving,int rotations) {
+	void move(double moving, int rotations) {
 
 		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
 			setRight(moving);
