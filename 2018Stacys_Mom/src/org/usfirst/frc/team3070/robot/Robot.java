@@ -82,9 +82,9 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
-	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+	TalonSRX TalLF = new TalonSRX(PORT_LF), //Left follower Talon
 	//Initializing Gyros
-	Gyro gyro = new Gyro(); 
+	 Gyro gyro = new AnalogGyro(); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
