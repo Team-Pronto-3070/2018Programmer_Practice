@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -31,9 +30,6 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 	
-	Joystick JoyR = new Joystick(0);
-	Joystick JoyL = new Joystick(1);
-	
 	final int PORT_RM = 3; //Right master CIM port
 	final int PORT_RF = 6; //Right follower CIM port
 	
@@ -46,6 +42,7 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
+	public enum Auto_Path{ //List of all possible paths (PATH_[Starting Position][Scale or Switch][Right or Left Side])
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.3;
 	final double STRONG_SPEED = .5;
@@ -101,8 +98,7 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-		encL.reset();
-		encR.reset();
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
 	}
 
 	/**
@@ -139,26 +135,11 @@ public class Robot extends IterativeRobot {
 			default:
 				switch(impPath) {
 					case PATH_LCL:
-						setRight(STANDARD_SPEED);
-						setLeft(STANDARD_SPEED);
-						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SCALE) {
-							setRight(0);
-						}
-						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SCALE) {
-							setLeft(0);
-						}
+					
 					break;
 				
 					case PATH_LWL:
-						setRight(STANDARD_SPEED);
-						setLeft(STANDARD_SPEED);
-						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SWITCH) {
-							setRight(0);
-						}
-						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SWITCH) {
-							setLeft(0);
-						}
-						
+					
 					break;
 					case PATH_LCR:
 					
