@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
-
+//fuckingotem
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -221,6 +221,9 @@ public class Robot extends IterativeRobot {
 		amount = (-1 * (JoyL.getRawAxis(1) * (-1 * (JoyL.getRawAxis(2) / 2))));
 		if(amount >= .2) {
 			setLeft(amount);
+		}
+		if(JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
+			System.out.println("pew pew");
 		}
 	}
 
