@@ -217,15 +217,8 @@ public class Robot extends IterativeRobot {
 			System.out.println("pew pew");
 		}
 	}
-
-	/**
-	 * This function is called periodically during test mode.
-	 */
 	@Override
 	public void testPeriodic() {
 	}
-	 /**
-	  * Sets right side motors to a certain amount, given by arg
-	  */
 	
 }
