@@ -35,11 +35,11 @@ public class Robot extends IterativeRobot {
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 	
-	final int PORT_RM = 3; //Right master CIM port
-	final int PORT_RF = 6; //Right follower CIM port
+	final int PORT_RM = 2; //Right master CIM port
+	final int PORT_RF = 5; //Right follower CIM port
 	
-	final int PORT_LM = 4; //Left master CIM port
-	final int PORT_LF = 5; //Left follower CIM port
+	final int PORT_LM = 0; //Left master CIM port
+	final int PORT_LF = 1; //Left follower CIM port
 	
 	final int PORT_ENC_R1 = 1; //Right encoder first port
 	final int PORT_ENC_R2 = 2; //Right encoder second port
