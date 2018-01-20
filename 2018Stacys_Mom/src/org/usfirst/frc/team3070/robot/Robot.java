@@ -47,6 +47,8 @@ public class Robot extends IterativeRobot {
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
 	final double STANDARD_SPEED = .3;
+	final double WEAK_SPEED = -.3;
+	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
 	
 	final double PI = 3.141; //Variable equal to pi
@@ -186,11 +188,11 @@ public class Robot extends IterativeRobot {
 
 					break;
 					case PATH_RWR:
-					setRight(.5);//sets motors on the right to .5 speed
-					setLeft(.5);//sets motors on the left to .5 speed
+					setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
+					setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
 					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
-						setRight(.5);
-						setLeft(-.3);
+						setRight(STRONG_SPEED);
+						setLeft(WEAK_SPEED);
 						
 					}
 					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
@@ -198,9 +200,9 @@ public class Robot extends IterativeRobot {
 						setLeft(0);
 						Turned = true; 
 					}
-					if(gyro.getAngle() >= 90 && Turned == true) {
-						setRight(.3);
-						setLeft(.3);
+					if(gyro.getAngle() >= 90 && Turned) {
+						setRight(STANDARD_SPEED);
+						setLeft(STANDARD_SPEED);
 					}
 					
 					break;	
