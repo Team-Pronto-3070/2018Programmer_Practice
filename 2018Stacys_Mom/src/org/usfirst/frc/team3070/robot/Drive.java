@@ -40,6 +40,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		if(stopping==true) {
 		setRight(0);
 		setLeft(0);
+		stopping = false;
 		}
 	}
 		

@@ -95,8 +95,9 @@ public class Robot extends IterativeRobot {
 	
 	//Initializing classes
 	Drive drive;
-	//Initializing Gyros
-	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+	//Initializing Gyros-caused crashess
+	//AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
