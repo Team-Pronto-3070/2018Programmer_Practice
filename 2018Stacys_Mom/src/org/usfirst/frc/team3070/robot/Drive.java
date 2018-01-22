@@ -19,9 +19,6 @@ final int PORT_LF = robot.PORT_LF;
 		TalLM = new TalonSRX(PORT_LM); //Left master Talon
 		TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	}
-	public Drive(int rotations){
-		
-	}
 	 /**
 	  * Sets right side motors to a certain amount, given by arg
 	  */

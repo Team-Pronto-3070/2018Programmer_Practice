@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
+		drive = new Drive();
 	}
 
 	/**
