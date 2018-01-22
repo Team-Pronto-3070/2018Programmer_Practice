@@ -3,16 +3,24 @@ package org.usfirst.frc.team3070.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team3070.robot.Robot;
 public class Drive {
 	
 	@SuppressWarnings("unused")
 TalonSRX TalRM, TalRF, TalLM, TalLF;
-int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
-	public Drive(int rm,int rf, int lm, int lf) {
-		TalRM = new TalonSRX(rm); //Right master Talon
-		TalRF = new TalonSRX(rf); //Right follower Talon
-		TalLM = new TalonSRX(lm); //Left master Talon
-		TalLF = new TalonSRX(lf); //Left follower Talon
+	Robot robot = new Robot();
+final int PORT_RM = robot.PORT_RM;
+final int PORT_RF = robot.PORT_RF;
+final int PORT_LM = robot.PORT_LM;
+final int PORT_LF = robot.PORT_LF;
+	void initialize() {
+		TalRM = new TalonSRX(PORT_RM); //Right master Talon
+		TalRF = new TalonSRX(PORT_RF); //Right follower Talon
+		TalLM = new TalonSRX(PORT_LM); //Left master Talon
+		TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+	}
+	public Drive(int rotations){
+		
 	}
 	 /**
 	  * Sets right side motors to a certain amount, given by arg
@@ -28,7 +36,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		TalLM.set(ControlMode.PercentOutput, amount);
 		TalLF.set(ControlMode.Follower, PORT_LF);
 	}
-	void stop(boolean stoping) {
+	void stop(boolean stopping) {
 		setRight(0);
 		setLeft(0);
 	}
