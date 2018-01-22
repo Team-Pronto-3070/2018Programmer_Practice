@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 public class Drive {
 	
+	@SuppressWarnings("unused")
 TalonSRX TalRM, TalRF, TalLM, TalLF;
 int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 	public Drive(int rm,int rf, int lm, int lf) {
