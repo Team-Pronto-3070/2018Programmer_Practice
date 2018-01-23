@@ -26,7 +26,7 @@ import org.usfirst.frc.team3070.robot.Drive;
  * project.
  */
 @SuppressWarnings("unused")
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot implements Pronstants{
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 	
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
+<<<<<<< HEAD
 	
 	final int PORT_RM = 2; //Right master CIM port
 	final int PORT_RF = 5; //Right follower CIM port
@@ -91,13 +92,20 @@ public class Robot extends IterativeRobot {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+=======
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 
-	
 	//Initializing classes
 	Drive drive;
+<<<<<<< HEAD
 	//Initializing Gyros-caused crashess
 	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
 
+=======
+	Sensors sensors;
+	Auto auto;
+	
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -107,8 +115,15 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
+<<<<<<< HEAD
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
 	}				
+=======
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
+		sensors = new Sensors();
+		auto = new Auto(drive, sensors);
+	}
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -128,14 +143,13 @@ public class Robot extends IterativeRobot {
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
 	}
-
-	Auto_Path impPath =  Auto_Path.PATH_LCL; //Implemented path. 
 	
 	/**
 	 * This function is called periodically during autonomous.
 	 */
 	@Override
 	public void autonomousPeriodic() {
+<<<<<<< HEAD
 		switch (m_autoSelected) {
 			case kCustomAuto:
 				// Put custom auto code here
@@ -199,6 +213,9 @@ public class Robot extends IterativeRobot {
 				}
 				break;
 		}
+=======
+		auto.auto();
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	}
 
 	/**
