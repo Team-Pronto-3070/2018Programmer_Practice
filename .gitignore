@@ -40,6 +40,9 @@ hs_err_pid*
 >>>>>>> master
 *.nrm
 *.tis
+<<<<<<< HEAD
+2018Stacys_Mom/src/org/usfirst/frc/team3070/robot/Override.java
+=======
 =======
 *.fdt
 *.fdx
@@ -48,3 +51,5 @@ hs_err_pid*
 *.prx
 *.frq
 >>>>>>> ed56c210dbe438baff896b4d0622ee81302b1c9a
+>>>>>>> b40b2f0d7432729c5fe580be5af524b738f585f7
+/.recommenders/
