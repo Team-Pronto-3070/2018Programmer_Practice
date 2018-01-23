@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.3;
 	final double STRONG_SPEED = .5;
-	final int PORT_GYRO = 9;
+	final int PORT_GYRO = 0;
 	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
@@ -83,8 +83,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	//Initializing encoders
-	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
-	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
+	//Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
+	//Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
 	
 	//Initializing Talons
 	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
@@ -96,7 +96,7 @@ public class Robot extends IterativeRobot {
 	//Initializing classes
 	Drive drive;
 	//Initializing Gyros-caused crashess
-	//AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -108,7 +108,7 @@ public class Robot extends IterativeRobot {
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
-	}
+	}				
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -181,7 +181,7 @@ public class Robot extends IterativeRobot {
 					case PATH_RWR:
 					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
 					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
+					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
 						drive.setRight(STRONG_SPEED);
 						drive.setLeft(WEAK_SPEED);
 						
@@ -206,17 +206,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double amount = (-1 * (JoyR.getRawAxis(1) * (-1 * (JoyR.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			drive.setRight(amount);
+		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2))*/));
+		if(amountL >= .2 || amountL <= -.2) {
+			drive.setLeft(amountL);
+		}else {
+			drive.stopL(true);
 		}
-		amount = (-1 * (JoyL.getRawAxis(1) * (-1 * (JoyL.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			drive.setLeft(amount);
+		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2))*/));
+		if(amountR >= .2 || amountR <= -.2) {
+			drive.setRight(amountR);
+		}else {
+			drive.stopR(true);
 		}
+		
 		if(JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
 			System.out.println("pew pew");
 		}
+	
 	}
 	@Override
 	public void testPeriodic() {
