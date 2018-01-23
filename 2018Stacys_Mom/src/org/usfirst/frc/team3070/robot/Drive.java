@@ -20,22 +20,8 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		TalRM.set(ControlMode.PercentOutput, amount);
 		TalRF.set(ControlMode.Follower, PORT_RM);
 	}
-	/**
-	  * Sets left side motors to a certain amount, given by arg
-	  */
 	void setLeft(double amount) {
-		TalLM.set(ControlMode.PercentOutput, amount);
-		TalLF.set(ControlMode.Follower, PORT_LF);
+		TalLM.set(controlMode.PrecentOut, amount);
+		TalLF.set(controlMode.PrecentOutput, PORT_LM;
 	}
-	void stop(boolean stoping) {
-		setRight(0);
-		setLeft(0);
 	}
-	void move(double moving) {
-		TalLM.set(ControlMode.PercentOutput, moving);
-		TalLF.set(ControlMode.Follower, PORT_LF);
-		TalRM.set(ControlMode.PercentOutput, moving);
-		TalRF.set(ControlMode.Follower, PORT_RM);
-		
-	}
-}
