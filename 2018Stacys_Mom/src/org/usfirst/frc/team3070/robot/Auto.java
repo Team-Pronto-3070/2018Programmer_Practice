@@ -1,3 +1,4 @@
+// Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
