@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.Encoder;
 public class Sensors implements Pronstants {
 	Encoder encL, encR;
 	AnalogGyro gyro;
+	
+	/**
+	 * Constructor for sensors
+	 */
 	public Sensors() {
 		//Initializing encoders
 		encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
