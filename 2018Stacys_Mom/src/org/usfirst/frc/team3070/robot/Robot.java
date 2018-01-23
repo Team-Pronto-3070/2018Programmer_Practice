@@ -5,17 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
-//fuckingotem
+//fukinggotem
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Encoder; 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import org.usfirst.frc.team3070.robot.Drive;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +26,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
  * project.
  */
 @SuppressWarnings("unused")
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot implements Pronstants{
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
@@ -33,12 +34,13 @@ public class Robot extends IterativeRobot {
 	
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
+<<<<<<< HEAD
 	
-	final int PORT_RM = 3; //Right master CIM port
-	final int PORT_RF = 6; //Right follower CIM port
+	final int PORT_RM = 2; //Right master CIM port
+	final int PORT_RF = 5; //Right follower CIM port
 	
-	final int PORT_LM = 4; //Left master CIM port
-	final int PORT_LF = 5; //Left follower CIM port
+	final int PORT_LM = 0; //Left master CIM port
+	final int PORT_LF = 1; //Left follower CIM port
 	
 	final int PORT_ENC_R1 = 1; //Right encoder first port
 	final int PORT_ENC_R2 = 2; //Right encoder second port
@@ -49,7 +51,7 @@ public class Robot extends IterativeRobot {
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.3;
 	final double STRONG_SPEED = .5;
-	final int PORT_GYRO = 9;
+	final int PORT_GYRO = 0;
 	
 	final double PI = 3.141; //Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
@@ -82,16 +84,28 @@ public class Robot extends IterativeRobot {
 	}
 	
 	//Initializing encoders
-	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
-	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
+	//Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
+	//Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
 	
 	//Initializing Talons
 	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
-	//Initializing Gyro
+=======
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
+
+	//Initializing classes
+	Drive drive;
+<<<<<<< HEAD
+	//Initializing Gyros-caused crashess
 	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+
+=======
+	Sensors sensors;
+	Auto auto;
+	
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -101,9 +115,15 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-		encL.reset();
-		encR.reset();
+<<<<<<< HEAD
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
+	}				
+=======
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
+		sensors = new Sensors();
+		auto = new Auto(drive, sensors);
 	}
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -123,14 +143,13 @@ public class Robot extends IterativeRobot {
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
 	}
-
-	Auto_Path impPath =  Auto_Path.PATH_LCL; //Implemented path. 
 	
 	/**
 	 * This function is called periodically during autonomous.
 	 */
 	@Override
 	public void autonomousPeriodic() {
+<<<<<<< HEAD
 		switch (m_autoSelected) {
 			case kCustomAuto:
 				// Put custom auto code here
@@ -139,28 +158,14 @@ public class Robot extends IterativeRobot {
 			default:
 				switch(impPath) {
 					case PATH_LCL:
-						setRight(STANDARD_SPEED);
-						setLeft(STANDARD_SPEED);
-						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SCALE) {
-							setRight(0);
-						}
-						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SCALE) {
-							setLeft(0);
-						}
+					
 					break;
 				
 					case PATH_LWL:
-						setRight(STANDARD_SPEED);
-						setLeft(STANDARD_SPEED);
-						if(encR.get() / encR.getDistancePerPulse() >= ROT_TO_SWITCH) {
-							setRight(0);
-						}
-						if(encL.get() / encL.getDistancePerPulse() >= ROT_TO_SWITCH) {
-							setLeft(0);
-						}
-						
+					
 					break;
 					case PATH_LCR:
+							
 					
 					break;
 					case PATH_LWR:
@@ -188,27 +193,29 @@ public class Robot extends IterativeRobot {
 
 					break;
 					case PATH_RWR:
-					setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
-					setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
-						setRight(STRONG_SPEED);
-						setLeft(WEAK_SPEED);
+					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
+						drive.setRight(STRONG_SPEED);
+						drive.setLeft(WEAK_SPEED);
 						
 					}
 					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
-						setRight(0);
-						setLeft(0);
+						drive.setRight(0);
+						drive.setLeft(0);
 						Turned = true; 
 					}
 					if(gyro.getAngle() >= 90 && Turned) {
-						setRight(STANDARD_SPEED);
-						setLeft(STANDARD_SPEED);
+						drive.setRight(STANDARD_SPEED);
+						drive.setLeft(STANDARD_SPEED);
 					}
-					
 					break;	
 				}
 				break;
 		}
+=======
+		auto.auto();
+>>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	}
 
 	/**
@@ -216,37 +223,27 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double amount = (-1 * (JoyR.getRawAxis(1) * (-1 * (JoyR.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			setRight(amount);
+		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2))*/));
+		if(amountL >= .2 || amountL <= -.2) {
+			drive.setLeft(amountL);
+		}else {
+			drive.stopL(true);
 		}
-		amount = (-1 * (JoyL.getRawAxis(1) * (-1 * (JoyL.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			setLeft(amount);
+		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2))*/));
+		if(amountR >= .2 || amountR <= -.2) {
+			drive.setRight(amountR);
+		}else {
+			drive.stopR(true);
 		}
+		
 		if(JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
 			System.out.println("pew pew");
 		}
+	
 	}
-
-	/**
-	 * This function is called periodically during test mode.
-	 */
 	@Override
 	public void testPeriodic() {
 	}
-	 /**
-	  * Sets right side motors to a certain amount, given by arg
-	  */
-	void setRight(double amount) {
-		TalRM.set(ControlMode.PercentOutput, amount);
-		TalRF.set(ControlMode.Follower, PORT_RM);
-	}
-	/**
-	  * Sets left side motors to a certain amount, given by arg
-	  */
-	void setLeft(double amount) {
-		TalLM.set(ControlMode.PercentOutput, amount);
-		TalLF.set(ControlMode.Follower, PORT_LF);
-	}
+	
 }
+
