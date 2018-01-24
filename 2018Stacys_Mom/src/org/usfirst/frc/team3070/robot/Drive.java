@@ -5,8 +5,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 
+import org.usfirst.frc.team3070.robot.Robot;
 public class Drive {
 	
+	@SuppressWarnings("unused")
 TalonSRX TalRM, TalRF, TalLM, TalLF;
 Encoder encR,encL;
 int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
@@ -18,6 +20,16 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		TalLF = new TalonSRX(1); //Left follower Talon
 		encR = new Encoder(encoderR1, encoderR2, false); //Right encoder
 		encL = new Encoder(encoderL1, encoderL2, false); //Left encoder
+	Robot robot = new Robot();
+final int PORT_RM = robot.PORT_RM;
+final int PORT_RF = robot.PORT_RF;
+final int PORT_LM = robot.PORT_LM;
+final int PORT_LF = robot.PORT_LF;
+	void initialize() {
+		TalRM = new TalonSRX(PORT_RM); //Right master Talon
+		TalRF = new TalonSRX(PORT_RF); //Right follower Talon
+		TalLM = new TalonSRX(PORT_LM); //Left master Talon
+		TalLF = new TalonSRX(PORT_LF); //Left follower Talon
 	}
 	//open variables:
 	 /**
@@ -41,6 +53,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 	
 	void stopR(boolean stoppingR) {
 		if(stoppingR==true) {
+	void stop(boolean stopping) {
 		setRight(0);
 		stoppingR=false;
 		}

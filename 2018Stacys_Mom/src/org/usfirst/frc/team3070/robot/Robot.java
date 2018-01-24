@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder; 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import org.usfirst.frc.team3070.robot.Drive;
+import org.usfirst.frc.team3070.robot.Pronstants;
 
 
 /**
@@ -61,6 +61,9 @@ public class Robot extends IterativeRobot implements Pronstants{
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
 	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
+	//Initializing class instances
+		Drive drive;
+		Pronstants pronstants;
 	
 	boolean Turned = false;
 	
@@ -113,6 +116,19 @@ public class Robot extends IterativeRobot implements Pronstants{
 	Auto auto;
 	
 
+	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); //Right encoder
+	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); //Left encoder
+	
+	//Initializing Talons
+	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); //Right master Talon
+	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); //Right follower Talon
+	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); //Left master Talon
+	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); //Left follower Talon
+
+	
+	
+	//Initializing Gyros
+	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -135,6 +151,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
+		SmartDashboard.putData("Auto choices", m_chooser);
 	}
 >>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 
@@ -212,6 +229,11 @@ public class Robot extends IterativeRobot implements Pronstants{
 					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
 						drive.setRight(STRONG_SPEED);
 						drive.setLeft(WEAK_SPEED);
+					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
+						drive.setRight(pronstants.STRONG_SPEED);
+						drive.setLeft(pronstants.WEAK_SPEED);
 						
 					}
 					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
@@ -220,8 +242,8 @@ public class Robot extends IterativeRobot implements Pronstants{
 						Turned = true; 
 					}
 					if(gyro.getAngle() >= 90 && Turned) {
-						drive.setRight(STANDARD_SPEED);
-						drive.setLeft(STANDARD_SPEED);
+						drive.setRight(pronstants.STANDARD_SPEED);
+						drive.setLeft(pronstants.STANDARD_SPEED);
 					}
 					break;	
 				}
