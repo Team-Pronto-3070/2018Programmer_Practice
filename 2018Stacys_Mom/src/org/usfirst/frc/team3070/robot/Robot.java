@@ -35,35 +35,11 @@ public class Robot extends IterativeRobot implements Pronstants{
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 
-	
-	final int PORT_RM = 2; //Right master CIM port
-	final int PORT_RF = 5; //Right follower CIM port
-	
-	final int PORT_LM = 0; //Left master CIM port
-	final int PORT_LF = 1; //Left follower CIM port
-	
-	final int PORT_ENC_R1 = 1; //Right encoder first port
-		
-	final int PORT_ENC_L1 = 7; //Left encoder first port
-	final int PORT_ENC_L2 = 8; //Left encoder second port
-	
-	final double STANDARD_SPEED = .3;
-	final double WEAK_SPEED = -.3;
-	final double STRONG_SPEED = .5;
-	final int PORT_GYRO = 0;
-	
-	final double PI = 3.141; //Variable equal to pi
-	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
-	final double DIS_TO_SWITCH = 168; //Distance in inches to the middle of the switch
-	final double DIS_TO_SCALE = 324; //Distance in inches to the middle of the scale
-	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
-	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
-	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
-	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
-	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
 	//Initializing class instances
 		Drive drive;
 		Pronstants pronstants;
+		Sensors sensors;
+		Auto auto;
 	
 	boolean Turned = false;
 	
@@ -84,6 +60,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 		PATH_RCR,
 		PATH_RWR
 	}
+<<<<<<< HEAD
 	
 	//Initializing encoders
 	//Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
@@ -100,6 +77,8 @@ public class Robot extends IterativeRobot implements Pronstants{
 =======
 >>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 
+=======
+>>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
 
 =======
 
@@ -107,6 +86,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 >>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
 	//declaring classes
 	Drive drive;
+<<<<<<< HEAD
 	//Initializing and declaring Gyros-caused crashes
 
 
@@ -123,6 +103,11 @@ public class Robot extends IterativeRobot implements Pronstants{
 	Auto auto;
 	
 
+=======
+	//Initializing Gyros-caused crashess
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+
+>>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
 	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); //Right encoder
 	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); //Left encoder
 	
@@ -146,6 +131,9 @@ public class Robot extends IterativeRobot implements Pronstants{
 		m_chooser.addObject("My Auto", kCustomAuto);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
 		SmartDashboard.putData("Auto choices", m_chooser);			
 
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
@@ -157,8 +145,6 @@ public class Robot extends IterativeRobot implements Pronstants{
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
 }
-
-=======
 		SmartDashboard.putData("Auto choices", m_chooser);
 
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
@@ -167,9 +153,12 @@ public class Robot extends IterativeRobot implements Pronstants{
 		SmartDashboard.putData("Auto choices", m_chooser);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 =======
 >>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
+=======
+>>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
 
 
 	/**
@@ -240,11 +229,6 @@ public class Robot extends IterativeRobot implements Pronstants{
 
 					break;
 					case PATH_RWR:
-					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
-						drive.setRight(STRONG_SPEED);
-						drive.setLeft(WEAK_SPEED);
 					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
 					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
 					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
