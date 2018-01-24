@@ -38,8 +38,6 @@ Encoder encR,encL;
 		TalLM.set(ControlMode.PercentOutput, amountL);
 		TalLF.set(ControlMode.Follower, PORT_LF);
 	}
-	
-		if(stoppingR==true) {
 	void stop(boolean stopping) {
 		setRight(0);
 		setLeft(0);
