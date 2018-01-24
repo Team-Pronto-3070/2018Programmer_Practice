@@ -50,8 +50,41 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 			setLeft(0);
 		stoppingL = false;
 		}
+<<<<<<< HEAD
 	}
 		
+=======
+
+	/**
+	 * Constructor for Drive
+	 * @param rm right master
+	 * @param rf right follower
+	 * @param lm left master
+	 * @param lf left follower
+	 */
+	public Drive(int rm,int rf, int lm, int lf) {
+		TalRM = new TalonSRX(rm); //Right master Talon
+		TalRF = new TalonSRX(rf); //Right follower Talon
+		TalLM = new TalonSRX(lm); //Left master Talon
+		TalLF = new TalonSRX(lf); //Left follower Talon
+	}
+	
+	/**
+	 * Sets right side motors to a certain value
+	 * @param amount speed for motors
+	 *
+	
+	
+	/**
+	 * Sets both sides to a certain value
+	 * @param amount speed for motors
+	 */
+	void move(double amount) {
+		setRight(amount);
+		setLeft(amount);
+	}
+
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 		
 	void move(double moving, int rotations) {
 

@@ -43,8 +43,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 	final int PORT_LF = 1; //Left follower CIM port
 	
 	final int PORT_ENC_R1 = 1; //Right encoder first port
-	final int PORT_ENC_R2 = 2; //Right encoder second port
-	
+		
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
@@ -92,14 +91,24 @@ public class Robot extends IterativeRobot implements Pronstants{
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+<<<<<<< HEAD
+
+=======
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 
 
-	//Initializing classes
+	//declaring classes
 	Drive drive;
+<<<<<<< HEAD
 	//Initializing Gyros-caused crashess
 	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
 
 
+=======
+	//Initializing and declaring Gyros-caused crashes
+
+
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 	Sensors sensors;
 	Auto auto;
 	
@@ -112,6 +121,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 	public void robotInit() {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
+<<<<<<< HEAD
 		SmartDashboard.putData("Auto choices", m_chooser);			
 
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
@@ -119,6 +129,14 @@ public class Robot extends IterativeRobot implements Pronstants{
 		auto = new Auto(drive, sensors);
 }
 
+=======
+		SmartDashboard.putData("Auto choices", m_chooser);
+
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
+		sensors = new Sensors();
+		auto = new Auto(drive, sensors);
+	}
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 
 
 	/**
@@ -209,9 +227,8 @@ public class Robot extends IterativeRobot implements Pronstants{
 				}
 				break;
 		}
-=======
+		
 		auto.auto();
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	}
 
 	/**
