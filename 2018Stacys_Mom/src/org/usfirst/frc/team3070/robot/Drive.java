@@ -3,12 +3,14 @@ package org.usfirst.frc.team3070.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
+
 public class Drive {
 	
 TalonSRX TalRM, TalRF, TalLM, TalLF;
 Encoder encR,encL;
 int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
-<<<<<<< HEAD
+
 	public Drive(int rm,int rf, int lm, int lf, int encoderR1, int encoderR2, int encoderL1, int encoderL2) {
 		TalRM = new TalonSRX(2); //Right master Talon
 		TalRF = new TalonSRX(5); //Right follower Talon
@@ -47,8 +49,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		if (stoppingL==true) {
 			setLeft(0);
 		stoppingL = false;
-		
-=======
+		}
 
 	/**
 	 * Constructor for Drive
@@ -67,21 +68,8 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 	/**
 	 * Sets right side motors to a certain value
 	 * @param amount speed for motors
-	 */
-	void setRight(double amount) {
-		TalRM.set(ControlMode.PercentOutput, amount);
-		TalRF.set(ControlMode.Follower, PORT_RM);
-	}
+	 *
 	
-	/**
-	 * Sets left side motors to a certain value
-	 * @param amount speed for motors
-	 */
-	void setLeft(double amount) {
-		TalLM.set(ControlMode.PercentOutput, amount);
-		TalLF.set(ControlMode.PercentOutput, PORT_LM);
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
-	}
 	
 	/**
 	 * Sets both sides to a certain value
@@ -91,7 +79,7 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		setRight(amount);
 		setLeft(amount);
 	}
-<<<<<<< HEAD
+
 		
 	void move(double moving, int rotations) {
 
@@ -107,6 +95,5 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		}
 		
 	}
-=======
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
+
 }

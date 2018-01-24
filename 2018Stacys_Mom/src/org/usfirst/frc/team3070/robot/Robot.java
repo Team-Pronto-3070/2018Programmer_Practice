@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 	
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
-<<<<<<< HEAD
+
 	
 	final int PORT_RM = 2; //Right master CIM port
 	final int PORT_RF = 5; //Right follower CIM port
@@ -43,8 +43,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 	final int PORT_LF = 1; //Left follower CIM port
 	
 	final int PORT_ENC_R1 = 1; //Right encoder first port
-	final int PORT_ENC_R2 = 2; //Right encoder second port
-	
+		
 	final int PORT_ENC_L1 = 7; //Left encoder first port
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
@@ -92,20 +91,17 @@ public class Robot extends IterativeRobot implements Pronstants{
 	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
-=======
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 
-	//Initializing classes
+
+	//declaring classes
 	Drive drive;
-<<<<<<< HEAD
-	//Initializing Gyros-caused crashess
-	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+	//Initializing and declaring Gyros-caused crashes
 
-=======
+
 	Sensors sensors;
 	Auto auto;
 	
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -115,15 +111,12 @@ public class Robot extends IterativeRobot implements Pronstants{
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-<<<<<<< HEAD
+
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
-	}				
-=======
-		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
 	}
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
+
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -149,7 +142,7 @@ public class Robot extends IterativeRobot implements Pronstants{
 	 */
 	@Override
 	public void autonomousPeriodic() {
-<<<<<<< HEAD
+
 		switch (m_autoSelected) {
 			case kCustomAuto:
 				// Put custom auto code here
@@ -213,9 +206,8 @@ public class Robot extends IterativeRobot implements Pronstants{
 				}
 				break;
 		}
-=======
+		
 		auto.auto();
->>>>>>> 00b52997e03f47bbfe7de392c8bc812f6faac7f6
 	}
 
 	/**
