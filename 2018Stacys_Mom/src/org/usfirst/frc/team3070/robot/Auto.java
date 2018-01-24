@@ -51,13 +51,48 @@ public class Auto implements Pronstants {
 		default:
 			switch (Auto_Path) {
 			case Forward1 :
+				if(EncR =< 15 && EncL =< 15 ) {
+					drive.move(STANDARD_SPEED, 15);}
+				
+			else {drive.move(0)}
+			Auto_PATH = Turn1
+					}
+			
+				
 
 				break;
 
 			case Turn1:
+				if (square) {
+					drive.setRight(STRONG_SPEED);
+					drive.setLeft(WEAK_SPEED);
+					if(sensors.gyro.get() >= 90 && sensors.gyro.get() >= 90) {
+						drive.setRight(0);
+						drive.setLeft(0);
+						AUTO_PATH = Forward2;
+						
+					}
+				
+				else if (triangle) {
+					drive.setRight(STRONG_SPEED);
+					drive.setLeft(WEAK_SPEED);
+					if(sensors.gyro.get() >= 60 && sensors.gyro.get() >=60 ) {
+						drive.setRight(0);
+						drive.setLeft(0);
+						AUTO_PATH = Forward2;
+						
+					}
+				}
+				}
 
 				break;
 			case Forward2:
+				if(square) {
+					drive.move(STANDARD_SPEED,15);
+				
+				}
+				
+				
 
 				break;
 			case Turn2:

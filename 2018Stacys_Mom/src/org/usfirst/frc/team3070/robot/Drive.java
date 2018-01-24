@@ -8,9 +8,8 @@ import org.usfirst.frc.team3070.robot.Robot;
 
 public class Drive {
 	
-	@SuppressWarnings("unused")
 
-public Drive() {
+	public Drive() {
 		Pronstants pronstants;
 		void initialize() {
 			Talon SRX TalRM = new TalonSRX(pronstants.PORT_RM); //Right master Talon
@@ -41,78 +40,17 @@ public Drive() {
 			setRight(0);
 			setLeft(0);
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 
 	}
 		
 
-=======
->>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
 
-	/**
-	 * Constructor for Drive
-	 * @param rm right master
-	 * @param rf right follower
-	 * @param lm left master
-	 * @param lf left follower
-	 */
-	public Drive(int rm,int rf, int lm, int lf) {
-		TalRM = new TalonSRX(rm); //Right master Talon
-		TalRF = new TalonSRX(rf); //Right follower Talon
-		TalLM = new TalonSRX(lm); //Left master Talon
-		TalLF = new TalonSRX(lf); //Left follower Talon
-	}
-=======
-			
->>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
-	
-		/**
-		 * Constructor for Drive
-		 * @param rm right master
-		 * @param rf right follower
-		 * @param lm left master
-		 * @param lf left follower
-		 */
-		public Drive(int rm,int rf, int lm, int lf) {
-			TalRM = new TalonSRX(rm); //Right master Talon
-			TalRF = new TalonSRX(rf); //Right follower Talon
-			TalLM = new TalonSRX(lm); //Left master Talon
-			TalLF = new TalonSRX(lf); //Left follower Talon
-		}
-		
-		/**
-		 * Sets right side motors to a certain value
-		 * @param amount speed for motors
-		 *
-		
-		
-		/**
-		 * Sets both sides to a certain value
-		 * @param amount speed for motors
-		 */
-		void move(double amount) {
-			setRight(amount);
-			setLeft(amount);
-		}
-	
-		void move(double moving, int rotations) {
-	
-<<<<<<< HEAD
-	/**
-	 * Sets both sides to a certain value
-	 * @param amount speed for motors
-	 */
-	void move(double amount) {
-		setRight(amount);
-		setLeft(amount);
-	}
 
-<<<<<<< HEAD
+	
+	
 
-=======
->>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
-		
 	void move(double moving, int rotations) {
 
 		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
@@ -123,19 +61,7 @@ public Drive() {
 			encL.reset();
 			stopL(true);
 			stopR(true);
-=======
-			if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
-				setRight(moving);
-				setLeft(moving);
-			}else {
-				encR.reset();
-				encL.reset();
-				stopL(true);
-				stopR(true);
-				
-			}
->>>>>>> 3e7ac04c0f7fb5a32458c67c7be624f450e10754
-			
+
 		}
 
 }
