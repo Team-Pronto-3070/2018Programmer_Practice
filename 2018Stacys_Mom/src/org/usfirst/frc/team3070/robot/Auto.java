@@ -24,7 +24,7 @@ public class Auto implements Pronstants {
 		//max number of turns needed
 		Turn1, Turn2, Turn3, Turn4,
 
-		// Right starting position combinations
+		// Right starting position combinations5
 		
 	}
 
