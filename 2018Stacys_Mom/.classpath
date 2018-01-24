@@ -14,8 +14,12 @@
 	<classpathentry kind="lib" path="C:/Users/xsegg/wpilib/user/java/lib/CTRE_Phoenix.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Costco106/Downloads/Motor controler update/java/lib/CTRE_Phoenix.jar"/>
 	<classpathentry kind="lib" path="C:/Users/screp/Desktop/2018 FRC Materials/Phoenix/java/lib/CTRE_Phoenix.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="build/jars/CTRE_Phoenix.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nphil/Downloads/CTRE Phoenix Framework v5.2.1.1.zip"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/RyanRobotics/Desktop/CTRE_Phoenix.jar"/>
+>>>>>>> 9c0ff9704a6a9290b1c2117235a7b8647bc881c1
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="networktables" sourcepath="ntcore.sources"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
