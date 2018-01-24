@@ -18,14 +18,14 @@ public class Auto implements Pronstants {
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
-		// Left starting position combinations
-		PATH_LCL, PATH_LWL, PATH_LCR, PATH_LWR,
+		// max numbers of fowards possible
+		Forward1, Forward2, Foward3, Foward4,
 
-		// Center starting position combinations
-		PATH_CCL, PATH_CWL, PATH_CCR, PATH_CWR,
+		//max number of turns needed
+		Turn1, Turn2, Turn3, Turn4,
 
 		// Right starting position combinations
-		PATH_RCL, PATH_RWL, PATH_RCR, PATH_RWR
+		
 	}
 
 	// Strings for auto selector
@@ -48,47 +48,33 @@ public class Auto implements Pronstants {
 			break;
 		case kDefaultAuto:
 		default:
-			switch (impPath) {
-			case PATH_LCL:
+			switch (Auto_Path) {
+			case Forward1 :
 
 				break;
 
-			case PATH_LWL:
+			case Turn1:
 
 				break;
-			case PATH_LCR:
+			case Forward2:
 
 				break;
-			case PATH_LWR:
+			case Turn2:
 
 				break;
-			case PATH_CCL:
+			case Forward3:
 
 				break;
-			case PATH_CWL:
+			case Turn3:
 
 				break;
-			case PATH_CCR:
+			case Forward4 :
 
 				break;
-			case PATH_CWR:
+			case Turn4:
 
 				break;
-			case PATH_RCL:
-
-				break;
-			case PATH_RWL:
-
-				break;
-			case PATH_RCR:
-				RCR(case_number);
-
-				break;
-			case PATH_RWR:
-				RWR();
-				break;
-			}
-			break;
+			
 		}
 	}
 
