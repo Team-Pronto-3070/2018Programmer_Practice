@@ -31,6 +31,9 @@
 =======
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
 	<classpathentry kind="lib" path="C:/Users/RyanRobotics/Desktop/CTRE_Phoenix.jar"/>
+<<<<<<< HEAD
 >>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
+=======
+>>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
 	<classpathentry kind="output" path="bin"/>
 </classpath>

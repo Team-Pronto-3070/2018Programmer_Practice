@@ -50,10 +50,13 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 			setLeft(0);
 		stoppingL = false;
 		}
+<<<<<<< HEAD
 
 	}
 		
 
+=======
+>>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
 
 	/**
 	 * Constructor for Drive
@@ -84,7 +87,10 @@ int PORT_RM, PORT_RF,PORT_LM,PORT_LF;
 		setLeft(amount);
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b80682767af84378f423dba7420cef158dafb5c
 		
 	void move(double moving, int rotations) {
 
