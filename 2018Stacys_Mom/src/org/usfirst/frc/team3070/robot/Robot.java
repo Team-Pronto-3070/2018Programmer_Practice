@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder; 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import org.usfirst.frc.team3070.robot.Drive;
+import org.usfirst.frc.team3070.robot.Pronstants;
 
 
 /**
@@ -34,32 +35,9 @@ public class Robot extends IterativeRobot {
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 	
-	final int PORT_RM = 2; //Right master CIM port
-	final int PORT_RF = 5; //Right follower CIM port
-	
-	final int PORT_LM = 0; //Left master CIM port
-	final int PORT_LF = 1; //Left follower CIM port
-	
-	final int PORT_ENC_R1 = 1; //Right encoder first port
-	final int PORT_ENC_R2 = 2; //Right encoder second port
-	
-	final int PORT_ENC_L1 = 7; //Left encoder first port
-	final int PORT_ENC_L2 = 8; //Left encoder second port
-	
-	final double STANDARD_SPEED = .3;
-	final double WEAK_SPEED = -.3;
-	final double STRONG_SPEED = .5;
-	final int PORT_GYRO = 9;
-	
-	final double PI = 3.141; //Variable equal to pi
-	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
-	final double DIS_TO_SWITCH = 168; //Distance in inches to the middle of the switch
-	final double DIS_TO_SCALE = 324; //Distance in inches to the middle of the scale
-	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
-	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
-	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
-	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
-	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
+	//Initializing class instances
+		Drive drive;
+		Pronstants pronstants;
 	
 	boolean Turned = false;
 	
@@ -82,20 +60,19 @@ public class Robot extends IterativeRobot {
 	}
 	
 	//Initializing encoders
-	Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
-	Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
+	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); //Right encoder
+	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); //Left encoder
 	
 	//Initializing Talons
-	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
-	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
-	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
-	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); //Right master Talon
+	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); //Right follower Talon
+	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); //Left master Talon
+	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); //Left follower Talon
 
 	
-	//Initializing classes
-	Drive drive;
+	
 	//Initializing Gyros
-	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -105,7 +82,6 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-		drive = new Drive();
 	}
 
 	/**
@@ -177,11 +153,11 @@ public class Robot extends IterativeRobot {
 
 					break;
 					case PATH_RWR:
-					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= ROT_TO_AUTO_LINE && encL.get() >= ROT_TO_AUTO_LINE){
-						drive.setRight(STRONG_SPEED);
-						drive.setLeft(WEAK_SPEED);
+					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
+						drive.setRight(pronstants.STRONG_SPEED);
+						drive.setLeft(pronstants.WEAK_SPEED);
 						
 					}
 					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
@@ -190,8 +166,8 @@ public class Robot extends IterativeRobot {
 						Turned = true; 
 					}
 					if(gyro.getAngle() >= 90 && Turned) {
-						drive.setRight(STANDARD_SPEED);
-						drive.setLeft(STANDARD_SPEED);
+						drive.setRight(pronstants.STANDARD_SPEED);
+						drive.setLeft(pronstants.STANDARD_SPEED);
 					}
 					break;	
 				}
