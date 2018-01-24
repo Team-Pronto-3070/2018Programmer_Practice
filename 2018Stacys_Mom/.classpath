@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 988cac74c8d89f35c300d29b9a4119b6acad8cb5
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
@@ -21,8 +25,11 @@
 =======
 	<classpathentry kind="lib" path="C:/Users/RyanRobotics/Desktop/CTRE_Phoenix.jar"/>
 >>>>>>> 9c0ff9704a6a9290b1c2117235a7b8647bc881c1
+<<<<<<< HEAD
 =======
 >>>>>>> b33ea301c6b4a8303831706675f31c5b09bc5163
+=======
+>>>>>>> 988cac74c8d89f35c300d29b9a4119b6acad8cb5
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>

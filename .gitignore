@@ -34,7 +34,6 @@ hs_err_pid*
 *.lock
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/write.lock
 
-
 2018Stacys_Mom/.classpath
 
 *.nrm
