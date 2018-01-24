@@ -5,17 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
-//fuckingotem
+//fukinggotem
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder; 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import org.usfirst.frc.team3070.robot.Drive;
+import org.usfirst.frc.team3070.robot.Pronstants;
 
 
 /**
@@ -35,11 +35,100 @@ public class Robot extends IterativeRobot implements Pronstants{
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 
-	//Initializing classes
+	
+	final int PORT_RM = 2; //Right master CIM port
+	final int PORT_RF = 5; //Right follower CIM port
+	
+	final int PORT_LM = 0; //Left master CIM port
+	final int PORT_LF = 1; //Left follower CIM port
+	
+	final int PORT_ENC_R1 = 1; //Right encoder first port
+		
+	final int PORT_ENC_L1 = 7; //Left encoder first port
+	final int PORT_ENC_L2 = 8; //Left encoder second port
+	
+	final double STANDARD_SPEED = .3;
+	final double WEAK_SPEED = -.3;
+	final double STRONG_SPEED = .5;
+	final int PORT_GYRO = 0;
+	
+	final double PI = 3.141; //Variable equal to pi
+	final double DIS_TO_AUTO_LINE = 120; //Distance in inches to the auto line
+	final double DIS_TO_SWITCH = 168; //Distance in inches to the middle of the switch
+	final double DIS_TO_SCALE = 324; //Distance in inches to the middle of the scale
+	final double WHEEL_DIAMETER = 6; //Distance in inches of wheel diameter
+	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; //Distance in inches of wheel circumference 
+	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
+	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
+	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
+	//Initializing class instances
+		Drive drive;
+		Pronstants pronstants;
+	
+	boolean Turned = false;
+	
+	
+	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, //Left starting position combinations
+		PATH_LWL,
+		PATH_LCR,
+		PATH_LWR,
+		
+		PATH_CCL, //Center starting position combinations
+		PATH_CWL,
+		PATH_CCR,
+		PATH_CWR,
+		
+		PATH_RCL, //Right starting position combinations
+		PATH_RWL,
+		PATH_RCR,
+		PATH_RWR
+	}
+	
+	//Initializing encoders
+	//Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
+	//Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
+	
+	//Initializing Talons
+	TalonSRX TalRM = new TalonSRX(PORT_RM); //Right master Talon
+	TalonSRX TalRF = new TalonSRX(PORT_RF); //Right follower Talon
+	TalonSRX TalLM = new TalonSRX(PORT_LM); //Left master Talon
+	TalonSRX TalLF = new TalonSRX(PORT_LF); //Left follower Talon
+<<<<<<< HEAD
+
+=======
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
+
+
+	//declaring classes
 	Drive drive;
+<<<<<<< HEAD
+	//Initializing Gyros-caused crashess
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO); 
+
+
+=======
+	//Initializing and declaring Gyros-caused crashes
+
+
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
 	Sensors sensors;
 	Auto auto;
 	
+
+	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); //Right encoder
+	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); //Left encoder
+	
+	//Initializing Talons
+	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); //Right master Talon
+	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); //Right follower Talon
+	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); //Left master Talon
+	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); //Left follower Talon
+
+	
+	
+	//Initializing Gyros
+	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -48,11 +137,24 @@ public class Robot extends IterativeRobot implements Pronstants{
 	public void robotInit() {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
-		SmartDashboard.putData("Auto choices", m_chooser);
+<<<<<<< HEAD
+		SmartDashboard.putData("Auto choices", m_chooser);			
+
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
+}
+
+=======
+		SmartDashboard.putData("Auto choices", m_chooser);
+
+		drive = new Drive(PORT_RM,PORT_RF,PORT_LM, PORT_LF, PORT_ENC_R1,PORT_ENC_R2, PORT_ENC_L1, PORT_ENC_L2);
+		sensors = new Sensors();
+		auto = new Auto(drive, sensors);
+		SmartDashboard.putData("Auto choices", m_chooser);
 	}
+>>>>>>> b82421262d95033d09a422f49615d6b7cfff6ddb
+
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -78,6 +180,76 @@ public class Robot extends IterativeRobot implements Pronstants{
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
+		switch (m_autoSelected) {
+			case kCustomAuto:
+				// Put custom auto code here
+				break;
+			case kDefaultAuto:
+			default:
+				switch(impPath) {
+					case PATH_LCL:
+					
+					break;
+				
+					case PATH_LWL:
+					
+					break;
+					case PATH_LCR:
+							
+					
+					break;
+					case PATH_LWR:
+						
+					break;
+					case PATH_CCL:
+						
+					break;
+					case PATH_CWL:
+						
+					break;
+					case PATH_CCR:
+						
+					break;
+					case PATH_CWR:
+					
+					break;
+					case PATH_RCL:
+						
+					break;
+					case PATH_RWL:
+						
+					break;
+					case PATH_RCR:
+
+					break;
+					case PATH_RWR:
+					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
+						drive.setRight(STRONG_SPEED);
+						drive.setLeft(WEAK_SPEED);
+					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
+						drive.setRight(pronstants.STRONG_SPEED);
+						drive.setLeft(pronstants.WEAK_SPEED);
+						
+					}
+					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+						drive.setRight(0);
+						drive.setLeft(0);
+						Turned = true; 
+					}
+					if(gyro.getAngle() >= 90 && Turned) {
+						drive.setRight(pronstants.STANDARD_SPEED);
+						drive.setLeft(pronstants.STANDARD_SPEED);
+					}
+					break;	
+				}
+				break;
+		}
+		
 		auto.auto();
 	}
 
@@ -86,17 +258,23 @@ public class Robot extends IterativeRobot implements Pronstants{
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double amount = (-1 * (JoyR.getRawAxis(1) * (-1 * (JoyR.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			drive.setRight(amount);
+		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2))*/));
+		if(amountL >= .2 || amountL <= -.2) {
+			drive.setLeft(amountL);
+		}else {
+			drive.stopL(true);
 		}
-		amount = (-1 * (JoyL.getRawAxis(1) * (-1 * (JoyL.getRawAxis(2) / 2))));
-		if(amount >= .2) {
-			drive.setLeft(amount);
+		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2))*/));
+		if(amountR >= .2 || amountR <= -.2) {
+			drive.setRight(amountR);
+		}else {
+			drive.stopR(true);
 		}
+		
 		if(JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
 			System.out.println("pew pew");
 		}
+	
 	}
 	@Override
 	public void testPeriodic() {

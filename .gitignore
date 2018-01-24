@@ -22,6 +22,7 @@
 hs_err_pid*
 /.metadata
 <<<<<<< HEAD
+<<<<<<< HEAD
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.prx
 *.tis
 *.fdx
@@ -39,3 +40,16 @@ hs_err_pid*
 >>>>>>> master
 *.nrm
 *.tis
+<<<<<<< HEAD
+2018Stacys_Mom/src/org/usfirst/frc/team3070/robot/Override.java
+=======
+=======
+*.fdt
+*.fdx
+*.nrm
+*.tis
+*.prx
+*.frq
+>>>>>>> ed56c210dbe438baff896b4d0622ee81302b1c9a
+>>>>>>> b40b2f0d7432729c5fe580be5af524b738f585f7
+/.recommenders/

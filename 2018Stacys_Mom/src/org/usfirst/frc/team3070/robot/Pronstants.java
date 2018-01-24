@@ -6,6 +6,14 @@ public interface Pronstants {
 	
 	final int PORT_LM = 4; //Left master CIM port
 	final int PORT_LF = 5; //Left follower CIM port
+import edu.wpi.first.wpilibj.DigitalSource;
+
+public class Pronstants {
+	final int PORT_RM = 2; //Right master CIM port
+	final int PORT_RF = 5; //Right follower CIM port
+	
+	final int PORT_LM = 0; //Left master CIM port
+	final int PORT_LF = 1; //Left follower CIM port
 	
 	final int PORT_ENC_R1 = 1; //Right encoder first port
 	final int PORT_ENC_R2 = 2; //Right encoder second port
@@ -30,3 +38,4 @@ public interface Pronstants {
 	
 }
 
+}
