@@ -53,57 +53,55 @@ public class Auto {
 		case kDefaultAuto:
 		default:
 			switch (impPath) {
-			case Forward1 :
-				if(encR.get() <= 15 && encL.get() <= 15 ) {
+			case Forward1:
+				if (encR.get() <= 15 && encL.get() <= 15) {
 					drive.move(.3, 15);
-					}
-				
-			else {
-				drive.move(.3, 0);
 				}
-			encR.reset();
-			encL.reset();
-			impPath = Auto_Path.Turn1;
+
+				else {
+					drive.move(.3, 0);
+				}
+				encR.reset();
+				encL.reset();
+				impPath = Auto_Path.Turn1;
 				drive.move(.3, 0);
-			encR.reset();
-			encL.reset();
-			impPath = Auto_Path.Turn1;
-			break;
+				encR.reset();
+				encL.reset();
+				impPath = Auto_Path.Turn1;
+				break;
 
 			case Turn1:
 				if (square) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					if(sensors.gyro.getAngle() >= 90) {
+					if (sensors.gyro.getAngle() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						impPath = Auto_Path.Forward2;
 					}
-				
-				else if (triangle) {
-					drive.setRight(Pronstants.STRONG_SPEED);
-					drive.setLeft(Pronstants.WEAK_SPEED);
-					if(sensors.gyro.getAngle() >= 60) {
-						drive.setRight(0);
-						drive.setLeft(0);
-						impPath = Auto_Path.Forward2;	
+
+					else if (triangle) {
+						drive.setRight(Pronstants.STRONG_SPEED);
+						drive.setLeft(Pronstants.WEAK_SPEED);
+						if (sensors.gyro.getAngle() >= 60) {
+							drive.setRight(0);
+							drive.setLeft(0);
+							impPath = Auto_Path.Forward2;
+						}
 					}
-				}
-				encL.reset();
-				encR.reset();
+					encL.reset();
+					encR.reset();
 				}
 
 				break;
 			case Forward2:
-				if(square) {
+				if (square) {
 					drive.move(.3, 15);
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn2;
 				}
-				
-				
 
 				break;
 			case Turn2:
@@ -111,53 +109,53 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if(sensors.gyro.getAngle() >= 90) {
+				if (sensors.gyro.getAngle() >= 90) {
 					drive.stop();
-					 
+
 				}
-				if(triangle) {
+				if (triangle) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if(sensors.gyro.getAngle() >= 60) {
+				if (sensors.gyro.getAngle() >= 60) {
 					drive.stop();
 					impPath = Auto_Path.Forward3;
 				}
 				break;
 			case Forward3:
-				if(square) {
-					drive.move(.3,0);
+				if (square) {
+					drive.move(.3, 0);
 				}
-				if(encL.get() >= 15 && encR.get() >=15) {
+				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn3;
 				}
 				break;
 			case Turn3:
-				if(square) {
+				if (square) {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if(sensors.gyro.getAngle() >= 90) {
+				if (sensors.gyro.getAngle() >= 90) {
 					drive.stop();
 					impPath = Auto_Path.Forward4;
 				}
 				break;
-			case Forward4 :
-				if(square) {
+			case Forward4:
+				if (square) {
 					drive.move(.3, 0);
 				}
-				if(encL.get() >= 15 && encR.get() >= 15) {
+				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn4;
 				}
 				break;
 			case Turn4:
-				if(square) {
+				if (square) {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if(sensors.gyro.getAngle() >= 90) {
+				if (sensors.gyro.getAngle() >= 90) {
 					drive.stop();
 				}
 				break;
