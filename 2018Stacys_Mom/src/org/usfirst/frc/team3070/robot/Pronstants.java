@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3070.robot;
 
+import edu.wpi.first.wpilibj.DigitalSource;
+
 public interface Pronstants {
 
 	final int PORT_RM = 2; // Right master CIM port
