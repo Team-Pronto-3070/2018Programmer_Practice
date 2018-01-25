@@ -4,7 +4,7 @@ package org.usfirst.frc.team3070.robot;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class Sensors{
+public class Sensors {
 	Encoder encL, encR;
 	AnalogGyro gyro;
 
