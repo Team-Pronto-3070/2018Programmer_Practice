@@ -38,21 +38,16 @@ public class Robot extends IterativeRobot {
 
 	boolean Turned = false;
 
-	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
-		PATH_LCL, //Left starting position combinations
-		PATH_LWL,
-		PATH_LCR,
-		PATH_LWR,
-		
-		PATH_CCL, //Center starting position combinations
-		PATH_CWL,
-		PATH_CCR,
-		PATH_CWR,
-		
-		PATH_RCL, //Right starting position combinations
-		PATH_RWL,
-		PATH_RCR,
-		PATH_RWR
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+							// postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, // Left starting position combinations
+		PATH_LWL, PATH_LCR, PATH_LWR,
+
+		PATH_CCL, // Center starting position combinations
+		PATH_CWL, PATH_CCR, PATH_CWR,
+
+		PATH_RCL, // Right starting position combinations
+		PATH_RWL, PATH_RCR, PATH_RWR
 	}
 
 	// Initializing Gyros-caused crashess
@@ -97,67 +92,66 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 
 		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
-				break;
-			case kDefaultAuto:
-			default:
-				switch(impPath) {
-					case PATH_LCL:
-					
-					break;
-				
-					case PATH_LWL:
-					
-					break;
-					case PATH_LCR:
-							
-					
-					break;
-					case PATH_LWR:
-						
-					break;
-					case PATH_CCL:
-						
-					break;
-					case PATH_CWL:
-						
-					break;
-					case PATH_CCR:
-						
-					break;
-					case PATH_CWR:
-					
-					break;
-					case PATH_RCL:
-						
-					break;
-					case PATH_RWL:
-						
-					break;
-					case PATH_RCR:
+		case kCustomAuto:
+			// Put custom auto code here
+			break;
+		case kDefaultAuto:
+		default:
+			switch (impPath) {
+			case PATH_LCL:
 
-					break;
-					case PATH_RWR:
-					drive.setRight(Pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(Pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= Pronstants.ROT_TO_AUTO_LINE && encL.get() >= Pronstants.ROT_TO_AUTO_LINE){
-						drive.setRight(Pronstants.STRONG_SPEED);
-						drive.setLeft(Pronstants.WEAK_SPEED);
-						
-					}
-					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
-						drive.setRight(0);
-						drive.setLeft(0);
-						Turned = true; 
-					}
-					if(gyro.getAngle() >= 90 && Turned) {
-						drive.setRight(Pronstants.STANDARD_SPEED);
-						drive.setLeft(Pronstants.STANDARD_SPEED);
-					}
-					break;	
+				break;
+
+			case PATH_LWL:
+
+				break;
+			case PATH_LCR:
+
+				break;
+			case PATH_LWR:
+
+				break;
+			case PATH_CCL:
+
+				break;
+			case PATH_CWL:
+
+				break;
+			case PATH_CCR:
+
+				break;
+			case PATH_CWR:
+
+				break;
+			case PATH_RCL:
+
+				break;
+			case PATH_RWL:
+
+				break;
+			case PATH_RCR:
+
+				break;
+			case PATH_RWR:
+				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
+				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
+				if (encR.get() >= Pronstants.ROT_TO_AUTO_LINE && encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setLeft(Pronstants.WEAK_SPEED);
+
+				}
+				if (gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+					drive.setRight(0);
+					drive.setLeft(0);
+					Turned = true;
+				}
+				if (gyro.getAngle() >= 90 && Turned) {
+					drive.setRight(Pronstants.STANDARD_SPEED);
+					drive.setLeft(Pronstants.STANDARD_SPEED);
 				}
 				break;
+			}
+			break;
 		}
 	}
 
