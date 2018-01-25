@@ -24,7 +24,6 @@ import org.usfirst.frc.team3070.robot.Pronstants;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-@SuppressWarnings("unused")
 public class Robot extends IterativeRobot implements Pronstants {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
