@@ -8,24 +8,29 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder; 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import org.usfirst.frc.team3070.robot.Drive;
+
 public class Auto implements Pronstants {
 	Drive drive;
 	Sensors sensors;
 
 	/**
 	 * Constructor for auto
-	 * @param d Drive
-	 * @param s Sensors
+	 * 
+	 * @param d
+	 *            Drive
+	 * @param s
+	 *            Sensors
 	 */
 	public Auto(Drive d, Sensors s) {
 		drive = d;
 		sensors = s;
 	}
 
-	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+	public enum Auto_Path
+	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		// max numbers of fowards possible
 		Forward1, Forward2, Foward3, Foward4,
@@ -42,7 +47,7 @@ public class Auto implements Pronstants {
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
 	Auto_Path impPath;
-	
+
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
 	int case_number = 1;
@@ -153,7 +158,9 @@ public class Auto implements Pronstants {
 
 	/**
 	 * Code for RCR
-	 * @param RCR state the code starts at
+	 * 
+	 * @param RCR
+	 *            state the code starts at
 	 */
 	public void RCR(int RCR) {
 
@@ -187,7 +194,7 @@ public class Auto implements Pronstants {
 
 	}
 
-	/** 
+	/**
 	 * Code for RWR
 	 */
 	public void RWR() {
