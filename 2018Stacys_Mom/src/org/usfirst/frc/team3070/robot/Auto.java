@@ -35,11 +35,11 @@ public class Auto implements Pronstants {
 		// max numbers of fowards possible
 		Forward1, Forward2, Foward3, Foward4,
 
-		//max number of turns needed
+		// max number of turns needed
 		Turn1, Turn2, Turn3, Turn4,
 
 		// Right starting position combinations
-		
+
 	}
 
 	// Strings for auto selector
@@ -97,8 +97,7 @@ public class Auto implements Pronstants {
 					if(sensors.gyro.get() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						AUTO_PATH = Forward2;
-						
+						AUTO_PATH = Forward2;	
 					}
 				}
 				encL.reset;
@@ -125,6 +124,7 @@ public class Auto implements Pronstants {
 				}
 				if(sensors.gyro.get() >= 90) {
 					drive.move(0);
+					 
 				}
 				if(triangle) {
 					setRight(STRONG_SPEED);
@@ -132,7 +132,7 @@ public class Auto implements Pronstants {
 				}
 				if(sensors.gyro.get() >= 60) {
 					drive.move(0);
-					
+					AUTO_PATH = Forward3
 				}
 				break;
 			case Forward3:
@@ -140,17 +140,37 @@ public class Auto implements Pronstants {
 					drive.driveForward;
 				}
 				if(encL.get() >= 15 && encR.get() >=15) {
-					
+					drive.stop();
+					AUTO_PATH = Turn3;
 				}
 				break;
 			case Turn3:
-
+				if(square) {
+					setLeft(WEAK_SPEED);
+					setRight(STRONG_SPEED);
+				}
+				if(gyro.get() >= 90) {
+					drive.stop();
+					AUTO_PATH = Forward4;
+				}
 				break;
 			case Forward4 :
-
+				if(square) {
+					drive.driveForward;
+				}
+				if(encL.get() >= 15 && encR.get() >= 15) {
+					drive.stop;
+					AUTO_PATH = Turn4
+				}
 				break;
 			case Turn4:
-
+				if(square) {
+					setLeft(WEAK_SPEED);
+					setRight(STRONG_SPEED);
+				}
+				if(gyro.get() >= 90) {
+					drive.stop;
+				}
 				break;
 			
 		}
