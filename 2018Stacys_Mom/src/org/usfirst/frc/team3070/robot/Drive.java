@@ -9,6 +9,26 @@ import org.usfirst.frc.team3070.robot.Robot;
 public class Drive {
 
 	@SuppressWarnings("unused")
+<<<<<<< HEAD
+=======
+	TalonSRX TalRM, TalRF, TalLM, TalLF;
+	Encoder encR, encL;
+	int PORT_RM, PORT_RF, PORT_LM, PORT_LF;
+
+	public Drive(int rm,int rf, int lm, int lf, int encoderR1, int encoderR2, int encoderL1, int encoderL2) {
+		TalRM = new TalonSRX(2); //Right master Talon
+		TalRF = new TalonSRX(5); //Right follower Talon
+		TalLM = new TalonSRX(0); //Left master Talon
+		TalLF = new TalonSRX(1); //Left follower Talon
+		encR = new Encoder(encoderR1, encoderR2, false); //Right encoder
+		encL = new Encoder(encoderL1, encoderL2, false); //Left encoder
+	Robot robot = new Robot();
+final int PORT_RM = robot.PORT_RM;
+final int PORT_RF = robot.PORT_RF;
+final int PORT_LM = robot.PORT_LM;
+final int PORT_LF = robot.PORT_LF;
+	}
+>>>>>>> it-me-the-stego
 
 public Drive() {
 		Pronstants pronstants;

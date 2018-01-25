@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package org.usfirst.frc.team3070.robot;
 
@@ -19,4 +20,10 @@ public class Sensors implements Pronstants {
 		// Initializing Gyros
 		gyro = new AnalogGyro(PORT_GYRO);
 	}
+=======
+package org.usfirst.frc.team3070.robot;
+
+public class Sensors {
+
+>>>>>>> it-me-the-stego
 }

@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3070.robot;
+import edu.wpi.first.wpilibj.DigitalSource;
 
 public interface Pronstants {
 	final int PORT_RM = 3; //Right master CIM port
@@ -7,14 +8,9 @@ public interface Pronstants {
 	final int PORT_LM = 4; //Left master CIM port
 	final int PORT_LF = 5; //Left follower CIM port
 
-import edu.wpi.first.wpilibj.DigitalSource;
 
-public class Pronstants {
-	final int PORT_RM = 2; // Right master CIM port
-	final int PORT_RF = 5; // Right follower CIM port
 
-	final int PORT_LM = 0; // Left master CIM port
-	final int PORT_LF = 1; // Left follower CIM port
+	
 
 	final int PORT_ENC_R1 = 1; // Right encoder first port
 	final int PORT_ENC_R2 = 2; // Right encoder second port
@@ -38,3 +34,8 @@ public class Pronstants {
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; // Number of rotations to the middle of the scale
 
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> it-me-the-stego

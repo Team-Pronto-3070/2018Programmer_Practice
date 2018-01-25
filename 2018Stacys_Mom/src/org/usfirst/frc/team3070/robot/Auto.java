@@ -29,10 +29,16 @@ public class Auto implements Pronstants {
 		sensors = s;
 	}
 
+<<<<<<< HEAD
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		// max numbers of fowards possible
+=======
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+							// position][sCale or sWitch][Right or Left Side])
+		// max numbers of forwards possible
+>>>>>>> it-me-the-stego
 		Forward1, Forward2, Foward3, Foward4,
 
 		// max number of turns needed
@@ -51,7 +57,7 @@ public class Auto implements Pronstants {
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
 	int case_number = 1;
-
+	
 	/**
 	 * Runs state machine to select which auto to run
 	 */
@@ -107,7 +113,7 @@ public class Auto implements Pronstants {
 				break;
 			case Forward2:
 				if(square) {
-					drive.driveForward;
+					drive.driveForward();
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.move(0);
@@ -156,10 +162,10 @@ public class Auto implements Pronstants {
 				break;
 			case Forward4 :
 				if(square) {
-					drive.driveForward;
+					drive.driveForward();
 				}
 				if(encL.get() >= 15 && encR.get() >= 15) {
-					drive.stop;
+					drive.stop();
 					AUTO_PATH = Turn4
 				}
 				break;
@@ -169,7 +175,7 @@ public class Auto implements Pronstants {
 					setRight(STRONG_SPEED);
 				}
 				if(gyro.get() >= 90) {
-					drive.stop;
+					drive.stop();
 				}
 				break;
 			
