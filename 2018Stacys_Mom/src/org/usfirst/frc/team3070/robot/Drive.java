@@ -12,7 +12,12 @@ public class Drive {
 
 public Drive() {
 		Pronstants pronstants;
-
+		public Drive(int rm, int rf, int lm, int lf) {
+			TalRM = new TalonSRX(rm); // Right master Talon
+			TalRF = new TalonSRX(rf); // Right follower Talon
+			TalLM = new TalonSRX(lm); // Left master Talon
+			TalLF = new TalonSRX(lf); // Left follower Talon
+		}
 	void initialize() {
 			Talon SRX TalRM = new TalonSRX(pronstants.PORT_RM); //Right master Talon
 			Talon SRX TalRF = new TalonSRX(pronstants.PORT_RF); //Right follower Talon
@@ -59,12 +64,8 @@ public Drive() {
 	 * @param lf
 	 *            left follower
 	 */
-	public Drive(int rm, int rf, int lm, int lf) {
-		TalRM = new TalonSRX(rm); // Right master Talon
-		TalRF = new TalonSRX(rf); // Right follower Talon
-		TalLM = new TalonSRX(lm); // Left master Talon
-		TalLF = new TalonSRX(lf); // Left follower Talon
-	}
+	
+
 
 	/**
 	 * Constructor for Drive
