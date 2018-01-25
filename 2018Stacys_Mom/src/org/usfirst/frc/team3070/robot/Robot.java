@@ -5,8 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
+<<<<<<< HEAD
 
 //fukinggotem
+=======
+//fuckingotem
+>>>>>>> xavier
 
 /*
  * 
