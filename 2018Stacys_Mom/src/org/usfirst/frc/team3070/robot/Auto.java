@@ -28,12 +28,6 @@ public class Auto implements Pronstants {
 		drive = d;
 		sensors = s;
 	}
-
-	public enum Auto_Path
-	{ // List of all possible paths (PATH_[Left, Center, or Right starting
-							// postition][sCale or sWitch][Right or Left Side])
-		// max numbers of fowards possible
-
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
