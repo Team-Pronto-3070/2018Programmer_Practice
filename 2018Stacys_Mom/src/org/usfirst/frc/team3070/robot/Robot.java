@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
 
-//fukinggotem
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +24,6 @@ import org.usfirst.frc.team3070.robot.Pronstants;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-@SuppressWarnings("unused")
 public class Robot extends IterativeRobot implements Pronstants {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
@@ -34,6 +32,47 @@ public class Robot extends IterativeRobot implements Pronstants {
 
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
+
+
+	// Initializing class instances
+	Drive drive;
+	Pronstants pronstants;
+	Sensors sensors;
+	Auto auto;
+
+	boolean Turned = false;
+
+	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, //Left starting position combinations
+		PATH_LWL,
+		PATH_LCR,
+		PATH_LWR,
+		
+		PATH_CCL, //Center starting position combinations
+		PATH_CWL,
+		PATH_CCR,
+		PATH_CWR,
+		
+		PATH_RCL, //Right starting position combinations
+		PATH_RWL,
+		PATH_RCR,
+		PATH_RWR
+	}
+
+	// declaring classes
+	Drive drive;
+	// Initializing Gyros-caused crashess
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO);
+
+	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); // Left encoder
+
+	// Initializing Talons
+	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); // Right master Talon
+	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); // Right follower Talon
+	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
+	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
+
 
 	final int PORT_RM = 2; // Right master CIM port
 	final int PORT_RF = 5; // Right follower CIM port
@@ -87,6 +126,7 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); // Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); // Left follower Talon
+<<<<<<< HEAD
 	
 
 	// declaring classes
@@ -99,6 +139,19 @@ public class Robot extends IterativeRobot implements Pronstants {
 	// Initializing and declaring Gyros-caused crashes
 
 	Sensors sensors;
+=======
+
+
+	// declaring classes
+	Drive drive;
+	// Initializing Gyros-caused crashess
+	AnalogGyro gyro=new AnalogGyro(PORT_GYRO);
+
+	
+	// Initializing and declaring Gyros-caused crashes
+
+	 Sensors sensors;
+>>>>>>> master
 	Auto auto;
 
 	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
@@ -110,31 +163,43 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
 
+
 	// Initializing Gyros
 	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO);
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
+<<<<<<< HEAD
 
 		SmartDashboard.putData("Auto choices", m_chooser);			
+=======
+		SmartDashboard.putData("Auto choices", m_chooser);
+>>>>>>> master
 
-		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
+		drive = new Drive(PORT_RM, PORT_RF, PORT_LM, PORT_LF);
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
-}
-
+	}
 	SmartDashboard.putData("Auto choices",m_chooser);
 
-	drive=new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF,PORT_ENC_R1,PORT_ENC_R2,PORT_ENC_L1,PORT_ENC_L2);sensors=new Sensors();auto=new Auto(drive,sensors);SmartDashboard.putData("Auto choices",m_chooser);
+<<<<<<< HEAD
+	SmartDashboard.putData("Auto choices",m_chooser);
+=======
+>>>>>>> master
 
+
+<<<<<<< HEAD
 	}
+=======
+>>>>>>> master
 
+	
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable chooser
@@ -204,11 +269,6 @@ public class Robot extends IterativeRobot implements Pronstants {
 
 					break;
 					case PATH_RWR:
-					drive.setRight(STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( drive.encR.get() >= ROT_TO_AUTO_LINE && drive.encL.get() >= ROT_TO_AUTO_LINE){
-						drive.setRight(STRONG_SPEED);
-						drive.setLeft(WEAK_SPEED);
 					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
 					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
 					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){

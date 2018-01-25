@@ -48,4 +48,8 @@ hs_err_pid*
 *.frq
 
 /.recommenders/
+
+.classpath
+
 /.classpath
+
