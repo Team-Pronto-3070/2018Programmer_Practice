@@ -49,8 +49,4 @@ hs_err_pid*
 *.frq
 
 /.recommenders/
-<<<<<<< HEAD
-.classpath
-=======
 /.classpath
->>>>>>> it-me-the-stego
