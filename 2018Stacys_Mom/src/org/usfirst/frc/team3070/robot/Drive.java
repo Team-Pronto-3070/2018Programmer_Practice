@@ -38,8 +38,6 @@ public class Drive {
 		setLeft(0);
 	}
 
-	}
-
 	/**
 	 * Constructor for Drive
 	 * 
