@@ -67,17 +67,18 @@ public class Auto implements Pronstants {
 			break;
 		case kDefaultAuto:
 		default:
-			switch (Auto_Path) {
+			switch (impPath) {
 			case Forward1 :
 				if(EncR =< 15 && EncL =< 15 ) {
-					drive.drvieForward;
+					drive.move(STRONG_SPEED, 15);
 					}
 				
 			else {
-				drive.move(0)}
+				drive.stop(true);
 			encR.reset;
 			encL.reset;
-			Auto_PATH = Turn1
+			}
+			Auto_PATH = Turn1;
 			
 					}
 			

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3070.robot;
+package src.org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.DigitalSource;
 
