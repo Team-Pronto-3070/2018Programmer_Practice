@@ -1,10 +1,21 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
+<<<<<<< HEAD
 import org.usfirst.frc.team3070.robot.Drive;
 import org.usfirst.frc.team3070.robot.Pronstants;
 import org.usfirst.frc.team3070.robot.Sensors;
+=======
+import edu.wpi.first.wpilibj.AnalogGyro;
+>>>>>>> parent of 0654bab... Merge branch 'master' into xavier
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
