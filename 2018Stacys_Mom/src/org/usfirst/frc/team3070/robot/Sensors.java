@@ -10,10 +10,6 @@ public class Sensors implements Pronstants {
 	/**
 	 * Constructor for sensors
 	 */
-
-
-	public void Sensors() {
-
 	public Sensors() {
 
 		// Initializing encoders
