@@ -87,22 +87,18 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); // Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); // Left follower Talon
-	<<<<<<<HEAD
-
-	=======>>>>>>>
-	b82421262d95033d09a422f49615d6b7cfff6ddb
+	
 
 	// declaring classes
-	Drive drive;<<<<<<<
-	HEAD
+	Drive drive;
+	
 	// Initializing Gyros-caused crashess
 	AnalogGyro gyro=new AnalogGyro(PORT_GYRO);
 
-	=======
+
 	// Initializing and declaring Gyros-caused crashes
 
-	>>>>>>>
-	b82421262d95033d09a422f49615d6b7cfff6ddb Sensors sensors;
+	Sensors sensors;
 	Auto auto;
 
 	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
@@ -125,7 +121,7 @@ public class Robot extends IterativeRobot implements Pronstants {
 	public void robotInit() {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
-<<<<<<< HEAD
+
 		SmartDashboard.putData("Auto choices", m_chooser);			
 
 		drive = new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF);
@@ -133,11 +129,11 @@ public class Robot extends IterativeRobot implements Pronstants {
 		auto = new Auto(drive, sensors);
 }
 
-	=======SmartDashboard.putData("Auto choices",m_chooser);
+	SmartDashboard.putData("Auto choices",m_chooser);
 
 	drive=new Drive(PORT_RM,PORT_RF,PORT_LM,PORT_LF,PORT_ENC_R1,PORT_ENC_R2,PORT_ENC_L1,PORT_ENC_L2);sensors=new Sensors();auto=new Auto(drive,sensors);SmartDashboard.putData("Auto choices",m_chooser);
 
-	}>>>>>>>b82421262d95033d09a422f49615d6b7cfff6ddb
+	}
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
