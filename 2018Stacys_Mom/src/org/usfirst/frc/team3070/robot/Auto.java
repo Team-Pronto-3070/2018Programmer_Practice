@@ -10,28 +10,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import org.usfirst.frc.team3070.robot.Drive;
 
-public class Auto implements Pronstants {
-	Drive drive;
-	Sensors sensors;
-
-	/**
-	 * Constructor for auto
-	 * 
-	 * @param d
-	 *            Drive
-	 * @param s
-	 *            Sensors
-	 */
-	public Auto(Drive d, Sensors s) {
-		drive = d;
-		sensors = s;
-	}
-	public enum Auto_Path
-	{ // List of all possible paths (PATH_[Left, Center, or Right starting
+public class Auto {
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
-		// max numbers of forwards possible
+							// max numbers of forwards possible
 
 		Forward1, Forward2, Foward3, Foward4,
 
@@ -46,7 +29,9 @@ public class Auto implements Pronstants {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
-	Auto_Path impPath;
+	Auto_Path impPath = Auto_Path.Forward1;
+	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
@@ -62,17 +47,18 @@ public class Auto implements Pronstants {
 			break;
 		case kDefaultAuto:
 		default:
-			switch (Auto_Path) {
+			switch (impPath) {
 			case Forward1 :
-				if(EncR =< 15 && EncL =< 15 ) {
-					drive.drvieForward;
+				if(encR.get() <= 15 && encL.get() <= 15 ) {
+					Drive.driveForward(15);
 					}
 				
 			else {
-				drive.move(0)}
-			encR.reset;
-			encL.reset;
-			Auto_PATH = Turn1
+				Drive.move(0);
+				}
+			encR.reset();
+			encL.reset();
+			impPath = Auto_Path.Turn1;
 			
 					}
 			
