@@ -30,8 +30,8 @@ public class Auto implements Pronstants {
 	}
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
-							// postition][sCale or sWitch][Right or Left Side])
-		// max numbers of fowards possible
+							// position][sCale or sWitch][Right or Left Side])
+		// max numbers of forwards possible
 		Forward1, Forward2, Foward3, Foward4,
 
 		// max number of turns needed

@@ -26,6 +26,7 @@ final int PORT_RM = robot.PORT_RM;
 final int PORT_RF = robot.PORT_RF;
 final int PORT_LM = robot.PORT_LM;
 final int PORT_LF = robot.PORT_LF;
+	}
 
 	void initialize() {
 		TalRM = new TalonSRX(PORT_RM); // Right master Talon
