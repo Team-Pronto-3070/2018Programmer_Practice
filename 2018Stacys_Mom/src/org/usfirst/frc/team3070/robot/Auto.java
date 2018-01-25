@@ -1,5 +1,5 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
-package org.usfirst.frc.team3070.robot;
+package src.org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import org.usfirst.frc.team3070.robot.Drive;
+
 
 public class Auto implements Pronstants {
 	Drive drive;
@@ -28,21 +28,19 @@ public class Auto implements Pronstants {
 		drive = d;
 		sensors = s;
 	}
-<<<<<<< HEAD
+
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
-<<<<<<< HEAD
+
 							// postition][sCale or sWitch][Right or Left Side])
 							// max numbers of fowards possible
 
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
-=======
-=======
+
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
->>>>>>> 55e75067a78964c03a32a45669d3ab5db525f904
->>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
+
 							// position][sCale or sWitch][Right or Left Side])
 							// max numbers of forwards possible
 
@@ -61,17 +59,15 @@ public class Auto implements Pronstants {
 		private String m_autoSelected;
 		Auto_Path impPath;
 
-<<<<<<< HEAD
 		// Variables used in subcodes-need to change later
 		boolean Turned = false;
 		int case_number = 1;
-=======
+
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
 	int case_number = 1;
 	boolean square = true;
 	boolean triangle = true;
->>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
 
 	/**
 	 * Runs state machine to select which auto to run
@@ -85,7 +81,7 @@ public class Auto implements Pronstants {
 		default:
 			switch (impPath) {
 			case Forward1 :
-				if(EncR =< 15 && EncL =< 15 ) {
+				if(EncR <= 15 && EncL <= 15 ) {
 					drive.move(STRONG_SPEED, 15);
 					}
 				
@@ -93,12 +89,12 @@ public class Auto implements Pronstants {
 				drive.stop(true);
 			encR.reset;
 			encL.reset;
-<<<<<<< HEAD
+
 			}
 			Auto_PATH = Turn1;
-=======
+
 			Auto_Path = Turn1
->>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
+
 			
 					}
 			
