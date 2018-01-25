@@ -33,7 +33,6 @@ public class Robot extends IterativeRobot implements Pronstants {
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 
-
 	// Initializing class instances
 	Drive drive;
 	Pronstants pronstants;
@@ -42,21 +41,16 @@ public class Robot extends IterativeRobot implements Pronstants {
 
 	boolean Turned = false;
 
-	public enum Auto_Path{ //List of all possible paths (PATH_[Left, Center, or Right starting postition][sCale or sWitch][Right or Left Side])
-		PATH_LCL, //Left starting position combinations
-		PATH_LWL,
-		PATH_LCR,
-		PATH_LWR,
-		
-		PATH_CCL, //Center starting position combinations
-		PATH_CWL,
-		PATH_CCR,
-		PATH_CWR,
-		
-		PATH_RCL, //Right starting position combinations
-		PATH_RWL,
-		PATH_RCR,
-		PATH_RWR
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+							// postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, // Left starting position combinations
+		PATH_LWL, PATH_LCR, PATH_LWR,
+
+		PATH_CCL, // Center starting position combinations
+		PATH_CWL, PATH_CCR, PATH_CWR,
+
+		PATH_RCL, // Right starting position combinations
+		PATH_RWL, PATH_RCR, PATH_RWR
 	}
 
 	// declaring classes
@@ -72,7 +66,6 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); // Right follower Talon
 	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
-
 
 	final int PORT_RM = 2; // Right master CIM port
 	final int PORT_RF = 5; // Right follower CIM port
@@ -126,33 +119,19 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalRF = new TalonSRX(PORT_RF); // Right follower Talon
 	TalonSRX TalLM = new TalonSRX(PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(PORT_LF); // Left follower Talon
-<<<<<<< HEAD
-	
 
 	// declaring classes
 	Drive drive;
-	
-	// Initializing Gyros-caused crashess
-	AnalogGyro gyro=new AnalogGyro(PORT_GYRO);
 
+	// Initializing Gyros-caused crashess
+	AnalogGyro gyro = new AnalogGyro(PORT_GYRO);
 
 	// Initializing and declaring Gyros-caused crashes
 
 	Sensors sensors;
-=======
-
-
-	// declaring classes
-	Drive drive;
-	// Initializing Gyros-caused crashess
-	AnalogGyro gyro=new AnalogGyro(PORT_GYRO);
 
 	
-	// Initializing and declaring Gyros-caused crashes
-
-	 Sensors sensors;
->>>>>>> master
-	Auto auto;
+	master Auto auto;
 
 	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
 	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); // Left encoder
@@ -162,7 +141,6 @@ public class Robot extends IterativeRobot implements Pronstants {
 	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); // Right follower Talon
 	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
 	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
-
 
 	// Initializing Gyros
 	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO);
@@ -175,7 +153,7 @@ public class Robot extends IterativeRobot implements Pronstants {
 	public void robotInit() {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
-<<<<<<< HEAD
+
 
 		SmartDashboard.putData("Auto choices", m_chooser);			
 =======
@@ -185,21 +163,16 @@ public class Robot extends IterativeRobot implements Pronstants {
 		drive = new Drive(PORT_RM, PORT_RF, PORT_LM, PORT_LF);
 		sensors = new Sensors();
 		auto = new Auto(drive, sensors);
-	}
-	SmartDashboard.putData("Auto choices",m_chooser);
+	}SmartDashboard.putData("Auto choices",m_chooser);
 
-<<<<<<< HEAD
-	SmartDashboard.putData("Auto choices",m_chooser);
-=======
->>>>>>> master
+	<<<<<<<
 
+	HEAD
+	SmartDashboard.putData("Auto choices",m_chooser);=======>>>>>>>master
 
-<<<<<<< HEAD
-	}
-=======
->>>>>>> master
+	<<<<<<<HEAD
+	}=======>>>>>>>master
 
-	
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable chooser
@@ -227,69 +200,68 @@ public class Robot extends IterativeRobot implements Pronstants {
 	public void autonomousPeriodic() {
 
 		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
-				break;
-			case kDefaultAuto:
-			default:
-				switch(impPath) {
-					case PATH_LCL:
-					
-					break;
-				
-					case PATH_LWL:
-					
-					break;
-					case PATH_LCR:
-							
-					
-					break;
-					case PATH_LWR:
-						
-					break;
-					case PATH_CCL:
-						
-					break;
-					case PATH_CWL:
-						
-					break;
-					case PATH_CCR:
-						
-					break;
-					case PATH_CWR:
-					
-					break;
-					case PATH_RCL:
-						
-					break;
-					case PATH_RWL:
-						
-					break;
-					case PATH_RCR:
+		case kCustomAuto:
+			// Put custom auto code here
+			break;
+		case kDefaultAuto:
+		default:
+			switch (impPath) {
+			case PATH_LCL:
 
-					break;
-					case PATH_RWR:
-					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
-						drive.setRight(pronstants.STRONG_SPEED);
-						drive.setLeft(pronstants.WEAK_SPEED);
-						
-					}
-					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
-						drive.setRight(0);
-						drive.setLeft(0);
-						Turned = true; 
-					}
-					if(gyro.getAngle() >= 90 && Turned) {
-						drive.setRight(pronstants.STANDARD_SPEED);
-						drive.setLeft(pronstants.STANDARD_SPEED);
-					}
-					break;	
+				break;
+
+			case PATH_LWL:
+
+				break;
+			case PATH_LCR:
+
+				break;
+			case PATH_LWR:
+
+				break;
+			case PATH_CCL:
+
+				break;
+			case PATH_CWL:
+
+				break;
+			case PATH_CCR:
+
+				break;
+			case PATH_CWR:
+
+				break;
+			case PATH_RCL:
+
+				break;
+			case PATH_RWL:
+
+				break;
+			case PATH_RCR:
+
+				break;
+			case PATH_RWR:
+				drive.setRight(pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
+				drive.setLeft(pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
+				if (encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE) {
+					drive.setRight(pronstants.STRONG_SPEED);
+					drive.setLeft(pronstants.WEAK_SPEED);
+
+				}
+				if (gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+					drive.setRight(0);
+					drive.setLeft(0);
+					Turned = true;
+				}
+				if (gyro.getAngle() >= 90 && Turned) {
+					drive.setRight(pronstants.STANDARD_SPEED);
+					drive.setLeft(pronstants.STANDARD_SPEED);
 				}
 				break;
+			}
+			break;
 		}
-		
+
 		auto.auto();
 	}
 
