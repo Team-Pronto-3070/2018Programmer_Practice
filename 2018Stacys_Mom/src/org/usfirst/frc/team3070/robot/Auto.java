@@ -11,36 +11,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
-<<<<<<< HEAD
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
-=======
-public class Auto implements Pronstants {
-	Drive drive;
-	Sensors sensors;
 
-	/**
-	 * Constructor for auto
-	 * 
-	 * @param d
-	 *            Drive
-	 * @param s
-	 *            Sensors
-	 */
-	public Auto(Drive d, Sensors s) {
-		drive = d;
-		sensors = s;
-	}
-<<<<<<< HEAD
-
-	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
-=======
-	public enum Auto_Path
-	{ // List of all possible paths (PATH_[Left, Center, or Right starting
->>>>>>> 55e75067a78964c03a32a45669d3ab5db525f904
->>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
-							// position][sCale or sWitch][Right or Left Side])
-							// max numbers of forwards possible
+		// position][sCale or sWitch][Right or Left Side])
+		// max numbers of forwards possible
 
 		Forward1, Forward2, Foward3, Foward4,
 
@@ -60,6 +35,8 @@ public class Auto implements Pronstants {
 	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// Variables used in subcodes-need to change later
+	Drive drive = new Drive();
+	Sensors sensors = new Sensors();
 	boolean Turned = false;
 	int case_number = 1;
 	boolean square = true;
@@ -78,61 +55,52 @@ public class Auto implements Pronstants {
 			switch (impPath) {
 			case Forward1 :
 				if(encR.get() <= 15 && encL.get() <= 15 ) {
-					Drive.driveForward(15);
+					drive.move(.3, 15);
 					}
 				
 			else {
-<<<<<<< HEAD
-				Drive.move(0);
+				drive.move(.3, 0);
 				}
 			encR.reset();
 			encL.reset();
 			impPath = Auto_Path.Turn1;
-=======
-				drive.move(0)}
-			encR.reset;
-			encL.reset;
-			Auto_Path = Turn1
->>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
-			
-					}
-			
-				
-
-				break;
+				drive.move(.3, 0);
+			encR.reset();
+			encL.reset();
+			impPath = Auto_Path.Turn1;
+			break;
 
 			case Turn1:
 				if (square) {
-					drive.setRight(STRONG_SPEED);
-					drive.setLeft(WEAK_SPEED);
+					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setLeft(Pronstants.WEAK_SPEED);
 					if(sensors.gyro.get() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						Auto_Path = Forward2;
-						
+						impPath = Auto_Path.Forward2;
 					}
 				
 				else if (triangle) {
-					drive.setRight(STRONG_SPEED);
-					drive.setLeft(WEAK_SPEED);
+					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setLeft(Pronstants.WEAK_SPEED);
 					if(sensors.gyro.get() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						Auto_Path = Forward2;	
+						impPath = Auto_Path.Forward2;	
 					}
 				}
-				encL.reset;
-				encR.reset;
+				encL.reset();
+				encR.reset();
 				}
 
 				break;
 			case Forward2:
 				if(square) {
-					drive.driveForward();
+					drive.move(.3, 15);
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
-					drive.move(0);
-					Auto_Path = Turn2;
+					drive.stop(true);
+					impPath = AutoPath_Turn2;
 				}
 				
 				
