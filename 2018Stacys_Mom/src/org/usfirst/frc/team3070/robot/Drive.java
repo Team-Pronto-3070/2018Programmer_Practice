@@ -41,7 +41,28 @@ public Drive() {
 			setRight(0);
 			setLeft(0);
 		}
+<<<<<<< HEAD
 			
+=======
+
+	}
+		
+
+
+	/**
+	 * Constructor for Drive
+	 * @param rm right master
+	 * @param rf right follower
+	 * @param lm left master
+	 * @param lf left follower
+	 */
+	public Drive(int rm,int rf, int lm, int lf) {
+		TalRM = new TalonSRX(rm); //Right master Talon
+		TalRF = new TalonSRX(rf); //Right follower Talon
+		TalLM = new TalonSRX(lm); //Left master Talon
+		TalLF = new TalonSRX(lf); //Left follower Talon
+	}
+>>>>>>> it-me-the-stego
 	
 		/**
 		 * Constructor for Drive
@@ -74,6 +95,7 @@ public Drive() {
 	
 		void move(double moving, int rotations) {
 	
+<<<<<<< HEAD
 			if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
 				setRight(moving);
 				setLeft(moving);
@@ -84,6 +106,34 @@ public Drive() {
 				stopR(true);
 				
 			}
+=======
+	/**
+	 * Sets both sides to a certain value
+	 * @param amount speed for motors
+	 */
+	void move(double amount) {
+		setRight(amount);
+		setLeft(amount);
+	}
+	void driveForward() {
+		move(STANDARD_SPEED, 15)
+	}
+	void stop() {
+		setLeft(0);
+		setRight(0);
+	}
+		
+	void move(double moving, int rotations) {
+
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+			setRight(moving);
+			setLeft(moving);
+		}else {
+			encR.reset();
+			encL.reset();
+			stopL(true);
+			stopR(true);
+>>>>>>> it-me-the-stego
 			
 		}
 

@@ -1,3 +1,4 @@
+// Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -26,14 +27,14 @@ public class Auto implements Pronstants {
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
-		// Left starting position combinations
-		PATH_LCL, PATH_LWL, PATH_LCR, PATH_LWR,
+		// max numbers of fowards possible
+		Forward1, Forward2, Foward3, Foward4,
 
-		// Center starting position combinations
-		PATH_CCL, PATH_CWL, PATH_CCR, PATH_CWR,
+		//max number of turns needed
+		Turn1, Turn2, Turn3, Turn4,
 
 		// Right starting position combinations
-		PATH_RCL, PATH_RWL, PATH_RCR, PATH_RWR
+		
 	}
 
 	// Strings for auto selector
@@ -56,47 +57,97 @@ public class Auto implements Pronstants {
 			break;
 		case kDefaultAuto:
 		default:
-			switch (impPath) {
-			case PATH_LCL:
+			switch (Auto_Path) {
+			case Forward1 :
+				if(EncR =< 15 && EncL =< 15 ) {
+					drive.drvieForward;
+					}
+				
+			else {
+				drive.move(0)}
+			encR.reset;
+			encL.reset;
+			Auto_PATH = Turn1
+			
+					}
+			
+				
 
 				break;
 
-			case PATH_LWL:
+			case Turn1:
+				if (square) {
+					drive.setRight(STRONG_SPEED);
+					drive.setLeft(WEAK_SPEED);
+					if(sensors.gyro.get() >= 90) {
+						drive.setRight(0);
+						drive.setLeft(0);
+						AUTO_PATH = Forward2;
+						
+					}
+				
+				else if (triangle) {
+					drive.setRight(STRONG_SPEED);
+					drive.setLeft(WEAK_SPEED);
+					if(sensors.gyro.get() >= 60) {
+						drive.setRight(0);
+						drive.setLeft(0);
+						AUTO_PATH = Forward2;
+						
+					}
+				}
+				encL.reset;
+				encR.reset;
+				}
 
 				break;
-			case PATH_LCR:
+			case Forward2:
+				if(square) {
+					drive.driveForward;
+				}
+				if (encL.get() >= 15 && encR.get() >= 15) {
+					drive.move(0);
+					AUTO_PATH = Turn2;
+				}
+				
+				
 
 				break;
-			case PATH_LWR:
+			case Turn2:
+				if (square) {
+					setRight(STRONG_SPEED);
+					setLeft(WEAK_SPEED);
+				}
+				if(sensors.gyro.get() >= 90) {
+					drive.move(0);
+				}
+				if(triangle) {
+					setRight(STRONG_SPEED);
+					setLeft(WEAK_SPEED);
+				}
+				if(sensors.gyro.get() >= 60) {
+					drive.move(0);
+					
+				}
+				break;
+			case Forward3:
+				if(square) {
+					drive.driveForward;
+				}
+				if(encL.get() >= 15 && encR.get() >=15) {
+					
+				}
+				break;
+			case Turn3:
 
 				break;
-			case PATH_CCL:
+			case Forward4 :
 
 				break;
-			case PATH_CWL:
+			case Turn4:
 
 				break;
-			case PATH_CCR:
-
-				break;
-			case PATH_CWR:
-
-				break;
-			case PATH_RCL:
-
-				break;
-			case PATH_RWL:
-
-				break;
-			case PATH_RCR:
-				RCR(case_number);
-
-				break;
-			case PATH_RWR:
-				RWR();
-				break;
-			}
-			break;
+			
 		}
 	}
 
