@@ -29,16 +29,16 @@ public class Auto implements Pronstants {
 		sensors = s;
 	}
 
-<<<<<<< HEAD
+
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		// max numbers of fowards possible
-=======
+
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
 		// max numbers of forwards possible
->>>>>>> it-me-the-stego
+
 		Forward1, Forward2, Foward3, Foward4,
 
 		// max number of turns needed

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 package org.usfirst.frc.team3070.robot;
 
@@ -11,7 +11,7 @@ public class Sensors implements Pronstants {
 
 	/**
 	 * Constructor for sensors
-	 */
+	 */ 
 	public Sensors() {
 		// Initializing encoders
 		encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); // Right encoder
@@ -20,10 +20,7 @@ public class Sensors implements Pronstants {
 		// Initializing Gyros
 		gyro = new AnalogGyro(PORT_GYRO);
 	}
-=======
-package org.usfirst.frc.team3070.robot;
+  
 
-public class Sensors {
 
->>>>>>> it-me-the-stego
-}
+
