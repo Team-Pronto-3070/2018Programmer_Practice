@@ -51,19 +51,17 @@ public class Drive {
 	 *            left follower
 	 */
 
-
 	void move(double moving, int rotations) {
-	
 
-			if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
-				setRight(moving);
-				setLeft(moving);
-			}else {
-				encR.reset();
-				encL.reset();
-				stop(true);
-				
-			}
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+			setRight(moving);
+			setLeft(moving);
+		} else {
+			encR.reset();
+			encL.reset();
+			stop(true);
+
+		}
 	}
 
 	/**
@@ -72,14 +70,5 @@ public class Drive {
 	 * @param amount
 	 *            speed for motors
 	 */
-
-	void driveForward() {
-		move(Pronstants.STANDARD_SPEED, 15);
-	}
-
-	void stop() {
-		setLeft(0);
-		setRight(0);
-	}
 
 }

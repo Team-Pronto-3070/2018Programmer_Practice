@@ -10,12 +10,13 @@ public class Sensors implements Pronstants {
 
 	/**
 	 * Constructor for sensors
-	 */ 
+	 */
 	public Sensors() {
 		// Initializing encoders
 		encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); // Right encoder
-		encL = new Encoder(PORT_ ENC_L1, PORT_ENC_L2, false); // Left encoder
+		encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); // Left encoder
 
 		// Initializing Gyros
 		gyro = new AnalogGyro(PORT_GYRO);
 	}
+}
