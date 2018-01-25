@@ -60,10 +60,15 @@ public class Auto implements Pronstants {
 			switch (Auto_Path) {
 			case Forward1 :
 				if(EncR =< 15 && EncL =< 15 ) {
-					drive.move(STANDARD_SPEED, 15);}
+					drive.move(STANDARD_SPEED, 15);
+					}
 				
-			else {drive.move(0)}
+			else {
+				drive.move(0)}
+			encR.reset;
+			encL.reset;
 			Auto_PATH = Turn1
+			
 					}
 			
 				
@@ -91,20 +96,27 @@ public class Auto implements Pronstants {
 						
 					}
 				}
+				encL.reset;
+				encR.reset;
 				}
 
 				break;
 			case Forward2:
 				if(square) {
 					drive.move(STANDARD_SPEED,15);
-				
+				}
+				if (encL.get() >= 15 && encR.get() >= 15) {
+					drive.move(0);
+					AUTO_PATH = Turn2;
 				}
 				
 				
 
 				break;
 			case Turn2:
-
+				if (square) {
+					drive.move;
+				}
 				break;
 			case Forward3:
 
