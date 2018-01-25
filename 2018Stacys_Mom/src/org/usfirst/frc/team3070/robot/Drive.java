@@ -33,7 +33,7 @@ public class Drive {
 		TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
-	void stop(boolean stopping) {
+	void stop() {
 		setRight(0);
 		setLeft(0);
 	}
@@ -59,7 +59,7 @@ public class Drive {
 		} else {
 			encR.reset();
 			encL.reset();
-			stop(true);
+			stop();
 
 		}
 	}

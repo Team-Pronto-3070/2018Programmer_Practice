@@ -164,13 +164,13 @@ public class Robot extends IterativeRobot {
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL);
 		} else {
-			drive.stop(true);
+			drive.stop();
 		}
 		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {
-			drive.stop(true);
+			drive.stop();
 		}
 
 		if (JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
