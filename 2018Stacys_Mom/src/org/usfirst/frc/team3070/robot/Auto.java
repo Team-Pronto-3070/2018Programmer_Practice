@@ -1,15 +1,7 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.AnalogGyro;
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
@@ -55,16 +47,16 @@ public class Auto {
 			switch (impPath) {
 			case Forward1 :
 				if(encR.get() <= 15 && encL.get() <= 15 ) {
-					drive.move(.3, 15);
+					drive.move(Pronstants.STANDARD_SPEED, 15);
 					}
 				
 			else {
-				drive.move(.3, 0);
+				drive.move(Pronstants.STANDARD_SPEED, 0);
 				}
 			encR.reset();
 			encL.reset();
 			impPath = Auto_Path.Turn1;
-				drive.move(.3, 0);
+				drive.move(Pronstants.STANDARD_SPEED, 0);
 			encR.reset();
 			encL.reset();
 			impPath = Auto_Path.Turn1;
@@ -96,7 +88,7 @@ public class Auto {
 				break;
 			case Forward2:
 				if(square) {
-					drive.move(.3, 15);
+					drive.move(Pronstants.STANDARD_SPEED, 15);
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
@@ -126,7 +118,7 @@ public class Auto {
 				break;
 			case Forward3:
 				if(square) {
-					drive.move(.3,0);
+					drive.move(Pronstants.STANDARD_SPEED,0);
 				}
 				if(encL.get() >= 15 && encR.get() >=15) {
 					drive.stop();
@@ -145,7 +137,7 @@ public class Auto {
 				break;
 			case Forward4 :
 				if(square) {
-					drive.move(.3, 0);
+					drive.move(Pronstants.STANDARD_SPEED, 0);
 				}
 				if(encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
