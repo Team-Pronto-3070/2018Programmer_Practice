@@ -2,7 +2,6 @@ package org.usfirst.frc.team3070.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team3070.robot.Robot;
 
@@ -51,19 +50,17 @@ public class Drive {
 	 *            left follower
 	 */
 
-
 	void move(double moving, int rotations) {
-	
 
-			if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
-				setRight(moving);
-				setLeft(moving);
-			}else {
-				encR.reset();
-				encL.reset();
-				stop(true);
-				
-			}
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+			setRight(moving);
+			setLeft(moving);
+		} else {
+			encR.reset();
+			encL.reset();
+			stop(true);
+
+		}
 	}
 
 	/**
