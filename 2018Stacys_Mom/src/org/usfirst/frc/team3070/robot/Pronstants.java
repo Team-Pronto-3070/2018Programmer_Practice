@@ -22,7 +22,7 @@ public class Pronstants {
 	final int PORT_ENC_L2 = 8; //Left encoder second port
 	
 	final double STANDARD_SPEED = .3;
-	final double WEAK_SPEED = -.3;
+	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
 	
@@ -35,6 +35,7 @@ public class Pronstants {
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; //Number of rotations to the autoline
 	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; //Number of rotations to the middle of the switch
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; //Number of rotations to the middle of the scale
+	
 	
 }
 
