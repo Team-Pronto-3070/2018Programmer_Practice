@@ -10,8 +10,15 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a2d613ec0d522d48fe2238b98bcce7f973191af7
 
+<<<<<<< HEAD
+public class Auto {
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+=======
 public class Auto implements Pronstants {
 	Drive drive;
 	Sensors sensors;
@@ -37,10 +44,15 @@ public class Auto implements Pronstants {
 
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
+<<<<<<< HEAD
 
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 
+=======
+>>>>>>> 55e75067a78964c03a32a45669d3ab5db525f904
+>>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
+>>>>>>> a2d613ec0d522d48fe2238b98bcce7f973191af7
 							// position][sCale or sWitch][Right or Left Side])
 							// max numbers of forwards possible
 
@@ -53,6 +65,7 @@ public class Auto implements Pronstants {
 
 	}
 
+<<<<<<< HEAD
 		// Strings for auto selector
 		private static final String kDefaultAuto = "Default";
 		private static final String kCustomAuto = "My Auto";
@@ -62,6 +75,15 @@ public class Auto implements Pronstants {
 		// Variables used in subcodes-need to change later
 		boolean Turned = false;
 		int case_number = 1;
+=======
+	// Strings for auto selector
+	private static final String kDefaultAuto = "Default";
+	private static final String kCustomAuto = "My Auto";
+	private String m_autoSelected;
+	Auto_Path impPath = Auto_Path.Forward1;
+	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
+>>>>>>> a2d613ec0d522d48fe2238b98bcce7f973191af7
 
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
@@ -81,12 +103,28 @@ public class Auto implements Pronstants {
 		default:
 			switch (impPath) {
 			case Forward1 :
+<<<<<<< HEAD
 				if(EncR <= 15 && EncL <= 15 ) {
 					drive.move(STRONG_SPEED, 15);
 					}
 				
 			else {
 				drive.stop(true);
+=======
+				if(encR.get() <= 15 && encL.get() <= 15 ) {
+					Drive.driveForward(15);
+					}
+				
+			else {
+<<<<<<< HEAD
+				Drive.move(0);
+				}
+			encR.reset();
+			encL.reset();
+			impPath = Auto_Path.Turn1;
+=======
+				drive.move(0)}
+>>>>>>> a2d613ec0d522d48fe2238b98bcce7f973191af7
 			encR.reset;
 			encL.reset;
 
@@ -94,7 +132,11 @@ public class Auto implements Pronstants {
 			Auto_PATH = Turn1;
 
 			Auto_Path = Turn1
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
+>>>>>>> a2d613ec0d522d48fe2238b98bcce7f973191af7
 			
 					}
 			
