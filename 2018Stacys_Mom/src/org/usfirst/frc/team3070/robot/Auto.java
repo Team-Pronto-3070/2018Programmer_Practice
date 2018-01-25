@@ -74,7 +74,7 @@ public class Auto {
 				if (square) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					if(sensors.gyro.get() >= 90) {
+					if(sensors.gyro.getAngle() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						impPath = Auto_Path.Forward2;
@@ -83,7 +83,7 @@ public class Auto {
 				else if (triangle) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					if(sensors.gyro.get() >= 60) {
+					if(sensors.gyro.getAngle() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						impPath = Auto_Path.Forward2;	
@@ -111,7 +111,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if(sensors.gyro.get() >= 90) {
+				if(sensors.gyro.getAngle() >= 90) {
 					drive.stop();
 					 
 				}
@@ -119,7 +119,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if(sensors.gyro.get() >= 60) {
+				if(sensors.gyro.getAngle() >= 60) {
 					drive.stop();
 					impPath = Auto_Path.Forward3;
 				}
@@ -138,7 +138,7 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if(sensors.gyro.get() >= 90) {
+				if(sensors.gyro.getAngle() >= 90) {
 					drive.stop();
 					impPath = Auto_Path.Forward4;
 				}
@@ -157,11 +157,11 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if(sensors.gyro.get() >= 90) {
+				if(sensors.gyro.getAngle() >= 90) {
 					drive.stop();
 				}
 				break;
-			
+			}
 		}
 	}
 
@@ -175,7 +175,7 @@ public class Auto {
 
 		switch (RCR) {
 		case 1:
-			drive.move(Pronstants.STANDARD_SPEED);// sets both sides to same speed
+			drive.move(Pronstants.STANDARD_SPEED, 0);// sets both sides to same speed
 			if (sensors.encR.get() >= Pronstants.ROT_TO_SCALE && sensors.encL.get() >= Pronstants.ROT_TO_SCALE) {
 				RCR = 2;
 				// when robot reaches the scale RCR = 2 and turning happens
