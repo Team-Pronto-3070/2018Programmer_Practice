@@ -29,13 +29,13 @@ public class Auto implements Pronstants {
 		sensors = s;
 	}
 
-
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		// max numbers of fowards possible
 
-	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+	public enum Auto_Path
+	{ // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
 		// max numbers of forwards possible
 
@@ -57,7 +57,7 @@ public class Auto implements Pronstants {
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
 	int case_number = 1;
-	
+
 	/**
 	 * Runs state machine to select which auto to run
 	 */
