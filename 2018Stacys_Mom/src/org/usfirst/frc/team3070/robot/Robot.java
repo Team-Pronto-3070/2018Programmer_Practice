@@ -6,16 +6,12 @@
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import org.usfirst.frc.team3070.robot.Drive;
-import org.usfirst.frc.team3070.robot.Pronstants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +20,7 @@ import org.usfirst.frc.team3070.robot.Pronstants;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-public class Robot extends IterativeRobot implements Pronstants {
+public class Robot extends IterativeRobot {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
@@ -32,10 +28,11 @@ public class Robot extends IterativeRobot implements Pronstants {
 
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
+	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// Initializing class instances
 	Drive drive;
-	Pronstants pronstants;
 	Sensors sensors;
 	Auto auto;
 
@@ -58,95 +55,9 @@ public class Robot extends IterativeRobot implements Pronstants {
 		PATH_RWR
 	}
 
-	// declaring classes
-	Drive drive;
 	// Initializing Gyros-caused crashess
-	AnalogGyro gyro = new AnalogGyro(PORT_GYRO);
-
-	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); // Left encoder
-
-	// Initializing Talons
-	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); // Right master Talon
-	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); // Right follower Talon
-	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
-	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
-
-	final int PORT_RM = 2; // Right master CIM port
-	final int PORT_RF = 5; // Right follower CIM port
-
-	final int PORT_LM = 0; // Left master CIM port
-	final int PORT_LF = 1; // Left follower CIM port
-
-	final int PORT_ENC_R1 = 1; // Right encoder first port
-
-	final int PORT_ENC_L1 = 7; // Left encoder first port
-	final int PORT_ENC_L2 = 8; // Left encoder second port
-
-	final double STANDARD_SPEED = .3;
-	final double WEAK_SPEED = -.3;
-	final double STRONG_SPEED = .5;
-	final int PORT_GYRO = 0;
-
-	final double PI = 3.141; // Variable equal to pi
-	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
-	final double DIS_TO_SWITCH = 168; // Distance in inches to the middle of the switch
-	final double DIS_TO_SCALE = 324; // Distance in inches to the middle of the scale
-	final double WHEEL_DIAMETER = 6; // Distance in inches of wheel diameter
-	final double WHEEL_CIRCUM = WHEEL_DIAMETER * PI; // Distance in inches of wheel circumference
-	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; // Number of rotations to the autoline
-	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; // Number of rotations to the middle of the switch
-	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; // Number of rotations to the middle of the scale
-	// Initializing class instances
-	Drive drive;
-	Pronstants pronstants;
-
-	boolean Turned = false;
-
-	public enum Auto_Path
-	{ // List of all possible paths (PATH_[Left, Center, or Right starting
-							// postition][sCale or sWitch][Right or Left Side])
-		PATH_LCL, // Left starting position combinations
-		PATH_LWL, PATH_LCR, PATH_LWR,
-
-		PATH_CCL, // Center starting position combinations
-		PATH_CWL, PATH_CCR, PATH_CWR,
-
-		PATH_RCL, // Right starting position combinations
-		PATH_RWL, PATH_RCR, PATH_RWR
-	}
-
-	// Initializing encoders
-	// Encoder encR = new Encoder(PORT_ENC_R1, PORT_ENC_R2, false); //Right encoder
-	// Encoder encL = new Encoder(PORT_ENC_L1, PORT_ENC_L2, false); //Left encoder
-
-	// Initializing Talons
-	TalonSRX TalRM = new TalonSRX(PORT_RM); // Right master Talon
-	TalonSRX TalRF = new TalonSRX(PORT_RF); // Right follower Talon
-	TalonSRX TalLM = new TalonSRX(PORT_LM); // Left master Talon
-	TalonSRX TalLF = new TalonSRX(PORT_LF); // Left follower Talon
-
-	// declaring classes
-	Drive drive;
-	// Initializing Gyros-caused crashess
-	AnalogGyro gyro = new AnalogGyro(PORT_GYRO);
-
-	// Initializing and declaring Gyros-caused crashes
-
-	Sensors sensors;
-	Auto auto;
-
-	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); // Left encoder
-
-	// Initializing Talons
-	TalonSRX TalRM = new TalonSRX(pronstants.PORT_RM); // Right master Talon
-	TalonSRX TalRF = new TalonSRX(pronstants.PORT_RF); // Right follower Talon
-	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
-	TalonSRX TalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
-
-	// Initializing Gyros
-	AnalogGyro gyro = new AnalogGyro(pronstants.PORT_GYRO);
+	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO);
+	Auto_Path impPath = Auto_Path.PATH_LCL;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -157,11 +68,7 @@ public class Robot extends IterativeRobot implements Pronstants {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-
-		drive = new Drive(PORT_RM, PORT_RF, PORT_LM, PORT_LF);
-		sensors = new Sensors();
-		auto = new Auto(drive, sensors);
-	}SmartDashboard.putData("Auto choices",m_chooser);
+	}
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -232,11 +139,11 @@ public class Robot extends IterativeRobot implements Pronstants {
 
 					break;
 					case PATH_RWR:
-					drive.setRight(pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
-					drive.setLeft(pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
-					if( encR.get() >= pronstants.ROT_TO_AUTO_LINE && encL.get() >= pronstants.ROT_TO_AUTO_LINE){
-						drive.setRight(pronstants.STRONG_SPEED);
-						drive.setLeft(pronstants.WEAK_SPEED);
+					drive.setRight(Pronstants.STANDARD_SPEED);//sets motors on the right to .5 speed
+					drive.setLeft(Pronstants.STANDARD_SPEED);//sets motors on the left to .5 speed
+					if( encR.get() >= Pronstants.ROT_TO_AUTO_LINE && encL.get() >= Pronstants.ROT_TO_AUTO_LINE){
+						drive.setRight(Pronstants.STRONG_SPEED);
+						drive.setLeft(Pronstants.WEAK_SPEED);
 						
 					}
 					if(gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
@@ -245,15 +152,13 @@ public class Robot extends IterativeRobot implements Pronstants {
 						Turned = true; 
 					}
 					if(gyro.getAngle() >= 90 && Turned) {
-						drive.setRight(pronstants.STANDARD_SPEED);
-						drive.setLeft(pronstants.STANDARD_SPEED);
+						drive.setRight(Pronstants.STANDARD_SPEED);
+						drive.setLeft(Pronstants.STANDARD_SPEED);
 					}
 					break;	
 				}
 				break;
 		}
-		
-		auto.auto();
 	}
 
 	/**
@@ -265,13 +170,13 @@ public class Robot extends IterativeRobot implements Pronstants {
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL);
 		} else {
-			drive.stopL(true);
+			drive.stop(true);
 		}
 		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {
-			drive.stopR(true);
+			drive.stop(true);
 		}
 
 		if (JoyR.getRawButton(1) || JoyL.getRawButton(1)) {

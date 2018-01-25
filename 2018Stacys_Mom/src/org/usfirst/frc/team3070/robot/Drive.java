@@ -8,12 +8,12 @@ import org.usfirst.frc.team3070.robot.Robot;
 
 public class Drive {
 
-	Talon SRX TalRM=new TalonSRX(pronstants.PORT_RM); // Right master Talon
-	Talon SRX TalRF=new TalonSRX(pronstants.PORT_RF); // Right follower Talon
-	TalonSRX TalLM = new TalonSRX(pronstants.PORT_LM); // Left master Talon
-	Talon SRXTalLF = new TalonSRX(pronstants.PORT_LF); // Left follower Talon
-	Encoder encR = new Encoder(pronstants.PORT_ENC_R1, pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(pronstants.PORT_ENC_L1, pronstants.PORT_ENC_L2, false); // Left encoder
+	TalonSRX TalRM = new TalonSRX(Pronstants.PORT_RM); // Right master Talon
+	TalonSRX TalRF = new TalonSRX(Pronstants.PORT_RF); // Right follower Talon
+	TalonSRX TalLM = new TalonSRX(Pronstants.PORT_LM); // Left master Talon
+	TalonSRX TalLF = new TalonSRX(Pronstants.PORT_LF); // Left follower Talon
+	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// open variables:
 	/**
@@ -22,7 +22,7 @@ public class Drive {
 
 	void setRight(double amountR) {
 		TalRM.set(ControlMode.PercentOutput, amountR);
-		TalRF.set(ControlMode.Follower, PORT_RF);
+		TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class Drive {
 	 */
 	void setLeft(double amountL) {
 		TalLM.set(ControlMode.PercentOutput, amountL);
-		TalLF.set(ControlMode.Follower, PORT_LF);
+		TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
 	void stop(boolean stopping) {
@@ -51,22 +51,6 @@ public class Drive {
 	 *            left follower
 	 */
 
-	/**
-	 * Sets right side motors to a certain value
-	 * 
-	 * @param amount
-	 *            speed for motors
-	 *
-	 * 
-	 * 
-	 *            /** Sets both sides to a certain value
-	 * @param amount
-	 *            speed for motors
-	 */
-	void move(double amount) {
-		setRight(amount);
-		setLeft(amount);
-	}
 
 	void move(double moving, int rotations) {
 	
@@ -77,10 +61,10 @@ public class Drive {
 			}else {
 				encR.reset();
 				encL.reset();
-				stopL(true);
-				stopR(true);
+				stop(true);
 				
 			}
+	}
 
 	/**
 	 * Sets both sides to a certain value
@@ -88,32 +72,14 @@ public class Drive {
 	 * @param amount
 	 *            speed for motors
 	 */
-	void move(double amount) {
-		setRight(amount);
-		setLeft(amount);
-	}
 
 	void driveForward() {
-		move(STANDARD_SPEED, 15)
+		move(Pronstants.STANDARD_SPEED, 15);
 	}
 
 	void stop() {
 		setLeft(0);
 		setRight(0);
 	}
-
-	void move(double moving, int rotations) {
-
-		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
-			setRight(moving);
-			setLeft(moving);
-		}else {
-			encR.reset();
-			encL.reset();
-			stopL(true);
-			stopR(true);
-
-			
-		}
 
 }
