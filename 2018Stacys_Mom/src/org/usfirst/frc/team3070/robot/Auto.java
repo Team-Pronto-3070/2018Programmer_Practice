@@ -2,6 +2,9 @@
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team3070.robot.Drive;
+import org.usfirst.frc.team3070.robot.Pronstants;
+import org.usfirst.frc.team3070.robot.Sensors;
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
@@ -47,16 +50,16 @@ public class Auto {
 			switch (impPath) {
 			case Forward1 :
 				if(encR.get() <= 15 && encL.get() <= 15 ) {
-					drive.move(Pronstants.STANDARD_SPEED, 15);
+					drive.move(.3, 15);
 					}
 				
 			else {
-				drive.move(Pronstants.STANDARD_SPEED, 0);
+				drive.move(.3, 0);
 				}
 			encR.reset();
 			encL.reset();
 			impPath = Auto_Path.Turn1;
-				drive.move(Pronstants.STANDARD_SPEED, 0);
+				drive.move(.3, 0);
 			encR.reset();
 			encL.reset();
 			impPath = Auto_Path.Turn1;
@@ -88,7 +91,7 @@ public class Auto {
 				break;
 			case Forward2:
 				if(square) {
-					drive.move(Pronstants.STANDARD_SPEED, 15);
+					drive.move(.3, 15);
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
@@ -118,7 +121,7 @@ public class Auto {
 				break;
 			case Forward3:
 				if(square) {
-					drive.move(Pronstants.STANDARD_SPEED,0);
+					drive.move(.3,0);
 				}
 				if(encL.get() >= 15 && encR.get() >=15) {
 					drive.stop();
@@ -137,7 +140,7 @@ public class Auto {
 				break;
 			case Forward4 :
 				if(square) {
-					drive.move(Pronstants.STANDARD_SPEED, 0);
+					drive.move(.3, 0);
 				}
 				if(encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
