@@ -60,7 +60,7 @@ public class Auto implements Pronstants {
 			switch (Auto_Path) {
 			case Forward1 :
 				if(EncR =< 15 && EncL =< 15 ) {
-					drive.move(STANDARD_SPEED, 15);
+					drive.drvieForward;
 					}
 				
 			else {
@@ -79,7 +79,7 @@ public class Auto implements Pronstants {
 				if (square) {
 					drive.setRight(STRONG_SPEED);
 					drive.setLeft(WEAK_SPEED);
-					if(sensors.gyro.get() >= 90 && sensors.gyro.get() >= 90) {
+					if(sensors.gyro.get() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						AUTO_PATH = Forward2;
@@ -89,7 +89,7 @@ public class Auto implements Pronstants {
 				else if (triangle) {
 					drive.setRight(STRONG_SPEED);
 					drive.setLeft(WEAK_SPEED);
-					if(sensors.gyro.get() >= 60 && sensors.gyro.get() >=60 ) {
+					if(sensors.gyro.get() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						AUTO_PATH = Forward2;
@@ -103,7 +103,7 @@ public class Auto implements Pronstants {
 				break;
 			case Forward2:
 				if(square) {
-					drive.move(STANDARD_SPEED,15);
+					drive.driveForward;
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.move(0);
@@ -115,11 +115,28 @@ public class Auto implements Pronstants {
 				break;
 			case Turn2:
 				if (square) {
-					drive.move;
+					setRight(STRONG_SPEED);
+					setLeft(WEAK_SPEED);
+				}
+				if(sensors.gyro.get() >= 90) {
+					drive.move(0);
+				}
+				if(triangle) {
+					setRight(STRONG_SPEED);
+					setLeft(WEAK_SPEED);
+				}
+				if(sensors.gyro.get() >= 60) {
+					drive.move(0);
+					
 				}
 				break;
 			case Forward3:
-
+				if(square) {
+					drive.driveForward;
+				}
+				if(encL.get() >= 15 && encR.get() >=15) {
+					
+				}
 				break;
 			case Turn3:
 

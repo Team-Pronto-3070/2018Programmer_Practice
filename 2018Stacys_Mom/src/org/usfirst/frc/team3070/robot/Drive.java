@@ -96,8 +96,13 @@ final int PORT_LF = robot.PORT_LF;
 		setRight(amount);
 		setLeft(amount);
 	}
-
-
+	void driveForward() {
+		move(STANDARD_SPEED, 15)
+	}
+	void stop() {
+		setLeft(0);
+		setRight(0);
+	}
 		
 	void move(double moving, int rotations) {
 
