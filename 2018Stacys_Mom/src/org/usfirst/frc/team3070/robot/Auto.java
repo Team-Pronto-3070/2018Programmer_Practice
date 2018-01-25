@@ -28,15 +28,23 @@ public class Auto implements Pronstants {
 		drive = d;
 		sensors = s;
 	}
+<<<<<<< HEAD
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+<<<<<<< HEAD
 							// postition][sCale or sWitch][Right or Left Side])
 							// max numbers of fowards possible
 
 	public enum Auto_Path
 	{ // List of all possible paths (PATH_[Left, Center, or Right starting
+=======
+=======
+	public enum Auto_Path
+	{ // List of all possible paths (PATH_[Left, Center, or Right starting
+>>>>>>> 55e75067a78964c03a32a45669d3ab5db525f904
+>>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
 							// position][sCale or sWitch][Right or Left Side])
-		// max numbers of forwards possible
+							// max numbers of forwards possible
 
 		Forward1, Forward2, Foward3, Foward4,
 
@@ -53,9 +61,17 @@ public class Auto implements Pronstants {
 		private String m_autoSelected;
 		Auto_Path impPath;
 
+<<<<<<< HEAD
 		// Variables used in subcodes-need to change later
 		boolean Turned = false;
 		int case_number = 1;
+=======
+	// Variables used in subcodes-need to change later
+	boolean Turned = false;
+	int case_number = 1;
+	boolean square = true;
+	boolean triangle = true;
+>>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
 
 	/**
 	 * Runs state machine to select which auto to run
@@ -77,8 +93,12 @@ public class Auto implements Pronstants {
 				drive.stop(true);
 			encR.reset;
 			encL.reset;
+<<<<<<< HEAD
 			}
 			Auto_PATH = Turn1;
+=======
+			Auto_Path = Turn1
+>>>>>>> 1eff99ad1ee34d889c73820be95645343219d522
 			
 					}
 			
@@ -93,7 +113,7 @@ public class Auto implements Pronstants {
 					if(sensors.gyro.get() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						AUTO_PATH = Forward2;
+						Auto_Path = Forward2;
 						
 					}
 				
@@ -103,7 +123,7 @@ public class Auto implements Pronstants {
 					if(sensors.gyro.get() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						AUTO_PATH = Forward2;	
+						Auto_Path = Forward2;	
 					}
 				}
 				encL.reset;
@@ -117,7 +137,7 @@ public class Auto implements Pronstants {
 				}
 				if (encL.get() >= 15 && encR.get() >= 15) {
 					drive.move(0);
-					AUTO_PATH = Turn2;
+					Auto_Path = Turn2;
 				}
 				
 				
@@ -138,7 +158,7 @@ public class Auto implements Pronstants {
 				}
 				if(sensors.gyro.get() >= 60) {
 					drive.move(0);
-					AUTO_PATH = Forward3
+					Auto_Path = Forward3
 				}
 				break;
 			case Forward3:
@@ -147,7 +167,7 @@ public class Auto implements Pronstants {
 				}
 				if(encL.get() >= 15 && encR.get() >=15) {
 					drive.stop();
-					AUTO_PATH = Turn3;
+					Auto_Path = Turn3;
 				}
 				break;
 			case Turn3:
@@ -157,7 +177,7 @@ public class Auto implements Pronstants {
 				}
 				if(gyro.get() >= 90) {
 					drive.stop();
-					AUTO_PATH = Forward4;
+					Auto_Path = Forward4;
 				}
 				break;
 			case Forward4 :
@@ -166,7 +186,7 @@ public class Auto implements Pronstants {
 				}
 				if(encL.get() >= 15 && encR.get() >= 15) {
 					drive.stop();
-					AUTO_PATH = Turn4
+					Auto_Path = Turn4
 				}
 				break;
 			case Turn4:

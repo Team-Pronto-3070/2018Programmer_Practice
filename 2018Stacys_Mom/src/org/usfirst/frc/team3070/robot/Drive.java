@@ -70,13 +70,4 @@ public class Drive {
 	 *            speed for motors
 	 */
 
-	void driveForward() {
-		move(Pronstants.STANDARD_SPEED, 15);
-	}
-
-	void stop() {
-		setLeft(0);
-		setRight(0);
-	}
-
 }
