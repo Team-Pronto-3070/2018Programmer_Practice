@@ -8,17 +8,21 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder; 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import org.usfirst.frc.team3070.robot.Drive;
+
 public class Auto implements Pronstants {
 	Drive drive;
 	Sensors sensors;
 
 	/**
 	 * Constructor for auto
-	 * @param d Drive
-	 * @param s Sensors
+	 * 
+	 * @param d
+	 *            Drive
+	 * @param s
+	 *            Sensors
 	 */
 	public Auto(Drive d, Sensors s) {
 		drive = d;
@@ -30,11 +34,11 @@ public class Auto implements Pronstants {
 		// max numbers of fowards possible
 		Forward1, Forward2, Foward3, Foward4,
 
-		//max number of turns needed
+		// max number of turns needed
 		Turn1, Turn2, Turn3, Turn4,
 
 		// Right starting position combinations
-		
+
 	}
 
 	// Strings for auto selector
@@ -42,7 +46,7 @@ public class Auto implements Pronstants {
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
 	Auto_Path impPath;
-	
+
 	// Variables used in subcodes-need to change later
 	boolean Turned = false;
 	int case_number = 1;
@@ -92,8 +96,7 @@ public class Auto implements Pronstants {
 					if(sensors.gyro.get() >= 60) {
 						drive.setRight(0);
 						drive.setLeft(0);
-						AUTO_PATH = Forward2;
-						
+						AUTO_PATH = Forward2;	
 					}
 				}
 				encL.reset;
@@ -120,6 +123,7 @@ public class Auto implements Pronstants {
 				}
 				if(sensors.gyro.get() >= 90) {
 					drive.move(0);
+					 
 				}
 				if(triangle) {
 					setRight(STRONG_SPEED);
@@ -127,7 +131,7 @@ public class Auto implements Pronstants {
 				}
 				if(sensors.gyro.get() >= 60) {
 					drive.move(0);
-					
+					AUTO_PATH = Forward3
 				}
 				break;
 			case Forward3:
@@ -135,17 +139,37 @@ public class Auto implements Pronstants {
 					drive.driveForward;
 				}
 				if(encL.get() >= 15 && encR.get() >=15) {
-					
+					drive.stop();
+					AUTO_PATH = Turn3;
 				}
 				break;
 			case Turn3:
-
+				if(square) {
+					setLeft(WEAK_SPEED);
+					setRight(STRONG_SPEED);
+				}
+				if(gyro.get() >= 90) {
+					drive.stop();
+					AUTO_PATH = Forward4;
+				}
 				break;
 			case Forward4 :
-
+				if(square) {
+					drive.driveForward;
+				}
+				if(encL.get() >= 15 && encR.get() >= 15) {
+					drive.stop;
+					AUTO_PATH = Turn4
+				}
 				break;
 			case Turn4:
-
+				if(square) {
+					setLeft(WEAK_SPEED);
+					setRight(STRONG_SPEED);
+				}
+				if(gyro.get() >= 90) {
+					drive.stop;
+				}
 				break;
 			
 		}
@@ -153,7 +177,9 @@ public class Auto implements Pronstants {
 
 	/**
 	 * Code for RCR
-	 * @param RCR state the code starts at
+	 * 
+	 * @param RCR
+	 *            state the code starts at
 	 */
 	public void RCR(int RCR) {
 
@@ -187,7 +213,7 @@ public class Auto implements Pronstants {
 
 	}
 
-	/** 
+	/**
 	 * Code for RWR
 	 */
 	public void RWR() {
