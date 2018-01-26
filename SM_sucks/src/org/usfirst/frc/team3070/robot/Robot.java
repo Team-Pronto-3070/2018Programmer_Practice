@@ -4,12 +4,19 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+<<<<<<< HEAD
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+=======
+
+package org.usfirst.frc.team3070.robot;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+>>>>>>> ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,6 +33,7 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
+<<<<<<< HEAD
 	Joystick JoyR = new Joystick(0);
 	Joystick JoyL = new Joystick(1);
 	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
@@ -57,6 +65,11 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
+=======
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+>>>>>>> ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
 	 */
 	@Override
 	public void robotInit() {
@@ -67,6 +80,7 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
+<<<<<<< HEAD
 	 * between different autonomous modes using the dashboard. The sendable chooser
 	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
 	 * remove all of the chooser code and uncomment the getString line to get the
@@ -76,6 +90,16 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional comparisons to the
 	 * switch structure below with additional strings. If using the SendableChooser
 	 * make sure to add them to the chooser code above as well.
+=======
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * getString line to get the auto name from the text box below the Gyro
+	 *
+	 * <p>You can add additional auto modes by adding additional comparisons to
+	 * the switch structure below with additional strings. If using the
+	 * SendableChooser make sure to add them to the chooser code above as well.
+>>>>>>> ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
 	 */
 	@Override
 	public void autonomousInit() {
@@ -90,6 +114,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+<<<<<<< HEAD
 
 		switch (m_autoSelected) {
 		case kCustomAuto:
@@ -152,6 +177,16 @@ public class Robot extends IterativeRobot {
 				break;
 			}
 			break;
+=======
+		switch (m_autoSelected) {
+			case kCustomAuto:
+				// Put custom auto code here
+				break;
+			case kDefaultAuto:
+			default:
+				// Put default auto code here
+				break;
+>>>>>>> ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
 		}
 	}
 
@@ -160,6 +195,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+<<<<<<< HEAD
 		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2)) */));
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL);
@@ -183,4 +219,14 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 	}
 
+=======
+	}
+
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
+	}
+>>>>>>> ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
 }
