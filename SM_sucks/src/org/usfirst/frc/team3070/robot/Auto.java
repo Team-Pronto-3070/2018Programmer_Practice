@@ -1,16 +1,6 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.AnalogGyro;
-
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 
@@ -31,8 +21,6 @@ public class Auto {
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
 	Auto_Path impPath = Auto_Path.Forward1;
-	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// Variables used in subcodes-need to change later
 	Drive drive = new Drive();
@@ -54,19 +42,19 @@ public class Auto {
 		default:
 			switch (impPath) {
 			case Forward1:
-				if (encR.get() <= 15 && encL.get() <= 15) {
+				if (sensors.encR.get() <= 15 && sensors.encL.get() <= 15) {
 					drive.move(.3, 15);
 				}
 
 				else {
 					drive.move(.3, 0);
 				}
-				encR.reset();
-				encL.reset();
+				sensors.encR.reset();
+				sensors.encL.reset();
 				impPath = Auto_Path.Turn1;
 				drive.move(.3, 0);
-				encR.reset();
-				encL.reset();
+				sensors.encR.reset();
+				sensors.encL.reset();
 				impPath = Auto_Path.Turn1;
 				break;
 
@@ -89,8 +77,8 @@ public class Auto {
 							impPath = Auto_Path.Forward2;
 						}
 					}
-					encL.reset();
-					encR.reset();
+					sensors.encL.reset();
+					sensors.encR.reset();
 				}
 
 				break;
@@ -98,7 +86,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 15);
 				}
-				if (encL.get() >= 15 && encR.get() >= 15) {
+				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn2;
 				}
@@ -126,7 +114,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 0);
 				}
-				if (encL.get() >= 15 && encR.get() >= 15) {
+				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn3;
 				}
@@ -145,7 +133,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 0);
 				}
-				if (encL.get() >= 15 && encR.get() >= 15) {
+				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn4;
 				}

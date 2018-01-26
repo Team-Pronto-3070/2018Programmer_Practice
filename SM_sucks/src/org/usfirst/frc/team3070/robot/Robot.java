@@ -7,7 +7,6 @@
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -26,10 +25,6 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
-	Joystick JoyR = new Joystick(0);
-	Joystick JoyL = new Joystick(1);
-	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 
 	// Initializing class instances
 	Drive drive;
@@ -146,7 +141,8 @@ public class Robot extends IterativeRobot {
 			case PATH_RWR:
 				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-				if (encR.get() >= Pronstants.ROT_TO_AUTO_LINE && encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+				if (sensors.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
+						&& sensors.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
@@ -171,20 +167,20 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2)) */));
+		double amountL = (-1 * (sensors.JoyL.getRawAxis(1)/* * (-1 * (sensors.JoyL.getRawAxis(2) / 2)) */));
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL);
 		} else {
 			drive.stop();
 		}
-		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2)) */));
+		double amountR = (-1 * (sensors.JoyR.getRawAxis(1)/* * (-1 * (sensors.JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {
 			drive.stop();
 		}
 
-		if (JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
+		if (sensors.JoyR.getRawButton(1) || sensors.JoyL.getRawButton(1)) {
 			System.out.println("pew pew");
 		}
 

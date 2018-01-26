@@ -1,17 +1,10 @@
 package org.usfirst.frc.team3070.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive {
 
-	TalonSRX TalRM = new TalonSRX(Pronstants.PORT_RM); // Right master Talon
-	TalonSRX TalRF = new TalonSRX(Pronstants.PORT_RF); // Right follower Talon
-	TalonSRX TalLM = new TalonSRX(Pronstants.PORT_LM); // Left master Talon
-	TalonSRX TalLF = new TalonSRX(Pronstants.PORT_LF); // Left follower Talon
-	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
-	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
+	Sensors sensors = new Sensors();
 
 	// open variables:
 	/**
@@ -19,16 +12,16 @@ public class Drive {
 	 */
 
 	void setRight(double amountR) {
-		TalRM.set(ControlMode.PercentOutput, amountR);
-		TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
+		sensors.TalRM.set(ControlMode.PercentOutput, amountR);
+		sensors.TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
 	}
 
 	/**
 	 * Sets left side motors to a certain amount, given by arg
 	 */
 	void setLeft(double amountL) {
-		TalLM.set(ControlMode.PercentOutput, amountL);
-		TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
+		sensors.TalLM.set(ControlMode.PercentOutput, amountL);
+		sensors.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
 	void stop() {
@@ -51,12 +44,12 @@ public class Drive {
 
 	void move(double moving, int rotations) {
 
-		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+		if (sensors.encR.getDistance() < rotations && sensors.encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
-			encR.reset();
-			encL.reset();
+			sensors.encR.reset();
+			sensors.encL.reset();
 			stop();
 
 		}
