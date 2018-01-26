@@ -4,10 +4,12 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package org.usfirst.frc.team3070.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,9 +26,37 @@ public class Robot extends IterativeRobot {
 	private String m_autoSelected;
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
+	Joystick JoyR = new Joystick(0);
+	Joystick JoyL = new Joystick(1);
+	Encoder encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+	Encoder encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
+
+	// Initializing class instances
+	Drive drive;
+	Sensors sensors;
+	Auto auto;
+
+	boolean Turned = false;
+
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+							// postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, // Left starting position combinations
+		PATH_LWL, PATH_LCR, PATH_LWR,
+
+		PATH_CCL, // Center starting position combinations
+		PATH_CWL, PATH_CCR, PATH_CWR,
+
+		PATH_RCL, // Right starting position combinations
+		PATH_RWL, PATH_RCR, PATH_RWR
+	}
+
+	// Initializing Gyros-caused crashess
+	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO);
+	Auto_Path impPath = Auto_Path.PATH_LCL;
+
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
@@ -37,14 +67,15 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString line to get the auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString line to get the
+	 * auto name from the text box below the Gyro
 	 *
-	 * <p>You can add additional auto modes by adding additional comparisons to
-	 * the switch structure below with additional strings. If using the
-	 * SendableChooser make sure to add them to the chooser code above as well.
+	 * <p>
+	 * You can add additional auto modes by adding additional comparisons to the
+	 * switch structure below with additional strings. If using the SendableChooser
+	 * make sure to add them to the chooser code above as well.
 	 */
 	@Override
 	public void autonomousInit() {
@@ -59,14 +90,68 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
 		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
+		case kCustomAuto:
+			// Put custom auto code here
+			break;
+		case kDefaultAuto:
+		default:
+			switch (impPath) {
+			case PATH_LCL:
+
 				break;
-			case kDefaultAuto:
-			default:
-				// Put default auto code here
+
+			case PATH_LWL:
+
 				break;
+			case PATH_LCR:
+
+				break;
+			case PATH_LWR:
+
+				break;
+			case PATH_CCL:
+
+				break;
+			case PATH_CWL:
+
+				break;
+			case PATH_CCR:
+
+				break;
+			case PATH_CWR:
+
+				break;
+			case PATH_RCL:
+
+				break;
+			case PATH_RWL:
+
+				break;
+			case PATH_RCR:
+
+				break;
+			case PATH_RWR:
+				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
+				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
+				if (encR.get() >= Pronstants.ROT_TO_AUTO_LINE && encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setLeft(Pronstants.WEAK_SPEED);
+
+				}
+				if (gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+					drive.setRight(0);
+					drive.setLeft(0);
+					Turned = true;
+				}
+				if (gyro.getAngle() >= 90 && Turned) {
+					drive.setRight(Pronstants.STANDARD_SPEED);
+					drive.setLeft(Pronstants.STANDARD_SPEED);
+				}
+				break;
+			}
+			break;
 		}
 	}
 
@@ -75,12 +160,27 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		double amountL = (-1 * (JoyL.getRawAxis(1)/* * (-1 * (JoyL.getRawAxis(2) / 2)) */));
+		if (amountL >= .2 || amountL <= -.2) {
+			drive.setLeft(amountL);
+		} else {
+			drive.stop();
+		}
+		double amountR = (-1 * (JoyR.getRawAxis(1)/* * (-1 * (JoyR.getRawAxis(2) / 2)) */));
+		if (amountR >= .2 || amountR <= -.2) {
+			drive.setRight(amountR);
+		} else {
+			drive.stop();
+		}
+
+		if (JoyR.getRawButton(1) || JoyL.getRawButton(1)) {
+			System.out.println("pew pew");
+		}
+
 	}
 
-	/**
-	 * This function is called periodically during test mode.
-	 */
 	@Override
 	public void testPeriodic() {
 	}
+
 }
