@@ -16,6 +16,6 @@ public class Grabber_for_Pronto {
 		
 	}
 	if(sensors.joyL.getRawButton(2)) {
-		
+		Lgrab.set(drive.ControlMode.PercentOutput, .6);
 	}
 }
