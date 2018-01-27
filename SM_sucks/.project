@@ -15,4 +15,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>robot</name>
+			<type>2</type>
+			<location>C:/Users/RyanRobotics/Documents/GitHub/2018Programmer_Practice/SM_sucks/src/org/usfirst/frc/team3070/robot</location>
+		</link>
+	</linkedResources>
 </projectDescription>
