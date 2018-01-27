@@ -24,7 +24,7 @@ public class Auto {
 
 	// Variables used in subcodes-need to change later
 	Drive drive = new Drive();
-	Sensors sensors = new Sensors();
+	Modules modules = new Modules();
 	boolean Turned = false;
 	int case_number = 1;
 	boolean square = true;
@@ -42,19 +42,19 @@ public class Auto {
 		default:
 			switch (impPath) {
 			case Forward1:
-				if (sensors.encR.get() <= 15 && sensors.encL.get() <= 15) {
+				if (modules.encR.get() <= 15 && modules.encL.get() <= 15) {
 					drive.move(.3, 15);
 				}
 
 				else {
 					drive.move(.3, 0);
 				}
-				sensors.encR.reset();
-				sensors.encL.reset();
+				modules.encR.reset();
+				modules.encL.reset();
 				impPath = Auto_Path.Turn1;
 				drive.move(.3, 0);
-				sensors.encR.reset();
-				sensors.encL.reset();
+				modules.encR.reset();
+				modules.encL.reset();
 				impPath = Auto_Path.Turn1;
 				break;
 
@@ -62,7 +62,7 @@ public class Auto {
 				if (square) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					if (sensors.gyro.getAngle() >= 90) {
+					if (modules.gyro.getAngle() >= 90) {
 						drive.setRight(0);
 						drive.setLeft(0);
 						impPath = Auto_Path.Forward2;
@@ -71,14 +71,14 @@ public class Auto {
 					else if (triangle) {
 						drive.setRight(Pronstants.STRONG_SPEED);
 						drive.setLeft(Pronstants.WEAK_SPEED);
-						if (sensors.gyro.getAngle() >= 60) {
+						if (modules.gyro.getAngle() >= 60) {
 							drive.setRight(0);
 							drive.setLeft(0);
 							impPath = Auto_Path.Forward2;
 						}
 					}
-					sensors.encL.reset();
-					sensors.encR.reset();
+					modules.encL.reset();
+					modules.encR.reset();
 				}
 
 				break;
@@ -86,7 +86,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 15);
 				}
-				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
+				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn2;
 				}
@@ -97,7 +97,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if (sensors.gyro.getAngle() >= 90) {
+				if (modules.gyro.getAngle() >= 90) {
 					drive.stop();
 
 				}
@@ -105,7 +105,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if (sensors.gyro.getAngle() >= 60) {
+				if (modules.gyro.getAngle() >= 60) {
 					drive.stop();
 					impPath = Auto_Path.Forward3;
 				}
@@ -114,7 +114,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 0);
 				}
-				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
+				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn3;
 				}
@@ -124,7 +124,7 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if (sensors.gyro.getAngle() >= 90) {
+				if (modules.gyro.getAngle() >= 90) {
 					drive.stop();
 					impPath = Auto_Path.Forward4;
 				}
@@ -133,7 +133,7 @@ public class Auto {
 				if (square) {
 					drive.move(.3, 0);
 				}
-				if (sensors.encL.get() >= 15 && sensors.encR.get() >= 15) {
+				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn4;
 				}
@@ -143,7 +143,7 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if (sensors.gyro.getAngle() >= 90) {
+				if (modules.gyro.getAngle() >= 90) {
 					drive.stop();
 				}
 				break;
@@ -162,7 +162,7 @@ public class Auto {
 		switch (RCR) {
 		case 1:
 			drive.move(Pronstants.STANDARD_SPEED, 0);// sets both sides to same speed
-			if (sensors.encR.get() >= Pronstants.ROT_TO_SCALE && sensors.encL.get() >= Pronstants.ROT_TO_SCALE) {
+			if (modules.encR.get() >= Pronstants.ROT_TO_SCALE && modules.encL.get() >= Pronstants.ROT_TO_SCALE) {
 				RCR = 2;
 				// when robot reaches the scale RCR = 2 and turning happens
 			}
@@ -170,8 +170,8 @@ public class Auto {
 		case 2:
 			drive.setRight(Pronstants.STRONG_SPEED);
 			drive.setLeft(Pronstants.WEAK_SPEED);
-			if (sensors.gyro.getAngle() >= 90 && sensors.encR.get() >= Pronstants.ROT_TO_SCALE
-					&& sensors.encL.get() >= Pronstants.ROT_TO_SCALE) {
+			if (modules.gyro.getAngle() >= 90 && modules.encR.get() >= Pronstants.ROT_TO_SCALE
+					&& modules.encL.get() >= Pronstants.ROT_TO_SCALE) {
 				RCR = 3;
 			}
 			break;
@@ -179,7 +179,7 @@ public class Auto {
 			drive.setRight(0);
 			drive.setRight(0);
 			Turned = true;
-			if (sensors.gyro.getAngle() >= 90 && Turned) {
+			if (modules.gyro.getAngle() >= 90 && Turned) {
 				RCR = 4;
 			}
 			break;
@@ -195,17 +195,17 @@ public class Auto {
 	public void RWR() {
 		drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 		drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-		if (sensors.encR.get() >= Pronstants.ROT_TO_AUTO_LINE && sensors.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+		if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE && modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
 			drive.setRight(Pronstants.STRONG_SPEED);
 			drive.setLeft(Pronstants.WEAK_SPEED);
 
 		}
-		if (sensors.gyro.getAngle() >= 90 || sensors.gyro.getAngle() >= 180) {
+		if (modules.gyro.getAngle() >= 90 || modules.gyro.getAngle() >= 180) {
 			drive.setRight(0);
 			drive.setLeft(0);
 			Turned = true;
 		}
-		if (sensors.gyro.getAngle() >= 90 && Turned) {
+		if (modules.gyro.getAngle() >= 90 && Turned) {
 			drive.setRight(Pronstants.STANDARD_SPEED);
 			drive.setLeft(Pronstants.STANDARD_SPEED);
 		}

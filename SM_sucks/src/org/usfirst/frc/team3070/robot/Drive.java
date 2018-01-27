@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Drive {
 
-	Sensors sensors = new Sensors();
+	Modules modules = new Modules();
 
 	// open variables:
 	/**
@@ -15,8 +15,8 @@ public class Drive {
 	 */
 
 	void setRight(double amountR) {
-		sensors.TalRM.set(ControlMode.PercentOutput, amountR);
-		sensors.TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
+		modules.TalRM.set(ControlMode.PercentOutput, amountR);
+		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
 	}
 
 	/**
@@ -26,8 +26,8 @@ public class Drive {
 	 *            left amount
 	 */
 	void setLeft(double amountL) {
-		sensors.TalLM.set(ControlMode.PercentOutput, amountL);
-		sensors.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
+		modules.TalLM.set(ControlMode.PercentOutput, amountL);
+		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
 	void stop() {
@@ -50,12 +50,12 @@ public class Drive {
 
 	void move(double moving, int rotations) {
 
-		if (sensors.encR.getDistance() < rotations && sensors.encL.getDistance() < rotations) {
+		if (modules.encR.getDistance() < rotations && modules.encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
-			sensors.encR.reset();
-			sensors.encL.reset();
+			modules.encR.reset();
+			modules.encL.reset();
 			stop();
 
 		}

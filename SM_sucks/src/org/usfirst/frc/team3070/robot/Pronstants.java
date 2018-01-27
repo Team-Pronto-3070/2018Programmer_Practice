@@ -24,11 +24,7 @@ public interface Pronstants {
 	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
-<<<<<<< HEAD
-
-=======
-	final int amount_of_genders = 2; //As the wise kyle once said...
->>>>>>> master
+	final int AMOUNT_OF_GENDERS = 2; //As the wise kyle once said...
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
 		PATH_LCL, // Left starting position combinations

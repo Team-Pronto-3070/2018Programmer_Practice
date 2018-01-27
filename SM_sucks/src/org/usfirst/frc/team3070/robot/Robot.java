@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 
 	// Initializing class instances
 	Drive drive;
-	Sensors sensors;
+	Modules modules;
 	Auto auto;
 
 	boolean Turned = false;
@@ -127,8 +127,8 @@ public class Robot extends IterativeRobot {
 			case PATH_RWR:
 				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-				if (sensors.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
-						&& sensors.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+				if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
+						&& modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
@@ -153,20 +153,20 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double amountL = (-1 * (sensors.JoyL.getRawAxis(1)/* * (-1 * (sensors.JoyL.getRawAxis(2) / 2)) */));
+		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL);
 		} else {
 			drive.stop();
 		}
-		double amountR = (-1 * (sensors.JoyR.getRawAxis(1)/* * (-1 * (sensors.JoyR.getRawAxis(2) / 2)) */));
+		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {
 			drive.stop();
 		}
 
-		if (sensors.JoyR.getRawButton(1) || sensors.JoyL.getRawButton(1)) {
+		if (modules.JoyR.getRawButton(1) || modules.JoyL.getRawButton(1)) {
 			System.out.println("pew pew");
 		}
 
