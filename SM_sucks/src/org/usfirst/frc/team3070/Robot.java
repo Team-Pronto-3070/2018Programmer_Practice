@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-package org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -25,15 +25,15 @@ public class Robot extends IterativeRobot {
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
 	// Initializing class instances
-	Drive drive;
-	Modules modules;
-	Auto auto;
+	Drive drive;// drive class
+	Modules modules;// modules class
+	Auto auto;// auto class
 
-	boolean Turned = false;
+	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
 
-	// Initializing Gyros-caused crashess
-	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO);
-	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;
+	// Initializing Gyros
+	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
+	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;// initializing the auto path
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_chooser.addDefault("Default Auto", kDefaultAuto);
+		m_chooser.addDefault("Default Auto", kDefaultAuto);// initializing case machines
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
 	}
@@ -67,12 +67,12 @@ public class Robot extends IterativeRobot {
 	 * <p>
 	 * You can add additional auto modes by adding additional comparisons to the
 	 * switch structure below with additional strings. If using the SendableChooser
-	 * make sure to add them to the chooser code above as well. >>>>>>>
-	 * ffb48d0e0e6ff83f29dc5a7e89c241bb229d9a66
+	 * make sure to add them to the chooser code above as well.
+	 * 
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autoSelected = m_chooser.getSelected();
+		m_autoSelected = m_chooser.getSelected();// allows you to know that auto is selected (auto gen)
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
 			break;
 		case kDefaultAuto:
 		default:
-			switch (impPath) {
+			switch (impPath) {// case machine we dont use
 			case PATH_LCL:
 
 				break;
@@ -127,8 +127,8 @@ public class Robot extends IterativeRobot {
 			case PATH_RWR:
 				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-				if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
-						&& modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+				if (sensors.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
+						&& sensors.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
@@ -152,22 +152,18 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control.
 	 */
 	@Override
-	public void teleopPeriodic() {
-		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
+	public void teleopPeriodic() {// left joystick driving for the robot
+		double amountL = (-1 * (sensors.JoyL.getRawAxis(1)/* * (-1 * (sensors.JoyL.getRawAxis(2) / 2)) */));
 		if (amountL >= .2 || amountL <= -.2) {
-			drive.setLeft(amountL);
+			drive.setLeft(amountL); // sets the motors to the joysticks position, with a dead zone of |.2|
 		} else {
-			drive.stop();
-		}
-		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
+			drive.stop();// stops robot if joystick is in the dead zone
+		} // right joystick driving the robot
+		double amountR = (-1 * (sensors.JoyR.getRawAxis(1)/* * (-1 * (sensors.JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
-		} else {
-			drive.stop();
-		}
-
-		if (modules.JoyR.getRawButton(1) || modules.JoyL.getRawButton(1)) {
-			System.out.println("pew pew");
+		} else {// sets motor to joysticks position, with a dead zone of |.2|
+			drive.stop();// stops robot if joystick is in the dead zone
 		}
 
 	}

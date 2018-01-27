@@ -1,5 +1,5 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
-package org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070;
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
@@ -41,79 +41,76 @@ public class Auto {
 		case kDefaultAuto:
 		default:
 			switch (impPath) {
-			case Forward1:
+			case Forward1://first forward of either square or triangle
 				if (modules.encR.get() <= 15 && modules.encL.get() <= 15) {
-					drive.move(.3, 15);
+					drive.move(.3, 15);//sets speed of motors and for how many revolutions the wheel go for
 				}
 
 				else {
-					drive.move(.3, 0);
+					drive.move(.3, 0);//stops robot if 
 				}
-				modules.encR.reset();
+				modules.encR.reset();//resets the encoders so that the following case machines will have accurate enc values
 				modules.encL.reset();
-				impPath = Auto_Path.Turn1;
-				drive.move(.3, 0);
-				modules.encR.reset();
-				modules.encL.reset();
-				impPath = Auto_Path.Turn1;
+				impPath = Auto_Path.Turn1;//starts next phase
+				
 				break;
 
 			case Turn1:
-				if (square) {
-					drive.setRight(Pronstants.STRONG_SPEED);
+				if (square) {//turning for if the course is the square
+					drive.setRight(Pronstants.STRONG_SPEED);//set motors to strong and weak speeds, will cause the robot to turn
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					if (modules.gyro.getAngle() >= 90) {
+					if (modules.gyro.getAngle() >= 90) {//gyro will tell the robot to stop when it has turned 90 degrees
 						drive.setRight(0);
-						drive.setLeft(0);
-						impPath = Auto_Path.Forward2;
+						drive.setLeft(0);//robot then stops to prevent turning excessively
+						impPath = Auto_Path.Forward2;//starts next phase 
 					}
 
 					else if (triangle) {
-						drive.setRight(Pronstants.STRONG_SPEED);
-						drive.setLeft(Pronstants.WEAK_SPEED);
-						if (modules.gyro.getAngle() >= 60) {
-							drive.setRight(0);
+						drive.setRight(Pronstants.STRONG_SPEED);//turning for specifically the triangle 
+						drive.setLeft(Pronstants.WEAK_SPEED);//these speeds cause robot to turn 
+						if (modules.gyro.getAngle() >= 60) {//when the robot turns 60 degrees, the gyro will stop the robot
+							drive.setRight(0);// the robot will stop at 60 degrees in hopes to make an equilateral triangle
 							drive.setLeft(0);
-							impPath = Auto_Path.Forward2;
+							impPath = Auto_Path.Forward2;//advances to the next step
 						}
 					}
-					modules.encL.reset();
+					modules.encL.reset();//encoders are reset for accurate driving forward
 					modules.encR.reset();
 				}
 
 				break;
 			case Forward2:
 				if (square) {
-					drive.move(.3, 15);
-				}
+					drive.move(.3, 15);//driving forward after the first turn
+				}//sqaure and triangle dont need to be differentiated because their side lengths are the same 
 				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
-					drive.stop();
-					impPath = Auto_Path.Turn2;
+					drive.stop();//when the encoders reach fifteen rotations, the robot will stop 
+					impPath = Auto_Path.Turn2;//advances to the next action
 				}
 
 				break;
 			case Turn2:
 				if (square) {
-					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setRight(Pronstants.STRONG_SPEED);//if the path is square the robot will turn 90 degrees
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
 				if (modules.gyro.getAngle() >= 90) {
-					drive.stop();
+					drive.stop();//when 90 degrees is reached, the robot is stopped
 
 				}
-				if (triangle) {
+				if (triangle) {//if triangle is selected, then the robot will turn for 60 degrees
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
 				if (modules.gyro.getAngle() >= 60) {
-					drive.stop();
+					drive.stop();//when robot has turned 60 degrees, it stop and proceed to the next straight
 					impPath = Auto_Path.Forward3;
 				}
 				break;
 			case Forward3:
-				if (square) {
+				if (square || triangle) {//both paths will lead to going through this 
 					drive.move(.3, 0);
-				}
+				}//when the motors have rotated 15 times, robot will stop and move on to next step
 				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
 					impPath = Auto_Path.Turn3;
@@ -122,16 +119,16 @@ public class Auto {
 			case Turn3:
 				if (square) {
 					drive.setLeft(Pronstants.WEAK_SPEED);
-					drive.setRight(Pronstants.STRONG_SPEED);
+					drive.setRight(Pronstants.STRONG_SPEED);//turning for the square only becuase the triangle only requires two turns
 				}
 				if (modules.gyro.getAngle() >= 90) {
 					drive.stop();
-					impPath = Auto_Path.Forward4;
+					impPath = Auto_Path.Forward4;//from now on only the square will be executed
 				}
 				break;
 			case Forward4:
 				if (square) {
-					drive.move(.3, 0);
+					drive.move(.3, 0);//moving forward 15 rotations, stopping and moving on to the next step
 				}
 				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
@@ -139,7 +136,7 @@ public class Auto {
 				}
 				break;
 			case Turn4:
-				if (square) {
+				if (square) {//final turn of the square and then the robot stops, completing the square
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
@@ -157,57 +154,10 @@ public class Auto {
 	 * @param RCR
 	 *            state the code starts at
 	 */
-	public void RCR(int RCR) {
-
-		switch (RCR) {
-		case 1:
-			drive.move(Pronstants.STANDARD_SPEED, 0);// sets both sides to same speed
-			if (modules.encR.get() >= Pronstants.ROT_TO_SCALE && modules.encL.get() >= Pronstants.ROT_TO_SCALE) {
-				RCR = 2;
-				// when robot reaches the scale RCR = 2 and turning happens
-			}
-			break;
-		case 2:
-			drive.setRight(Pronstants.STRONG_SPEED);
-			drive.setLeft(Pronstants.WEAK_SPEED);
-			if (modules.gyro.getAngle() >= 90 && modules.encR.get() >= Pronstants.ROT_TO_SCALE
-					&& modules.encL.get() >= Pronstants.ROT_TO_SCALE) {
-				RCR = 3;
-			}
-			break;
-		case 3:
-			drive.setRight(0);
-			drive.setRight(0);
-			Turned = true;
-			if (modules.gyro.getAngle() >= 90 && Turned) {
-				RCR = 4;
-			}
-			break;
-		case 4:
-			// insert code for raising cube and placing in the scale
-		}
-
-	}
+	
 
 	/**
 	 * Code for RWR
 	 */
-	public void RWR() {
-		drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
-		drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-		if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE && modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
-			drive.setRight(Pronstants.STRONG_SPEED);
-			drive.setLeft(Pronstants.WEAK_SPEED);
 
-		}
-		if (modules.gyro.getAngle() >= 90 || modules.gyro.getAngle() >= 180) {
-			drive.setRight(0);
-			drive.setLeft(0);
-			Turned = true;
-		}
-		if (modules.gyro.getAngle() >= 90 && Turned) {
-			drive.setRight(Pronstants.STANDARD_SPEED);
-			drive.setLeft(Pronstants.STANDARD_SPEED);
-		}
-	}
 }
