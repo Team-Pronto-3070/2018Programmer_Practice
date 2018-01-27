@@ -1,6 +1,13 @@
 package org.usfirst.frc.team3070.robot;
 
 public interface Pronstants {
+<<<<<<< HEAD
+=======
+
+	final int PORT_LARM = 9;// left arm of the grabber Talon port
+	final int PORT_RARM = 10;// right arm of grabber Talon port
+
+>>>>>>> a8b1c47c3b3d6413adf63a8c630bfc99f5d751d6
 	final int PORT_RM = 2; // Right master CIM port
 	final int PORT_RF = 5; // Right follower CIM port
 
@@ -24,10 +31,17 @@ public interface Pronstants {
 	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
+<<<<<<< HEAD
 	final int AMOUNT_OF_GENDERS = 2; // As the wise kyle once said...
 
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// position][sCale or sWitch][Right or Left Side])
+=======
+	final int amount_of_genders = 2; // As the wise kyle once said...
+
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+							// postition][sCale or sWitch][Right or Left Side])
+>>>>>>> a8b1c47c3b3d6413adf63a8c630bfc99f5d751d6
 		PATH_LCL, // Left starting position combinations
 		PATH_LWL, PATH_LCR, PATH_LWR,
 
