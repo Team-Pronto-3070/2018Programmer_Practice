@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Sensors {
 	Encoder encL, encR;
 	AnalogGyro gyro;
-	TalonSRX TalRM, TalRF, TalLM, TalLF;
+	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR;
 	Joystick JoyR, JoyL;
 
 	/**
@@ -23,6 +23,8 @@ public class Sensors {
 		TalRF = new TalonSRX(Pronstants.PORT_RF); // Right follower Talon
 		TalLM = new TalonSRX(Pronstants.PORT_LM); // Left master Talon
 		TalLF = new TalonSRX(Pronstants.PORT_LF); // Left follower Talon
+		TalGrabL = new TalonSRX(Pronstants.PORT_GL); // Left master Talon
+		TalGrabR = new TalonSRX(Pronstants.PORT_GR); // Left follower Talon
 		encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
 		encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 		JoyR = new Joystick(0);
