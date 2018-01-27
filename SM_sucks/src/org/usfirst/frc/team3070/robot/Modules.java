@@ -25,7 +25,7 @@ public class Modules {
 		TalLF = new TalonSRX(Pronstants.PORT_LF); // Left follower Talon
 		TalGrabL = new TalonSRX(Pronstants.PORT_GL); // Left master Talon
 		TalGrabR = new TalonSRX(Pronstants.PORT_GR); // Left follower Talon
-		TalExt = new TalonSRX(Pronstants.PORT_EXT); //Extendy Talon
+		TalExt = new TalonSRX(Pronstants.PORT_EXT); // Extendy Talon
 		encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
 		encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 		encLift = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false);
