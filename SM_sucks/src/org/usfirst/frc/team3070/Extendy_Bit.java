@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 

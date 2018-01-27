@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070;
 
 public interface Pronstants {
 	final int PORT_RM = 2; // Right master CIM port
