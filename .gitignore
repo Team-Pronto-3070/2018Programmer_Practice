@@ -21,6 +21,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata
+.classpath
 
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.prx
 *.tis
@@ -48,6 +49,7 @@ hs_err_pid*
 *.frq
 
 /.recommenders/
+<<<<<<< HEAD
 
 .classpath
 
@@ -55,3 +57,6 @@ hs_err_pid*
 
 .recommenders/caches/identified-project-coordinates.json
 *.json
+=======
+.classpath
+>>>>>>> master
