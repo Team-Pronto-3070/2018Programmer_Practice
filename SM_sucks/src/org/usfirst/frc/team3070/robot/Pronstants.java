@@ -9,9 +9,13 @@ public interface Pronstants {
 	
 	final int PORT_GR = 11;
 	final int PORT_GL = 12;
+	
+	final int PORT_EXT = 13;
 
 	final int PORT_ENC_R1 = 1; // Right encoder first port
 	final int PORT_ENC_R2 = 2; // Right encoder second port
+	final int PORT_ENC_LIFT1 = 14;
+	final int PORT_ENC_LIFT2 = 15;
 
 	final int PORT_ENC_L1 = 7; // Left encoder first port
 	final int PORT_ENC_L2 = 8; // Left encoder second port
@@ -42,4 +46,7 @@ public interface Pronstants {
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; // Number of rotations to the autoline
 	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; // Number of rotations to the middle of the switch
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; // Number of rotations to the middle of the scale
+	
+	final boolean UP_INVERTION = false;
+	final boolean DOWN_INVERTION = true;
 }
