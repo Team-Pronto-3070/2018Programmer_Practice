@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3070;
+package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 

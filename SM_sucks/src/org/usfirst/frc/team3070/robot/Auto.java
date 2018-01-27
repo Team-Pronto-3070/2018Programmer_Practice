@@ -1,5 +1,5 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
-package org.usfirst.frc.team3070;
+package org.usfirst.frc.team3070.robot;
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting

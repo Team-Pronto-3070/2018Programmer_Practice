@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-package org.usfirst.frc.team3070;
+package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -127,8 +127,8 @@ public class Robot extends IterativeRobot {
 			case PATH_RWR:
 				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-				if (sensors.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
-						&& sensors.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+				if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
+						&& modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
@@ -153,13 +153,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {// left joystick driving for the robot
-		double amountL = (-1 * (sensors.JoyL.getRawAxis(1)/* * (-1 * (sensors.JoyL.getRawAxis(2) / 2)) */));
+		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
 		if (amountL >= .2 || amountL <= -.2) {
 			drive.setLeft(amountL); // sets the motors to the joysticks position, with a dead zone of |.2|
 		} else {
 			drive.stop();// stops robot if joystick is in the dead zone
 		} // right joystick driving the robot
-		double amountR = (-1 * (sensors.JoyR.getRawAxis(1)/* * (-1 * (sensors.JoyR.getRawAxis(2) / 2)) */));
+		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {// sets motor to joysticks position, with a dead zone of |.2|

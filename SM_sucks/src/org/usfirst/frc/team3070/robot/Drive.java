@@ -1,12 +1,11 @@
-package org.usfirst.frc.team3070;
+package org.usfirst.frc.team3070.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Drive {
 
-	Modules modules = new Modules();
+	Modules modules = new Modules(); // Initializing Modules
 
-	// open variables:
 	/**
 	 * Sets right side motors to a certain amount, given by arg
 	 * 
@@ -20,7 +19,7 @@ public class Drive {
 	}
 
 	/**
-	 * Sets left side motors to a certain amount, given by arg
+	 * Sets left side motors to a certain amount, given by amount
 	 * 
 	 * @param amountL
 	 *            left amount
@@ -30,24 +29,20 @@ public class Drive {
 		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
-	void stop() {
+	void stop() { // Sets both sides to 0
 		setRight(0);
 		setLeft(0);
 	}
 
 	/**
-	 * Constructor for Drive
+	 * Sets both side to a certain speed, and continues for a certain amount of
+	 * rotations
 	 * 
-	 * @param rm
-	 *            right master
-	 * @param rf
-	 *            right follower
-	 * @param lm
-	 *            left master
-	 * @param lf
-	 *            left follower
+	 * @param moving
+	 *            Speed, -1 to 1
+	 * @param rotations
+	 *            Amount of rotations
 	 */
-
 	void move(double moving, int rotations) {
 
 		if (modules.encR.getDistance() < rotations && modules.encL.getDistance() < rotations) {
