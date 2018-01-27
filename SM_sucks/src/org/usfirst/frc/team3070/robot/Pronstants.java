@@ -1,13 +1,6 @@
 package org.usfirst.frc.team3070.robot;
 
 public interface Pronstants {
-<<<<<<< HEAD
-=======
-
-	final int PORT_LARM = 9;// left arm of the grabber Talon port
-	final int PORT_RARM = 10;// right arm of grabber Talon port
-
->>>>>>> a8b1c47c3b3d6413adf63a8c630bfc99f5d751d6
 	final int PORT_RM = 2; // Right master CIM port
 	final int PORT_RF = 5; // Right follower CIM port
 
