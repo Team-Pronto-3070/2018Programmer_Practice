@@ -13,9 +13,8 @@ public class Modules {
 	Joystick JoyR, JoyL;
 
 	/**
-	 * Constructor for sensors
+	 * Constructor for sensors init
 	 */
-	@SuppressWarnings("unused")
 	public Modules() {
 
 		// Initializing encoders, gyro and talons

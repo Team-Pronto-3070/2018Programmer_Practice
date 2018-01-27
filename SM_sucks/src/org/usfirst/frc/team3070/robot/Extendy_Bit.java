@@ -12,8 +12,7 @@ public class Extendy_Bit {
 			modules.TalExt.setInverted(Pronstants.UP_INVERTION);
 			if (modules.encLift.get() <= 30) {
 				modules.TalExt.set(ControlMode.PercentOutput, 1);
-			}
-			else {
+			} else {
 				modules.TalExt.set(ControlMode.PercentOutput, 0);
 			}
 
@@ -23,8 +22,7 @@ public class Extendy_Bit {
 			modules.TalExt.setInverted(Pronstants.DOWN_INVERTION);
 			if (modules.encLift.get() <= 30) {
 				modules.TalExt.set(ControlMode.PercentOutput, 1);
-			}
-			else {
+			} else {
 				modules.TalExt.set(ControlMode.PercentOutput, 0);
 			}
 		}
