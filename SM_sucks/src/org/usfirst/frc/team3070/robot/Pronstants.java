@@ -16,9 +16,10 @@ public interface Pronstants {
 	final int PORT_ENC_R2 = 2; // Right encoder second port
 	final int PORT_ENC_LIFT1 = 14;
 	final int PORT_ENC_LIFT2 = 15;
-
 	final int PORT_ENC_L1 = 7; // Left encoder first port
 	final int PORT_ENC_L2 = 8; // Left encoder second port
+	
+	final int PORT_LS = 16;
 
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.5;
