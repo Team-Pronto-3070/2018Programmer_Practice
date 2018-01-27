@@ -1,4 +1,4 @@
-package src.org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070.robot;
 
 public interface Pronstants {
 
@@ -18,6 +18,18 @@ public interface Pronstants {
 	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
+	
+	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+						   // postition][sCale or sWitch][Right or Left Side])
+		PATH_LCL, // Left starting position combinations
+		PATH_LWL, PATH_LCR, PATH_LWR,
+		
+		PATH_CCL, // Center starting position combinations
+		PATH_CWL, PATH_CCR, PATH_CWR,
+		
+		PATH_RCL, // Right starting position combinations
+		PATH_RWL, PATH_RCR, PATH_RWR
+	}
 
 	final double PI = 3.141; // Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
