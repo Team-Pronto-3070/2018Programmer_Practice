@@ -31,8 +31,6 @@ public class Robot extends IterativeRobot {
 
 	boolean Turned = false;
 
-	
-
 	// Initializing Gyros-caused crashess
 	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO);
 	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;

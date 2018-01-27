@@ -29,4 +29,3 @@ public class Sensors {
 		JoyL = new Joystick(1);
 	}
 }
-// git outa here

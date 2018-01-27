@@ -9,8 +9,9 @@ public class Drive {
 	// open variables:
 	/**
 	 * Sets right side motors to a certain amount, given by arg
+	 * 
 	 * @param amountR
-	 * 				right amount
+	 *            right amount
 	 */
 
 	void setRight(double amountR) {
@@ -20,8 +21,9 @@ public class Drive {
 
 	/**
 	 * Sets left side motors to a certain amount, given by arg
+	 * 
 	 * @param amountL
-	 * 				left amount
+	 *            left amount
 	 */
 	void setLeft(double amountL) {
 		sensors.TalLM.set(ControlMode.PercentOutput, amountL);
