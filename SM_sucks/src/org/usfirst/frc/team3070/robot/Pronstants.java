@@ -25,7 +25,6 @@ public interface Pronstants {
 	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
-	final int AMOUNT_OF_GENDERS = 2; // As the wise kyle once said...
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		PATH_LCL, // Left starting position combinations
@@ -37,6 +36,15 @@ public interface Pronstants {
 		PATH_RCL, // Right starting position combinations
 		PATH_RWL, PATH_RCR, PATH_RWR
 	}
+	
+	final int ROTS_PER_INCH = 2;
+	final double DIS_UP_TO_SWITCH = 12 * 1.5;
+	final int DIS_UP_TO_SCALE = 12 * 7;
+	final double ROTS_TO_SWITCH = ROTS_PER_INCH * DIS_UP_TO_SWITCH;
+	final double ROTS_TO_SCALE = ROTS_PER_INCH * DIS_UP_TO_SCALE;
+	
+	final int RIGHT_ANGLE = 90; //Degrees in a right angle
+	final int SHORT_DISTANCE = 15; //Rotations in square distance
 
 	final double PI = 3.141; // Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
@@ -47,6 +55,13 @@ public interface Pronstants {
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; // Number of rotations to the autoline
 	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; // Number of rotations to the middle of the switch
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; // Number of rotations to the middle of the scale
+	
+	public enum positions {
+		Ground,
+		Switch,
+		Scale,
+		Transit
+	}
 
 	final boolean UP_INVERTION = false;
 	final boolean DOWN_INVERTION = true;

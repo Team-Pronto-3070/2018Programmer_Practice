@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,14 +24,11 @@ public class Robot extends IterativeRobot {
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
 	// Initializing class instances
-	Drive drive;// drive class
-	Modules modules;// modules class
-	Auto auto;// auto class
+	Modules modules = new Modules();// modules class
+	Drive drive = new Drive(modules.TalRM, modules.TalRF, modules.TalLM, modules.TalLF, modules.encL, modules.encR);
+	Auto auto = new Auto(modules.gyro, modules.encL, modules.encR);// auto class
 
 	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
-
-	// Initializing Gyros
-	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
 	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;// initializing the auto path
 
 	/**
@@ -133,12 +129,12 @@ public class Robot extends IterativeRobot {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
 				}
-				if (gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+				if (modules.gyro.getAngle() >= Pronstants.RIGHT_ANGLE || modules.gyro.getAngle() >= 2*Pronstants.RIGHT_ANGLE) {
 					drive.setRight(0);
 					drive.setLeft(0);
 					Turned = true;
 				}
-				if (gyro.getAngle() >= 90 && Turned) {
+				if (modules.gyro.getAngle() >= Pronstants.RIGHT_ANGLE && Turned) {
 					drive.setRight(Pronstants.STANDARD_SPEED);
 					drive.setLeft(Pronstants.STANDARD_SPEED);
 				}
