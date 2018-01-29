@@ -37,6 +37,15 @@ public interface Pronstants {
 		PATH_RCL, // Right starting position combinations
 		PATH_RWL, PATH_RCR, PATH_RWR
 	}
+	
+	final int ROTS_PER_INCH = 2;
+	final double DIS_UP_TO_SWITCH = 12 * 1.5;
+	final int DIS_UP_TO_SCALE = 12 * 7;
+	final int GROUND = 0;
+	final int SWITCH = 1;
+	final int SCALE = 2;
+	final double ROTS_TO_SWITCH = ROTS_PER_INCH * DIS_UP_TO_SWITCH;
+	final double ROTS_TO_SCALE = ROTS_PER_INCH * DIS_UP_TO_SCALE;
 
 	final double PI = 3.141; // Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
