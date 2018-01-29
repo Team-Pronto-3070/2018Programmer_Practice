@@ -33,7 +33,7 @@ public class Auto {
 	/**
 	 * Runs state machine to select which auto to run
 	 */
-	public void auto(Drive drive, Modules modules) {
+	public Auto(Drive drive, Modules modules) {
 		this.drive = drive;
 		this.modules = modules;
 		switch (m_autoSelected) {

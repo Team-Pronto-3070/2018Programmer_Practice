@@ -51,10 +51,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", m_chooser);
 		
 		modules = new Modules();
-		auto = new Auto();
-		drive = new Drive();
-		Extendy_Bit = new Extendy_Bit();
-		Grabber_for_Pronto = new Grabber_for_Pronto();
+		auto = new Auto(drive, modules);
+		drive = new Drive(modules);
+		Extendy_Bit = new Extendy_Bit(modules);
+		Grabber_for_Pronto = new Grabber_for_Pronto(modules);
 		
 		
 	}
