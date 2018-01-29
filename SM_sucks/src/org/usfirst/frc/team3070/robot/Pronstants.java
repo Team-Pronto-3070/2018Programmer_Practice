@@ -45,6 +45,8 @@ public interface Pronstants {
 	
 	final int RIGHT_ANGLE = 90; //Degrees in a right angle
 	final int SHORT_DISTANCE = 15; //Rotations in square distance
+	final int ZERO = 0;
+	final int SIXTY = 60;
 
 	final double PI = 3.141; // Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
