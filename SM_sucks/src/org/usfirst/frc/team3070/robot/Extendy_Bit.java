@@ -19,7 +19,7 @@ public class Extendy_Bit {
 	 * joy.setMotor(ControlMode.PercentOutput, .5); } }
 	 * 
 	 */
-	public void extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
+	public Extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
 		this.JoyR = JoyR;
 		this.JoyL = JoyL;
 		this.encLift = encLift;
