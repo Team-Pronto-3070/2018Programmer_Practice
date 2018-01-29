@@ -28,6 +28,9 @@ public class Robot extends IterativeRobot {
 	Drive drive;// drive class
 	Modules modules;// modules class
 	Auto auto;// auto class
+	Extendy_Bit Extendy_Bit;//lifting class
+	Pronstants Pronstants; //constant class
+	Grabber_for_Pronto Grabber_for_Pronto;//grabbing class
 
 	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
 
@@ -46,6 +49,14 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);// initializing case machines
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
+		
+		modules = new Modules();
+		auto = new Auto();
+		drive = new Drive();
+		Extendy_Bit = new Extendy_Bit();
+		Grabber_for_Pronto = new Grabber_for_Pronto();
+		
+		
 	}
 
 	/**

@@ -1,13 +1,17 @@
 package org.usfirst.frc.team3070;
 
+//modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Extendy_Bit {
-	Modules modules = new Modules();
+
 	boolean extended = false;
 	boolean moving;
+	Modules modules;
+public Extendy_Bit(Modules modules) {
+		this.modules = modules;
+		
 
-	public Extendy_Bit() {
 		if (modules.JoyR.getRawButton(3) || modules.JoyL.getRawButton(3)) { // If button 3 (Middle button on top)
 			if (!extended) {// If the lift is not completely extended          is pressed
 				moving = true;
@@ -40,6 +44,5 @@ public class Extendy_Bit {
 				}
 			}
 		}
-	}
-
+}
 }

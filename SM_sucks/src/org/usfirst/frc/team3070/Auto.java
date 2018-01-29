@@ -1,6 +1,6 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070;
-
+//drive and modules
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 
@@ -23,17 +23,19 @@ public class Auto {
 	Auto_Path impPath = Auto_Path.Forward1;
 
 	// Variables used in subcodes-need to change later
-	Drive drive = new Drive();
-	Modules modules = new Modules();
+	
 	boolean Turned = false;
 	int case_number = 1;
 	boolean square = true;
 	boolean triangle = true;
-
+	Drive drive;
+	Modules modules;
 	/**
 	 * Runs state machine to select which auto to run
 	 */
-	public void auto() {
+	public void auto(Drive drive, Modules modules) {
+		this.drive = drive;
+		this.modules = modules;
 		switch (m_autoSelected) {
 		case kCustomAuto:
 			// Put custom auto code here

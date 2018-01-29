@@ -1,10 +1,12 @@
 package org.usfirst.frc.team3070;
-
+//modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Drive {
-
-	Modules modules = new Modules(); // Initializing Modules
+	Modules modules;
+	public Drive(Modules modules) {
+		this.modules = modules;
+	
 
 	/**
 	 * Sets right side motors to a certain amount, given by arg
@@ -62,5 +64,5 @@ public class Drive {
 	 * @param amount
 	 *            speed for motors
 	 */
-
+	}
 }
