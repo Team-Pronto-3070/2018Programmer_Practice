@@ -81,8 +81,8 @@ public class Auto {
 					else if (triangle) {
 						drive.setRight(Pronstants.STRONG_SPEED);//turning for specifically the triangle 
 						drive.setLeft(Pronstants.WEAK_SPEED);//these speeds cause robot to turn 
-						if (gyro.getAngle() >= Pronstants.SIXTY) {//when the robot turns 6Pronstants.ZERO degrees, the gyro will stop the robot
-							drive.setRight(Pronstants.ZERO);// the robot will stop at 6Pronstants.ZERO degrees in hopes to make an equilateral triangle
+						if (gyro.getAngle() >= Pronstants.TRIANGLE_ANGLE) {//when the robot turns 60 degrees, the gyro will stop the robot
+							drive.setRight(Pronstants.ZERO);// the robot will stop at 60 degrees in hopes to make an equilateral triangle
 							drive.setLeft(Pronstants.ZERO);
 							impPath = Auto_Path.Forward2;//advances to the next step
 						}
@@ -111,12 +111,12 @@ public class Auto {
 					drive.stop();//when Pronstants.RIGHT_ANGLE degrees is reached, the robot is stopped
 
 				}
-				if (triangle) {//if triangle is selected, then the robot will turn for 6Pronstants.ZERO degrees
+				if (triangle) {//if triangle is selected, then the robot will turn for 60 degrees
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if (gyro.getAngle() >= Pronstants.SIXTY) {
-					drive.stop();//when robot has turned 6Pronstants.ZERO degrees, it stop and proceed to the next straight
+				if (gyro.getAngle() >= Pronstants.TRIANGLE_ANGLE) {
+					drive.stop();//when robot has turned 60 degrees, it stop and proceed to the next straight
 					impPath = Auto_Path.Forward3;
 				}
 				break;
