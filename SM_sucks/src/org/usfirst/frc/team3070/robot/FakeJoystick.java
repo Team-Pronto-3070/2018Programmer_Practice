@@ -7,6 +7,7 @@ public class FakeJoystick implements Joystick {
 	boolean state = true;
 	public ControlMode cm;
 	public double power; 
+	RealJoystick rj = new RealJoystick();
 	@Override
 	public boolean getUpButton() {
 		setState();
@@ -26,6 +27,8 @@ public class FakeJoystick implements Joystick {
 	public void setMotor(ControlMode cm, double power) {
 		this.cm = cm;
 		this.power = power;
+		System.out.print("ControlMode: " + this.cm);
+		System.out.println("Power: " + this.power);
 	}
 
 }

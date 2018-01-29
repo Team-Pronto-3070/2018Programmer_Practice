@@ -9,9 +9,7 @@ public class RealJoystick implements Joystick {
 		return modules.JoyR.getRawButton(3);
 	}
 	@Override
-	public void setMotor(ControlMode cm, double power) {
-		// TODO Auto-generated method stub
-		
+	public void setMotor(ControlMode cm, double power) {		
 	}
 
 }

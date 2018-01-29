@@ -1,55 +1,91 @@
 package org.usfirst.frc.team3070.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-//import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class Extendy_Bit {
-	//Modules modules = new Modules();
-	Joystick joy;
+	Joystick JoyL, JoyR;
+	Encoder encLift;
+	TalonSRX TalExt;
 	boolean state;
-	int position = Pronstants.GROUND;
-	boolean finished = true;
-	
-	public Extendy_Bit(Joystick joy) {
-		this.joy = joy;
+	Pronstants.positions position = Pronstants.positions.Ground;
+
+	/*
+	 * public Extendy_Bit(Joystick joy) { this.joy = joy; }
+	 * 
+	 * public void loop() { state = this.joy.getUpButton(); if(state) {
+	 * joy.setMotor(ControlMode.PercentOutput, .5); } }
+	 * 
+	 */
+	public void extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
+		this.JoyR = JoyR;
+		this.JoyL = JoyL;
+		this.encLift = encLift;
+		this.TalExt = TalExt;
+		encLift.reset();
 	}
-	
-	public void loop() {
-		state = this.joy.getUpButton();
-		if(state) {
-			joy.setMotor(ControlMode.PercentOutput, .5);
+
+	public void run() {
+		if (JoyR.getRawButton(3) || JoyL.getRawButton(3)) {
+			extend();
+		}
+		if (JoyR.getRawButton(2) || JoyL.getRawButton(2)) {
+			retract();
 		}
 	}
 
-	/*
-	public void extendy_Bit() {
-		if(finished) {
-			if(modules.JoyL.getRawButton(3) || joy.getUpButton()) {
-				if(!(position == 2)) {
-					finished = false;
-					extend();
-				}
-			}
-			if(modules.JoyL.getRawButton(2) || modules.JoyR.getRawButton(2)) {
-				if(!(position == 0)) {
-					finished = false;
-					extend();
-				}
-			}
-		}
-	}	
-	
 	void extend() {
-		if(position == 0) {
-			if(!(modules.encLift.get() >= Pronstants.ROTS_TO_SWITCH)) {
-				modules.TalExt.set(ControlMode.PercentOutput, 1);
-			} else {
-				modules.TalExt.set(ControlMode.PercentOutput, 0);
+		if (position == Pronstants.positions.Ground) {
+			if (position != Pronstants.positions.Transit) {
+				if (!(encLift.get() >= Pronstants.ROT_TO_SWITCH)) {
+					position = Pronstants.positions.Transit;
+					TalExt.set(ControlMode.PercentOutput, 1);
+				} else {
+					TalExt.set(ControlMode.PercentOutput, 0);
+					position = Pronstants.positions.Switch;
+				}
 			}
-			position++;
-			finished = true;
+		} else if (position == Pronstants.positions.Switch) {
+			if (position != Pronstants.positions.Transit) {
+				if (!(encLift.get() >= Pronstants.ROT_TO_SCALE)) {
+					position = Pronstants.positions.Transit;
+					TalExt.set(ControlMode.PercentOutput, 1);
+				} else {
+					TalExt.set(ControlMode.PercentOutput, 0);
+					position = Pronstants.positions.Scale;
+				}
+			}
+		} else if (position == Pronstants.positions.Scale) {
+			System.out.println("Cannot extend farther");
 		}
 	}
-	*/
+
+	void retract() {
+		if (position == Pronstants.positions.Ground) {
+			System.out.println("Cannot retract farther");
+		} else if (position == Pronstants.positions.Switch) {
+			if (position != Pronstants.positions.Transit) {
+				if (!(encLift.get() <= 0)) {
+					position = Pronstants.positions.Transit;
+					TalExt.set(ControlMode.PercentOutput, -1);
+				} else {
+					TalExt.set(ControlMode.PercentOutput, 0);
+					position = Pronstants.positions.Ground;
+				}
+			}
+		} else if (position == Pronstants.positions.Scale) {
+			if (position != Pronstants.positions.Transit) {
+				if (!(encLift.get() <= Pronstants.ROT_TO_SWITCH)) {
+					position = Pronstants.positions.Transit;
+					TalExt.set(ControlMode.PercentOutput, -1);
+				} else {
+					TalExt.set(ControlMode.PercentOutput, 0);
+					position = Pronstants.positions.Switch;
+				}
+			}
+		}
+	}
+
 }

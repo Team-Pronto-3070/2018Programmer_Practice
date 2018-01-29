@@ -1,10 +1,26 @@
 package org.usfirst.frc.team3070.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive {
+	
+	TalonSRX TalRM, TalRF, TalLM, TalLF;
+	Encoder encL, encR;
 
-	Modules modules = new Modules(); // Initializing Modules
+	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, Encoder encL, Encoder encR) {
+		this.TalRM = TalRM;
+		this.TalRF = TalRF;
+		this.TalLM = TalLM;
+		this.TalLF = TalLF;
+		
+		this.encL = encL;
+		this.encR = encR;
+		encL.reset();
+		encR.reset();
+	}
 
 	/**
 	 * Sets right side motors to a certain amount, given by arg
@@ -14,8 +30,8 @@ public class Drive {
 	 */
 
 	void setRight(double amountR) {
-		modules.TalRM.set(ControlMode.PercentOutput, amountR);
-		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
+		TalRM.set(ControlMode.PercentOutput, amountR);
+		TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
 	}
 
 	/**
@@ -25,8 +41,8 @@ public class Drive {
 	 *            left amount
 	 */
 	void setLeft(double amountL) {
-		modules.TalLM.set(ControlMode.PercentOutput, amountL);
-		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
+		TalLM.set(ControlMode.PercentOutput, amountL);
+		TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
 	}
 
 	void stop() { // Sets both sides to 0
@@ -45,12 +61,10 @@ public class Drive {
 	 */
 	void move(double moving, int rotations) {
 
-		if (modules.encR.getDistance() < rotations && modules.encL.getDistance() < rotations) {
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
-			modules.encR.reset();
-			modules.encL.reset();
 			stop();
 
 		}

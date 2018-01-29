@@ -6,8 +6,6 @@ import org.usfirst.frc.team3070.robot.FakeJoystick;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class test {
-
-	
 	public static void main(String[] args) {
 		FakeJoystick fj = new FakeJoystick();
 		fj.setState();
@@ -21,5 +19,4 @@ public class test {
 		}
 		System.out.println("Test end");
 	}
-
 }
