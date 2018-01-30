@@ -35,7 +35,7 @@ public class Drive {
 		setRight(0);
 		setLeft(0);
 	}
-
+	{
 	/**
 	 * Sets both side to a certain speed, and continues for a certain amount of
 	 * rotations
