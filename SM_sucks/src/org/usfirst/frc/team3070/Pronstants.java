@@ -26,7 +26,7 @@ public interface Pronstants {
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
 	
-	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+	public static enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
 		PATH_LCL, // Left starting position combinations
 		PATH_LWL, PATH_LCR, PATH_LWR,
@@ -50,4 +50,5 @@ public interface Pronstants {
 
 	final boolean UP_INVERTION = false;
 	final boolean DOWN_INVERTION = true;
+	final org.usfirst.frc.team3070.Pronstants.Auto_Path Auto_Path = null;
 }

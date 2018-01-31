@@ -6,7 +6,7 @@ public class Drive {
 	Modules modules;
 	public Drive(Modules modules) {
 		this.modules = modules;
-	
+	}
 
 	/**
 	 * Sets right side motors to a certain amount, given by arg
@@ -35,7 +35,7 @@ public class Drive {
 		setRight(0);
 		setLeft(0);
 	}
-	{
+	
 	/**
 	 * Sets both side to a certain speed, and continues for a certain amount of
 	 * rotations
@@ -65,4 +65,3 @@ public class Drive {
 	 *            speed for motors
 	 */
 	}
-}

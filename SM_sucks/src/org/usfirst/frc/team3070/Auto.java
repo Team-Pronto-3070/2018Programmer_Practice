@@ -20,7 +20,7 @@ public class Auto {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
-	Auto_Path impPath = Auto_Path.Forward1;
+	
 
 	// Variables used in subcodes-need to change later
 	
@@ -28,6 +28,7 @@ public class Auto {
 	int case_number = 1;
 	boolean square = true;
 	boolean triangle = true;
+	Auto_Path impPath;
 	Drive drive;
 	Modules modules;
 	/**
@@ -36,12 +37,9 @@ public class Auto {
 	public Auto(Drive drive, Modules modules) {
 		this.drive = drive;
 		this.modules = modules;
-		switch (m_autoSelected) {
-		case kCustomAuto:
-			// Put custom auto code here
-			break;
-		case kDefaultAuto:
-		default:
+		Auto_Path impPath = Auto_Path.Forward1;
+	}
+	public void AutoCode() {
 			switch (impPath) {
 			case Forward1://first forward of either square or triangle
 				if (modules.encR.get() <= 15 && modules.encL.get() <= 15) {
@@ -162,4 +160,3 @@ public class Auto {
 	 * Code for RWR
 	 */
 
-}

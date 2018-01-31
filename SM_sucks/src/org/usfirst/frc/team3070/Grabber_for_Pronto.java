@@ -22,6 +22,7 @@ public Grabber_for_Pronto(Modules modules) {
 		modules.TalGrabL.set(ControlMode.PercentOutput, power); // Sets left belt
 		modules.TalGrabR.set(ControlMode.PercentOutput, power); // Sets right belt
 	}
+	{
 
 			LimitSwitch = new DigitalInput(Pronstants.PORT_LS); // Sets limit switch port
 		if (modules.JoyR.getRawButton(1) || modules.JoyL.getRawButton(1)) { // If the trigger is

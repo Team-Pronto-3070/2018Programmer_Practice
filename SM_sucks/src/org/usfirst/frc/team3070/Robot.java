@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 
 	// Initializing Gyros
 	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
-	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;// initializing the auto path
+	Pronstants.Auto_Path impPath = Pronstants.Auto_Path;// initializing the auto path
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -94,7 +94,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
+		auto.AutoCode();
+		/*switch (m_autoSelected) {
 		case kCustomAuto:
 			// Put custom auto code here
 			break;
@@ -126,7 +127,7 @@ public class Robot extends IterativeRobot {
 			case PATH_CWR:
 
 				break;
-			case PATH_RCL:
+			case PATH_RCL: 
 
 				break;
 			case PATH_RWL:
@@ -156,7 +157,7 @@ public class Robot extends IterativeRobot {
 				break;
 			}
 			break;
-		}
+		}*/
 	}
 
 	/**
@@ -181,5 +182,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putString("DB/String 2", "encL value" + Double.toString(modules.encL.get()));
+		SmartDashboard.putString("DB/String 3", "encR value" + Double.toString(modules.encR.get()));
+		SmartDashboard.putString("DB/String 4", "gyro value" + Double.toString(modules.gyro.getAngle()));
 	}
 }
