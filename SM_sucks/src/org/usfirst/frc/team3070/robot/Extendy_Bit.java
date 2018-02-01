@@ -1,91 +1,48 @@
 package org.usfirst.frc.team3070.robot;
 
+//modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
 
 public class Extendy_Bit {
-	Joystick JoyL, JoyR;
-	Encoder encLift;
-	TalonSRX TalExt;
-	boolean state;
-	Pronstants.positions position = Pronstants.positions.Ground;
 
-	/*
-	 * public Extendy_Bit(Joystick joy) { this.joy = joy; }
-	 * 
-	 * public void loop() { state = this.joy.getUpButton(); if(state) {
-	 * joy.setMotor(ControlMode.PercentOutput, .5); } }
-	 * 
-	 */
-	public Extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
-		this.JoyR = JoyR;
-		this.JoyL = JoyL;
-		this.encLift = encLift;
-		this.TalExt = TalExt;
-		encLift.reset();
-	}
+	boolean extended = false;
+	boolean moving;
+	Modules modules;
+public Extendy_Bit(Modules modules) {
+		this.modules = modules;
+		
 
-	public void run() {
-		if (JoyR.getRawButton(3) || JoyL.getRawButton(3)) {
-			extend();
-		}
-		if (JoyR.getRawButton(2) || JoyL.getRawButton(2)) {
-			retract();
-		}
-	}
-
-	void extend() {
-		if (position == Pronstants.positions.Ground) {
-			if (position != Pronstants.positions.Transit) {
-				if (!(encLift.get() >= Pronstants.ROT_TO_SWITCH)) {
-					position = Pronstants.positions.Transit;
-					TalExt.set(ControlMode.PercentOutput, 1);
-				} else {
-					TalExt.set(ControlMode.PercentOutput, 0);
-					position = Pronstants.positions.Switch;
+		if (modules.JoyR.getRawButton(3) || modules.JoyL.getRawButton(3)) { // If button 3 (Middle button on top)
+			if (!extended) {// If the lift is not completely extended          is pressed
+				moving = true;
+				if(moving) {
+					modules.encLift.reset(); // Resets gyro
 				}
-			}
-		} else if (position == Pronstants.positions.Switch) {
-			if (position != Pronstants.positions.Transit) {
-				if (!(encLift.get() >= Pronstants.ROT_TO_SCALE)) {
-					position = Pronstants.positions.Transit;
-					TalExt.set(ControlMode.PercentOutput, 1);
-				} else {
-					TalExt.set(ControlMode.PercentOutput, 0);
-					position = Pronstants.positions.Scale;
-				}
-			}
-		} else if (position == Pronstants.positions.Scale) {
-			System.out.println("Cannot extend farther");
-		}
-	}
-
-	void retract() {
-		if (position == Pronstants.positions.Ground) {
-			System.out.println("Cannot retract farther");
-		} else if (position == Pronstants.positions.Switch) {
-			if (position != Pronstants.positions.Transit) {
-				if (!(encLift.get() <= 0)) {
-					position = Pronstants.positions.Transit;
-					TalExt.set(ControlMode.PercentOutput, -1);
-				} else {
-					TalExt.set(ControlMode.PercentOutput, 0);
-					position = Pronstants.positions.Ground;
-				}
-			}
-		} else if (position == Pronstants.positions.Scale) {
-			if (position != Pronstants.positions.Transit) {
-				if (!(encLift.get() <= Pronstants.ROT_TO_SWITCH)) {
-					position = Pronstants.positions.Transit;
-					TalExt.set(ControlMode.PercentOutput, -1);
-				} else {
-					TalExt.set(ControlMode.PercentOutput, 0);
-					position = Pronstants.positions.Switch;
+				modules.TalExt.setInverted(Pronstants.UP_INVERTION); // Sets Talon to the invertion for going up
+				if (modules.encLift.get() <= 30) { // If motor is not done moving
+					modules.TalExt.set(ControlMode.PercentOutput, 1);
+				} else { // If the motor is done extending
+					modules.TalExt.set(ControlMode.PercentOutput, 0); //Stops motors
+					extended = true; //Sets extended to true
+					moving = false;
 				}
 			}
 		}
-	}
-
+		if (modules.JoyR.getRawButton(2) || modules.JoyL.getRawButton(2)) {
+			if (extended) {// If the lift is not completely extended          is pressed
+				moving = true;
+				if(moving) {
+					modules.encLift.reset(); // Resets gyro
+				}
+				modules.TalExt.setInverted(Pronstants.DOWN_INVERTION); // Sets Talon to the invertion for going up
+				if (modules.encLift.get() <= 30) { // If motor is not done moving
+					modules.TalExt.set(ControlMode.PercentOutput, 1);
+				} else { // If the motor is done extending
+					modules.TalExt.set(ControlMode.PercentOutput, 0); //Stops motors
+					extended = false; //Sets extended to true
+					moving = false;
+				}
+			}
+		}
+}
 }
