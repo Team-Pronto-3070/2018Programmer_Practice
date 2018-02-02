@@ -68,3 +68,5 @@ public interface Pronstants {
 	final boolean UP_INVERTION = false;
 	final boolean DOWN_INVERTION = true;
 }
+
+//http://gifimage.net/cool-beans-gif-11/
