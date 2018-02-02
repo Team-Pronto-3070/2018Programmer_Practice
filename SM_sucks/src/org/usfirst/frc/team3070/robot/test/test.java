@@ -19,3 +19,7 @@ public class test {
 		System.out.println("Test end");
 	}
 }
+<<<<<<< HEAD
+=======
+*/
+>>>>>>> 177fe678f94b16c51a9d86665aa1e656057160b0
