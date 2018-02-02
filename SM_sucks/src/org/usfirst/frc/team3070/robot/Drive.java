@@ -1,25 +1,11 @@
 package org.usfirst.frc.team3070.robot;
-
+//modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive {
-	
-	TalonSRX TalRM, TalRF, TalLM, TalLF;
-	Encoder encL, encR;
-
-	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, Encoder encL, Encoder encR) {
-		this.TalRM = TalRM;
-		this.TalRF = TalRF;
-		this.TalLM = TalLM;
-		this.TalLF = TalLF;
-		
-		this.encL = encL;
-		this.encR = encR;
-		encL.reset();
-		encR.reset();
+	Modules modules;
+	public Drive(Modules modules) {
+		this.modules = modules;
 	}
 
 	/**
@@ -29,9 +15,10 @@ public class Drive {
 	 *            right amount
 	 */
 
-	void setRight(double amountR) {
-		TalRM.set(ControlMode.PercentOutput, amountR);
-		TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
+	public void setRight(double amountR) {
+		modules.TalRM.set(ControlMode.PercentOutput, -amountR);
+		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
+		System.out.println("setright");
 	}
 
 	/**
@@ -40,16 +27,24 @@ public class Drive {
 	 * @param amountL
 	 *            left amount
 	 */
-	void setLeft(double amountL) {
-		TalLM.set(ControlMode.PercentOutput, amountL);
-		TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
+	public void setLeft(double amountL) {
+		modules.TalLM.set(ControlMode.PercentOutput, amountL);
+		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
+		System.out.println("setleft");
 	}
 
-	void stop() { // Sets both sides to 0
+	public void stop() { // Sets both sides to 0
 		setRight(0);
-		setLeft(0);
+		setLeft(0); 
+		System.out.println("stop");
 	}
-
+	public int getLeftEnc() {
+		return modules.TalLM.getSelectedSensorPosition(0);
+	}
+	public int getRightEnc() {
+		return modules.TalRM.getSelectedSensorPosition(0);
+	}
+	
 	/**
 	 * Sets both side to a certain speed, and continues for a certain amount of
 	 * rotations
@@ -61,10 +56,12 @@ public class Drive {
 	 */
 	void move(double moving, int rotations) {
 
-		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+		if (modules.encR.getDistance() < rotations && modules.encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
+			modules.encR.reset();
+			modules.encL.reset();
 			stop();
 
 		}
@@ -76,5 +73,4 @@ public class Drive {
 	 * @param amount
 	 *            speed for motors
 	 */
-
-}
+	}
