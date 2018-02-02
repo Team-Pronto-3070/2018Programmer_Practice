@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
+
 public class Modules {
 	//Initializing modules
 	Encoder encL, encR, encLift; //Encoders
-	AnalogGyro gyro; //Gyro
+	 //Gyro
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
 	Joystick JoyR, JoyL; //Joysticks
-
+	//BNO055 gyro;
 	/**
 	 * Constructor for sensors init
 	 */
@@ -27,10 +28,11 @@ public class Modules {
 		TalGrabR = new TalonSRX(Pronstants.PORT_GR); // Left follower Talon
 		TalExt = new TalonSRX(Pronstants.PORT_EXT); // Extendy Talon
 		
-		encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
-		encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
+		TalRM.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+		TalLM.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		encLift = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false); //Lift encoder
-		
+		//gyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+		//		        		BNO055.vector_type_t.VECTOR_EULER);
 		JoyR = new Joystick(0); //Right flight joystick
 		JoyL = new Joystick(1); //Left flight joystick
 	}

@@ -16,8 +16,8 @@ public class Drive {
 	 */
 
 	public void setRight(double amountR) {
-		modules.TalRM.set(ControlMode.PercentOutput, amountR);
-		modules.TalRF.set(ControlMode.PercentOutput, amountR);
+		modules.TalRM.set(ControlMode.PercentOutput, -amountR);
+		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
 		System.out.println("setright");
 	}
 
@@ -29,7 +29,7 @@ public class Drive {
 	 */
 	public void setLeft(double amountL) {
 		modules.TalLM.set(ControlMode.PercentOutput, amountL);
-		modules.TalLF.set(ControlMode.PercentOutput, amountL);
+		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
 		System.out.println("setleft");
 	}
 
@@ -37,6 +37,12 @@ public class Drive {
 		setRight(0);
 		setLeft(0); 
 		System.out.println("stop");
+	}
+	public int getLeftEnc() {
+		return modules.TalLM.getSelectedSensorPosition(0);
+	}
+	public int getRightEnc() {
+		return modules.TalRM.getSelectedSensorPosition(0);
 	}
 	
 	/**

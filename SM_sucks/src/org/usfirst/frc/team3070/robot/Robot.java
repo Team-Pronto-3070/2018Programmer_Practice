@@ -35,7 +35,12 @@ public class Robot extends IterativeRobot {
 	//Grabber_for_Pronto Grabber_for_Pronto;//grabbing class
 	Timer timer;
 	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
-
+	int initLDistance;
+	int initRDistance; 
+	int currentLDis;
+	int currentRDis;
+	int initGyro;
+	int currentGyro;
 	// Initializing Gyros
 	//AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
 
@@ -60,6 +65,9 @@ public class Robot extends IterativeRobot {
 		Timer timer = new Timer();
 		System.out.println("startup");
 		timer.start();
+		initLDistance = 0;
+		initRDistance = 0;
+		initGyro = 0;
 	}
 
 	/**
@@ -90,6 +98,9 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
+		initLDistance = drive.getLeftEnc();
+		initRDistance = drive.getRightEnc();
+		drive.setLeft(Prontstants.STANDARD_SPEED);
 	}
 
 	/**
@@ -97,10 +108,29 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		drive.setLeft(.5);
-		drive.setRight(.5);
-		System.out.println("auto periodic");
-		//auto.AutoCode();
+		
+		currentLDis = modules.TalLM.getSelectedSensorPosition(0);
+		currentRDis = modules.TalRM.getSelectedSensorPosition(0);
+		if(currentLDis - initLDistance <= 5000) {
+			drive.setLeft(Pronstants.TEST_SPEED);
+			System.out.println(currentLDis - initLDistance);
+		}
+		else {
+			drive.stop();
+		}
+		if(modules.currentRDis - modules.initRDistance <= 5000) {
+			
+			drive.setRight(Pronstants.TEST_SPEED);
+			System.out.println(currentRDis - initRDistance);
+		}
+		else {
+			drive.stop();
+			timer.wait(1);
+			modules.initRDistance =  modules.TalRM.getSelectedSensorPosition(0);
+			modules.initLDistance =  modules.TalLM.getSelectedSensorPosition(0);
+		}
+		//21989 is 9 feet
+		
 		/*switch (m_autoSelected) {
 		case kCustomAuto:
 			// Put custom auto code here
@@ -151,12 +181,12 @@ public class Robot extends IterativeRobot {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
 				}
-				if (gyro.getAngle() >= 90 || gyro.getAngle() >= 180) {
+				if (gyro.getHeading() >= 90 || gyro.getHeading() >= 180) {
 					drive.setRight(0);
 					drive.setLeft(0);
 					Turned = true;
 				}
-				if (gyro.getAngle() >= 90 && Turned) {
+				if (gyro.getHeading() >= 90 && Turned) {
 					drive.setRight(Pronstants.STANDARD_SPEED);
 					drive.setLeft(Pronstants.STANDARD_SPEED);
 				}
@@ -175,18 +205,24 @@ public class Robot extends IterativeRobot {
 		// left joystick driving for the robot
 		
 		
-		if (modules.JoyL.getRawAxis(1) >= .2 || modules.JoyL.getRawAxis(1) <= -.2) {
-			drive.setLeft(.5); // sets the motors to the joysticks position, with a dead zone of |.2|
+		if (modules.JoyL.getRawAxis(1) <= -.2) {
+			drive.setLeft(.2); // sets the motors to the joysticks position, with a dead zone of |.2|
+		} else if(modules.JoyL.getRawAxis(1) >= .2) {
+			drive.setLeft(-.2);
 		} else {
 			drive.setLeft(0);// stops robot if joystick is in the dead zone
 		} // right joystick driving the robot
 
-		if (modules.JoyR.getRawAxis(1) >= .2 || modules.JoyR.getRawAxis(1) <= -.2) {
-			drive.setRight(.5);
+		if (modules.JoyR.getRawAxis(1) <= -.2) {
+			drive.setRight(.2);
+		} else if(modules.JoyR.getRawAxis(1) >= .2){
+			drive.setRight(-.2);
 		} else {// sets motor to joysticks position, with a dead zone of |.2|
+		
 			drive.setRight(0);// stops robot if joystick is in the dead zone
 		}
-
+		
+		//23468
 
 	}
 	void Disabled() {
@@ -195,8 +231,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		SmartDashboard.putString("DB/String 2", "encL value" + Double.toString(modules.encL.get()));
-		SmartDashboard.putString("DB/String 3", "encR value" + Double.toString(modules.encR.get()));
-		SmartDashboard.putString("DB/String 4", "gyro value" + Double.toString(modules.gyro.getAngle()));
+		
+		//SmartDashboard.putString("DB/String 4", "gyro value" + Double.toString(modules.gyro.getHeading()));
 	}
 }

@@ -42,7 +42,7 @@ public interface Pronstants {
 	final double ROT_TO_AUTO_LINE = DIS_TO_AUTO_LINE / WHEEL_CIRCUM; // Number of rotations to the autoline
 	final double ROT_TO_SWITCH = DIS_TO_SWITCH / WHEEL_CIRCUM; // Number of rotations to the middle of the switch
 	final double ROT_TO_SCALE = DIS_TO_SCALE / WHEEL_CIRCUM; // Number of rotations to the middle of the scale
-
+	final double TEST_SPEED = 0.2;
 	final boolean UP_INVERTION = false;
 	final boolean DOWN_INVERTION = true;
 }
