@@ -6,7 +6,7 @@ public class Drive {
 	Modules modules;
 	public Drive(Modules modules) {
 		this.modules = modules;
-	
+	}
 
 	/**
 	 * Sets right side motors to a certain amount, given by arg
