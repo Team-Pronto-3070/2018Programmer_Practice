@@ -11,7 +11,8 @@ public class Modules {
 	Encoder encL, encR, encLift; //Encoders
 	AnalogGyro gyro; //Gyro
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
-	Joystick JoyR, JoyL; //Joysticks
+	private Joystick JoyR; //Joysticks
+	Joystick JoyL;
 
 	/**
 	 * Constructor for sensors init
@@ -31,7 +32,15 @@ public class Modules {
 		encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
 		encLift = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false); //Lift encoder
 		
-		JoyR = new Joystick(0); //Right flight joystick
+		setJoyR(new Joystick(0)); //Right flight joystick
 		JoyL = new Joystick(1); //Left flight joystick
+	}
+
+	public Joystick getJoyR() {
+		return JoyR;
+	}
+
+	public void setJoyR(Joystick joyR) {
+		JoyR = joyR;
 	}
 }

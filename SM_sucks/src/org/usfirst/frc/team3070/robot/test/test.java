@@ -1,7 +1,6 @@
-/*package org.usfirst.frc.team3070.robot.test;
+package org.usfirst.frc.team3070.robot.test;
 
 import org.usfirst.frc.team3070.robot.Extendy_Bit;
-import org.usfirst.frc.team3070.robot.FakeJoystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -20,4 +19,3 @@ public class test {
 		System.out.println("Test end");
 	}
 }
-*/

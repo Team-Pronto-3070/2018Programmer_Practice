@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3070.robot;
+package org.usfirst.frc.team3070.robot.test;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -21,14 +21,6 @@ public class FakeJoystick implements Joystick {
 		if(!state) {
 			state = true;
 		}
-	}
-
-	@Override
-	public void setMotor(ControlMode cm, double power) {
-		this.cm = cm;
-		this.power = power;
-		System.out.print("ControlMode: " + this.cm);
-		System.out.println("Power: " + this.power);
 	}
 
 }
