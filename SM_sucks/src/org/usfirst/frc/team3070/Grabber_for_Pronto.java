@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3070;
+
 //modules
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -7,7 +8,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 public class Grabber_for_Pronto {
 	DigitalInput LimitSwitch; // Limit switch for turning off belts
 	Modules modules;
-public Grabber_for_Pronto(Modules modules) {
+
+	public Grabber_for_Pronto(Modules modules) {
 		this.modules = modules;
 	}
 
@@ -21,9 +23,7 @@ public Grabber_for_Pronto(Modules modules) {
 		modules.TalGrabL.setInverted(true);
 		modules.TalGrabL.set(ControlMode.PercentOutput, power); // Sets left belt
 		modules.TalGrabR.set(ControlMode.PercentOutput, power); // Sets right belt
-	}
-
-			LimitSwitch = new DigitalInput(Pronstants.PORT_LS); // Sets limit switch port
+		LimitSwitch = new DigitalInput(Pronstants.PORT_LS); // Sets limit switch port
 		if (modules.JoyR.getRawButton(1) || modules.JoyL.getRawButton(1)) { // If the trigger is
 			setGrabs(Pronstants.STRONG_SPEED);
 		}
@@ -36,6 +36,5 @@ public Grabber_for_Pronto(Modules modules) {
 		if (modules.JoyR.getRawButton(5) || modules.JoyR.getRawButton(5)) { // If button 5 is pressed
 			modules.TalGrabR.set(ControlMode.PercentOutput, Pronstants.STANDARD_SPEED); // Sets right motor
 		}
-}	
+	}
 }
-
