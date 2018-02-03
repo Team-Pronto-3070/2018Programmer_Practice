@@ -1,4 +1,3 @@
-<<<<<<< HEAD:SM_sucks/src/org/usfirst/frc/team3070/robot/test/FakeJoystick.java
 /*package org.usfirst.frc.team3070.robot.test;
 =======
 package org.usfirst.frc.team3070.robot;
