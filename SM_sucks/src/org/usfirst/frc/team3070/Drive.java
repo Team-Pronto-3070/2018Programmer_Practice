@@ -1,9 +1,11 @@
 package org.usfirst.frc.team3070;
+
 //modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Drive {
 	Modules modules;
+
 	public Drive(Modules modules) {
 		this.modules = modules;
 	}
@@ -64,5 +66,4 @@ public class Drive {
 	 * @param amount
 	 *            speed for motors
 	 */
-	}
 }
