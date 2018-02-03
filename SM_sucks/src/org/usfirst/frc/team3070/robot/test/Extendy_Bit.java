@@ -1,36 +1,32 @@
-package org.usfirst.frc.team3070.robot;
-
-import org.usfirst.frc.team3070.robot.test.FakeJoystick;
+package org.usfirst.frc.team3070.robot.test;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
+import org.usfirst.frc.team3070.robot.Pronstants;
 
 public class Extendy_Bit {
-	Joystick JoyL, JoyR;
+	Joystick joy;
 	Encoder encLift;
 	TalonSRX TalExt;
 	boolean state;
 	Pronstants.positions position = Pronstants.positions.Ground;
 
-	/*
-	 * public Extendy_Bit(Joystick joy) { this.joy = joy; }
-	 * 
-	 * public void loop() { state = this.joy.getUpButton(); if(state) {
-	 * joy.setMotor(ControlMode.PercentOutput, .5); } }
-	 * 
-	 */
-	public Extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
+	public Extendy_Bit(TalonSRX fj) {
+		this.joy = fj;
+	}
+
+	public void loop() {
+		state = this.joy.getRawButton(1);
+		if (state) {
+			TalExt.set(ControlMode.PercentOutput, .5);
+		}
+	}
+
+	/*public Extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
 		this.JoyR = JoyR;
 		this.JoyL = JoyL;
 		this.encLift = encLift;
 		this.TalExt = TalExt;
 		encLift.reset();
-	}
-
-	public Extendy_Bit(FakeJoystick fj) {
-		
 	}
 
 	public void run() {
@@ -93,5 +89,5 @@ public class Extendy_Bit {
 			}
 		}
 	}
-
+*/
 }

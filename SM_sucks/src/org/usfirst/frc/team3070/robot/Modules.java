@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
-
 public class Modules {
 	//Initializing modules
 	Encoder encL, encR, encLift; //Encoders
@@ -14,12 +13,13 @@ public class Modules {
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
 	Joystick JoyR, JoyL; //Joysticks
 	BNO055 gyro;
+
 	/**
 	 * Constructor for sensors init
 	 */
 	public Modules() {
 
-		//Setting modules
+		// Setting modules
 		TalRM = new TalonSRX(Pronstants.PORT_RM); // Right master Talon
 		TalRF = new TalonSRX(Pronstants.PORT_RF); // Right follower Talon
 		TalLM = new TalonSRX(Pronstants.PORT_LM); // Left master Talon

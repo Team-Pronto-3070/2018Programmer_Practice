@@ -6,9 +6,6 @@
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,11 +35,9 @@ public class Robot extends IterativeRobot {
 	int initLDistance;
 	int initRDistance; 
 	
-	int initGyro;
-	int currentGyro;
-	// Initializing Gyros
-	//AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
 
+	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
+	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;// initializing the auto path
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -55,17 +50,9 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);// initializing case machines
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-		
-		modules = new Modules();
-		drive = new Drive(modules);
-		auto = new Auto(drive, modules);
-		Extendy_Bit = new Extendy_Bit(modules);
-		//Grabber_for_Pronto = new Grabber_for_Pronto(modules);
 		Timer timer = new Timer();
 		System.out.println("startup");
 		timer.start();
-		
-		initGyro = 0;
 	}
 
 	/**
@@ -95,7 +82,7 @@ public class Robot extends IterativeRobot {
 		m_autoSelected = m_chooser.getSelected();// allows you to know that auto is selected (auto gen)
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
-		
+		System.out.println("Auto selected: " + m_autoSelected);
 		auto.initencValue = -modules.TalLM.getSelectedSensorPosition(0);
 		drive.setLeft(Pronstants.STANDARD_SPEED);
 	}
@@ -105,14 +92,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		
+		switch (m_autoSelected) {
 		auto.moveFeetForward(4);
 		
 	
-		
-		//21989 is 9 feet
-		
-		/*switch (m_autoSelected) {
 		case kCustomAuto:
 			// Put custom auto code here
 			break;
@@ -144,7 +127,7 @@ public class Robot extends IterativeRobot {
 			case PATH_CWR:
 
 				break;
-			case PATH_RCL: 
+			case PATH_RCL:
 
 				break;
 			case PATH_RWL:
@@ -162,7 +145,7 @@ public class Robot extends IterativeRobot {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 
 				}
-				if (gyro.getHeading() >= 90 || gyro.getHeading() >= 180) {
+				if (modules.gyro.getAngle() >= Pronstants.RIGHT_ANGLE || modules.gyro.getAngle() >= 2*Pronstants.RIGHT_ANGLE) {
 					drive.setRight(0);
 					drive.setLeft(0);
 					Turned = true;
@@ -174,45 +157,31 @@ public class Robot extends IterativeRobot {
 				break;
 			}
 			break;
-		}*/
+		}
 	}
 
-	/**`	
+	/**
 	 * This function is called periodically during operator control.
 	 */
 	@Override
-	public void teleopPeriodic() {
-		//modules.TalLM.set(ControlMode.PercentOutput, .5);
-		// left joystick driving for the robot
-		
-		
-		if (modules.JoyL.getRawAxis(1) <= -.2) {
-			drive.setLeft(.5); // sets the motors to the joysticks position, with a dead zone of |.2|
-		} else if(modules.JoyL.getRawAxis(1) >= .2) {
-			drive.setLeft(-.5);
+	public void teleopPeriodic() {// left joystick driving for the robot
+		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
+		if (amountL >= .2 || amountL <= -.2) {
+			drive.setLeft(amountL); // sets the motors to the joysticks position, with a dead zone of |.2|
 		} else {
-			drive.setLeft(0);// stops robot if joystick is in the dead zone
+			drive.stop();// stops robot if joystick is in the dead zone
 		} // right joystick driving the robot
-
-		if (modules.JoyR.getRawAxis(1) <= -.2) {
-			drive.setRight(.5);
+		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
+		if (amountR >= .2 || amountR <= -.2) {
+			drive.setRight(amountR);
 		} else if(modules.JoyR.getRawAxis(1) >= .2){
-			drive.setRight(-.5);
 		} else {// sets motor to joysticks position, with a dead zone of |.2|
-		
-			drive.setRight(0);// stops robot if joystick is in the dead zone
+			drive.stop();// stops robot if joystick is in the dead zone
 		}
-		
-		//23468
 
-	}
-	void Disabled() {
-		while(isDisabled()) {}
 	}
 
 	@Override
 	public void testPeriodic() {
-		
-		//SmartDashboard.putString("DB/String 4", "gyro value" + Double.toString(modules.gyro.getHeading()));
 	}
 }

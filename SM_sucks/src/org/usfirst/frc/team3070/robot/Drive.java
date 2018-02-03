@@ -1,11 +1,23 @@
 package org.usfirst.frc.team3070.robot;
-//modules
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class Drive implements Pronstants{
-	Modules modules;
-	public Drive(Modules modules) {
-		this.modules = modules;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+public class Drive {
+	
+	TalonSRX TalRM, TalRF, TalLM, TalLF;
+	CompEnc encL, encR;
+
+	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, CompEnc encL, CompEnc encR) {
+		this.TalRM = TalRM;
+		this.TalRF = TalRF;
+		this.TalLM = TalLM;
+		this.TalLF = TalLF;
+		
+		this.encL = encL;
+		this.encR = encR;
+		encL.reset();
+		encR.reset();
 	}
 
 	/**
@@ -16,8 +28,8 @@ public class Drive implements Pronstants{
 	 */
 
 	public void setRight(double amountR) {
-		modules.TalRM.set(ControlMode.PercentOutput, -amountR);
-		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
+		TalRM.set(ControlMode.PercentOutput, -amountR);
+		TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
 		
 	}
 
@@ -27,23 +39,22 @@ public class Drive implements Pronstants{
 	 * @param amountL
 	 *            left amount
 	 */
-	
-	public void setLeft(double amountL) {
-		modules.TalLM.set(ControlMode.PercentOutput, amountL);
-		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
+	void setLeft(double amountL) {
+		TalLM.set(ControlMode.PercentOutput, amountL);
+		TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
 	}
 
-	public void stop() { // Sets both sides to 0
+	void stop() { // Sets both sides to 0
 		setRight(0);
 		setLeft(0); 
 	}
 	public int getLeftEnc() {
-		return modules.TalLM.getSelectedSensorPosition(0);
+		return TalLM.getSelectedSensorPosition(0);
 	}
 	public int getRightEnc() {
-		return modules.TalRM.getSelectedSensorPosition(0);
+		return TalRM.getSelectedSensorPosition(0);
 	}
-	
+
 	/**
 	 * Sets both side to a certain speed, and continues for a certain amount of
 	 * rotations
@@ -55,12 +66,10 @@ public class Drive implements Pronstants{
 	 */
 	void move(double moving, int rotations) {
 
-		if (modules.encR.getDistance() < rotations && modules.encL.getDistance() < rotations) {
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
-			modules.encR.reset();
-			modules.encL.reset();
 			stop();
 
 		}
@@ -73,4 +82,5 @@ public class Drive implements Pronstants{
 	 * @param amount
 	 *            speed for motors
 	 */
-	}
+
+}
