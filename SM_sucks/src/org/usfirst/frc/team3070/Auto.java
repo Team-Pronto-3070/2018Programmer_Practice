@@ -1,5 +1,8 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070;
+
+import org.usfirst.frc.team3070.Pronstants.Auto_Path;
+
 //drive and modules
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
@@ -20,28 +23,27 @@ public class Auto {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
-	Auto_Path impPath = Auto_Path.Forward1;
+	
 
 	// Variables used in subcodes-need to change later
 	
 	boolean Turned = false;
 	int case_number = 1;
 	boolean square = true;
-	boolean triangle = true;
+	boolean triangle = false;
 	Drive drive;
 	Modules modules;
+	Auto_Path impPath;
 	/**
 	 * Runs state machine to select which auto to run
 	 */
 	public Auto(Drive drive, Modules modules) {
 		this.drive = drive;
 		this.modules = modules;
-		switch (m_autoSelected) {
-		case kCustomAuto:
-			// Put custom auto code here
-			break;
-		case kDefaultAuto:
-		default:
+		impPath = Auto_Path.Forward1;
+	}
+	public void AutoCode() {
+			
 			switch (impPath) {
 			case Forward1://first forward of either square or triangle
 				if (modules.encR.get() <= 15 && modules.encL.get() <= 15) {
@@ -115,7 +117,7 @@ public class Auto {
 				}//when the motors have rotated 15 times, robot will stop and move on to next step
 				if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 					drive.stop();
-					impPath = Auto_Path.Turn3;
+					impPath =	Auto_Path.Turn3;
 				}
 				break;
 			case Turn3:
@@ -162,4 +164,3 @@ public class Auto {
 	 * Code for RWR
 	 */
 
-}

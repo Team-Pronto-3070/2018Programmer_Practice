@@ -1,10 +1,12 @@
 package org.usfirst.frc.team3070;
 
+import org.usfirst.frc.team3070.Auto.Auto_Path;
+
 public interface Pronstants {
 	final int PORT_RM = 2; // Right master CIM port
-	final int PORT_RF = 5; // Right follower CIM port
+	final int PORT_LM = 5; // Right follower CIM port
 
-	final int PORT_LM = 0; // Left master CIM port
+	final int PORT_RF = 0; // Left master CIM port
 	final int PORT_LF = 1; // Left follower CIM port
 
 	final int PORT_GR = 11;
@@ -26,18 +28,11 @@ public interface Pronstants {
 	final double STRONG_SPEED = .5;
 	final int PORT_GYRO = 9;
 	
-	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
+	public static  enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
 							// postition][sCale or sWitch][Right or Left Side])
-		PATH_LCL, // Left starting position combinations
-		PATH_LWL, PATH_LCR, PATH_LWR,
-
-		PATH_CCL, // Center starting position combinations
-		PATH_CWL, PATH_CCR, PATH_CWR,
-
-		PATH_RCL, // Right starting position combinations
-		PATH_RWL, PATH_RCR, PATH_RWR
+		Forward1, Forward2, Forward3, Forward4,
+		Turn1, Turn2, Turn3, Turn4;
 	}
-
 	final double PI = 3.141; // Variable equal to pi
 	final double DIS_TO_AUTO_LINE = 120; // Distance in inches to the auto line
 	final double DIS_TO_SWITCH = 168; // Distance in inches to the middle of the switch
