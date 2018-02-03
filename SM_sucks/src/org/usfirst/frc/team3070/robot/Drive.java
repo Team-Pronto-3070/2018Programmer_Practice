@@ -18,7 +18,7 @@ public class Drive implements Pronstants{
 	public void setRight(double amountR) {
 		modules.TalRM.set(ControlMode.PercentOutput, -amountR);
 		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
-		System.out.println("setright");
+		
 	}
 
 	/**
@@ -31,13 +31,11 @@ public class Drive implements Pronstants{
 	public void setLeft(double amountL) {
 		modules.TalLM.set(ControlMode.PercentOutput, amountL);
 		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
-		System.out.println("setleft");
 	}
 
 	public void stop() { // Sets both sides to 0
 		setRight(0);
 		setLeft(0); 
-		System.out.println("stop");
 	}
 	public int getLeftEnc() {
 		return modules.TalLM.getSelectedSensorPosition(0);

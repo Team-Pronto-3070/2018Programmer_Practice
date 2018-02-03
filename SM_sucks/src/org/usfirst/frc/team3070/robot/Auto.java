@@ -34,8 +34,9 @@ public class Auto {
 	double circum = 18.85;
 	double distInch = 0;
 	double revolutions = 0;
-	double encValue = 0;
-	double deAccel = 3;
+	double initencValue = 0;
+	double goalEncValue;
+	double deAccel = 8;
 	int currentLDis;
 	int currentRDis;
 	int initLDistance = 0;
@@ -51,8 +52,7 @@ public class Auto {
 		this.drive = drive;
 		this.modules = modules;
 		impPath = Auto_Path.Forward1;
-		initLDistance = 0;
-		initRDistance = 0;
+
 	}
 
 	public void AutoCode() {
@@ -177,13 +177,13 @@ public class Auto {
 		currentRDis = modules.TalRM.getSelectedSensorPosition(0);
 		if (currentLDis - initLDistance <= 21989) {
 			drive.setLeft(Pronstants.TEST_SPEED);
-			System.out.println(currentLDis - initLDistance);
+			
 		} else {
 			drive.stop();
 		}
 		if (currentRDis - initRDistance <= 21989) {
 			drive.setRight(Pronstants.TEST_SPEED);
-			System.out.println(currentRDis - initRDistance);
+			
 		} else {
 			drive.stop();
 		}
@@ -193,12 +193,16 @@ public class Auto {
 	// currentGyro =
 	void moveFeetForward(double feet) {
 		distInch = (feet * 12) - deAccel;
-		revolutions = circum / distInch;
-		encValue = revolutions * Pronstants.encTicks;
-		if (modules.TalLM.getSelectedSensorPosition(0) <= encValue) {
+		revolutions = distInch / circum;
+		goalEncValue = revolutions * Pronstants.encTicks;
+		double actualEncValue = -modules.TalLM.getSelectedSensorPosition(0) - initencValue;
+		System.out.println(actualEncValue);
+		if (actualEncValue <= goalEncValue){
 			drive.setLeft(Pronstants.TEST_SPEED);
+		}else {
+			drive.stop();
 		}
-		if (modules.TalRM.getSelectedSensorPosition(0) <= encValue) {
+		if (actualEncValue <= goalEncValue) {
 			drive.setRight(Pronstants.TEST_SPEED);
 		} else {
 			drive.stop();

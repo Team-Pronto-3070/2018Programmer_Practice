@@ -95,8 +95,8 @@ public class Robot extends IterativeRobot {
 		m_autoSelected = m_chooser.getSelected();// allows you to know that auto is selected (auto gen)
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
-		System.out.println("Auto selected: " + m_autoSelected);
-		auto.encValue = 0;
+		
+		auto.initencValue = -modules.TalLM.getSelectedSensorPosition(0);
 		drive.setLeft(Pronstants.STANDARD_SPEED);
 	}
 
@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		
-		auto.moveFeetForward(3);
+		auto.moveFeetForward(4);
 		
 	
 		
@@ -187,17 +187,17 @@ public class Robot extends IterativeRobot {
 		
 		
 		if (modules.JoyL.getRawAxis(1) <= -.2) {
-			drive.setLeft(.2); // sets the motors to the joysticks position, with a dead zone of |.2|
+			drive.setLeft(.5); // sets the motors to the joysticks position, with a dead zone of |.2|
 		} else if(modules.JoyL.getRawAxis(1) >= .2) {
-			drive.setLeft(-.2);
+			drive.setLeft(-.5);
 		} else {
 			drive.setLeft(0);// stops robot if joystick is in the dead zone
 		} // right joystick driving the robot
 
 		if (modules.JoyR.getRawAxis(1) <= -.2) {
-			drive.setRight(.2);
+			drive.setRight(.5);
 		} else if(modules.JoyR.getRawAxis(1) >= .2){
-			drive.setRight(-.2);
+			drive.setRight(-.5);
 		} else {// sets motor to joysticks position, with a dead zone of |.2|
 		
 			drive.setRight(0);// stops robot if joystick is in the dead zone
