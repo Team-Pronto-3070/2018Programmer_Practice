@@ -123,8 +123,8 @@ public class Robot extends IterativeRobot {
 			case PATH_RWR:
 				drive.setRight(Pronstants.STANDARD_SPEED);// sets motors on the right to .5 speed
 				drive.setLeft(Pronstants.STANDARD_SPEED);// sets motors on the left to .5 speed
-				if (modules.encR.get() >= Pronstants.ROT_TO_AUTO_LINE
-						&& modules.encL.get() >= Pronstants.ROT_TO_AUTO_LINE) {
+				if (modules.encR.getDistance() >= Pronstants.ROT_TO_AUTO_LINE
+						&& modules.encL.getDistance() >= Pronstants.ROT_TO_AUTO_LINE) {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 

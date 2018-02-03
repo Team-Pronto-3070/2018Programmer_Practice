@@ -7,15 +7,16 @@ public class Encoder implements IEncoder {
 	double rotations = 0;
 	StopWatch sw;
 	double time;
-	TalonSRX tsrx = new TalonSRX("test");
+	TalonSRX tsrx;
 
 	public Encoder() {
 		sw.start();
+		tsrx = new TalonSRX(0);
 	}
 
 	@Override
-	public double get(String TalName) {
-		rotations = tsrx.getSpeed(TalName) * sw.getDuration();
+	public double getDistance() {
+		rotations = tsrx.getSpeed() * sw.getDuration();
 		return rotations;
 	}
 
