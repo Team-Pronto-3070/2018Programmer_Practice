@@ -62,7 +62,7 @@ public class Auto {
 				}
 
 				else {
-					drive.move(Pronstants.WEAK_SPEED, Pronstants.ZERO);// stops robot if
+					drive.move(Pronstants.WEAK_SPEED, 0);// stops robot if
 				}
 				impPath = Auto_Path.Turn1;// starts next phase
 
@@ -78,8 +78,8 @@ public class Auto {
 																						// when it has turned
 																						// Pronstants.RIGHT_ANGLE
 																						// degrees
-						drive.setRight(Pronstants.ZERO);
-						drive.setLeft(Pronstants.ZERO);// robot then stops to prevent turning excessively
+						drive.setRight(0);
+						drive.setLeft(0);// robot then stops to prevent turning excessively
 						impPath = Auto_Path.Forward2;// starts next phase
 					}
 
@@ -89,9 +89,9 @@ public class Auto {
 						if ((init_heading - gyro.getAngle()) >= Pronstants.TRIANGLE_ANGLE) {// when the robot turns 60
 																							// degrees, the gyro will
 																							// stop the robot
-							drive.setRight(Pronstants.ZERO);// the robot will stop at 60 degrees in hopes to make an
+							drive.setRight(0);// the robot will stop at 60 degrees in hopes to make an
 															// equilateral triangle
-							drive.setLeft(Pronstants.ZERO);
+							drive.setLeft(0);
 							impPath = Auto_Path.Forward2;// advances to the next step
 						}
 					}
@@ -133,7 +133,7 @@ public class Auto {
 				break;
 			case Forward3:
 				if (square || triangle) {// both paths will lead to going through this
-					drive.move(Pronstants.WEAK_SPEED, Pronstants.ZERO);
+					drive.move(Pronstants.WEAK_SPEED, 0);
 				} // when the motors have rotated Pronstants.SHORT_DISTANCE times, robot will stop
 					// and move on to next step
 				if (encL.getDistance() >= Pronstants.SHORT_DISTANCE
@@ -155,7 +155,7 @@ public class Auto {
 				break;
 			case Forward4:
 				if (square) {
-					drive.move(Pronstants.WEAK_SPEED, Pronstants.ZERO);// moving forward Pronstants.SHORT_DISTANCE
+					drive.move(Pronstants.WEAK_SPEED, 0);// moving forward Pronstants.SHORT_DISTANCE
 																		// rotations, stopping and moving on to the next
 																		// step
 				}
