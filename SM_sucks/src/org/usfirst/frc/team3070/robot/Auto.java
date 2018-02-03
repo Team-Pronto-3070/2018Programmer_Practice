@@ -31,6 +31,7 @@ public class Auto {
 	int case_number = 1;
 	boolean square = true;
 	boolean triangle = true;
+	double init_heading;
 	
 	AnalogGyro gyro;
 	Encoder encL, encR;
@@ -41,6 +42,7 @@ public class Auto {
 		this.encR = encR;
 		encL.reset();
 		encR.reset();
+		init_heading = gyro.getAngle();
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);//set motors to strong and weak speeds, will cause the robot to turn
 					drive.setLeft(Pronstants.WEAK_SPEED);
           
-					if (gyro.getAngle() >= Pronstants.RIGHT_ANGLE) {//gyro will tell the robot to stop when it has turned Pronstants.RIGHT_ANGLE degrees
+					if ((init_heading - gyro.getAngle())>= Pronstants.RIGHT_ANGLE) {//gyro will tell the robot to stop when it has turned Pronstants.RIGHT_ANGLE degrees
 						drive.setRight(Pronstants.ZERO);
 						drive.setLeft(Pronstants.ZERO);//robot then stops to prevent turning excessively
 						impPath = Auto_Path.Forward2;//starts next phase 
@@ -82,7 +84,7 @@ public class Auto {
 					else if (triangle) {
 						drive.setRight(Pronstants.STRONG_SPEED);//turning for specifically the triangle 
 						drive.setLeft(Pronstants.WEAK_SPEED);//these speeds cause robot to turn 
-						if (gyro.getAngle() >= Pronstants.TRIANGLE_ANGLE) {//when the robot turns 60 degrees, the gyro will stop the robot
+						if ((init_heading - gyro.getAngle()) >= Pronstants.TRIANGLE_ANGLE) {//when the robot turns 60 degrees, the gyro will stop the robot
 							drive.setRight(Pronstants.ZERO);// the robot will stop at 60 degrees in hopes to make an equilateral triangle
 							drive.setLeft(Pronstants.ZERO);
 							impPath = Auto_Path.Forward2;//advances to the next step
@@ -108,7 +110,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);//if the path is square the robot will turn Pronstants.RIGHT_ANGLE degrees
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if (gyro.getAngle() >= Pronstants.RIGHT_ANGLE) {
+				if ((init_heading - gyro.getAngle())>= Pronstants.RIGHT_ANGLE) {
 					drive.stop();//when Pronstants.RIGHT_ANGLE degrees is reached, the robot is stopped
 
 				}
@@ -116,7 +118,7 @@ public class Auto {
 					drive.setRight(Pronstants.STRONG_SPEED);
 					drive.setLeft(Pronstants.WEAK_SPEED);
 				}
-				if (gyro.getAngle() >= Pronstants.TRIANGLE_ANGLE) {
+				if ((init_heading - gyro.getAngle())>= Pronstants.TRIANGLE_ANGLE) {
 					drive.stop();//when robot has turned 60 degrees, it stop and proceed to the next straight
 					impPath = Auto_Path.Forward3;
 				}
@@ -135,7 +137,7 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);//turning for the square only becuase the triangle only requires two turns
 				}
-				if (gyro.getAngle() >= Pronstants.RIGHT_ANGLE) {
+				if ((init_heading - gyro.getAngle())>= Pronstants.RIGHT_ANGLE) {
 					drive.stop();
 					impPath = Auto_Path.Forward4;//from now on only the square will be executed
 				}
@@ -154,7 +156,7 @@ public class Auto {
 					drive.setLeft(Pronstants.WEAK_SPEED);
 					drive.setRight(Pronstants.STRONG_SPEED);
 				}
-				if (gyro.getAngle() >= Pronstants.RIGHT_ANGLE) {
+				if ((init_heading - gyro.getAngle())>= Pronstants.RIGHT_ANGLE) {
 					drive.stop();
 				}
 				break;
