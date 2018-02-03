@@ -2,7 +2,6 @@
 package org.usfirst.frc.team3070.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Auto {
 	public enum Auto_Path { // List of all possible paths (PATH_[Left, Center, or Right starting
@@ -56,7 +55,7 @@ public class Auto {
 		default:
 			switch (impPath) {
 			case Forward1:// first forward of either square or triangle
-				if (encR.get() <= Pronstants.SHORT_DISTANCE && encL.get() <= Pronstants.SHORT_DISTANCE) {
+				if (encR.getDistance() <= Pronstants.SHORT_DISTANCE && encL.getDistance() <= Pronstants.SHORT_DISTANCE) {
 					drive.move(Pronstants.WEAK_SPEED, Pronstants.SHORT_DISTANCE);// sets speed of motors and for how
 																					// many revolutions the wheel go for
 				}
@@ -64,9 +63,6 @@ public class Auto {
 				else {
 					drive.move(Pronstants.WEAK_SPEED, Pronstants.ZERO);// stops robot if
 				}
-				encR.reset();// resets the encoders so that the following case machines will have accurate
-								// enc values
-				encL.reset();
 				impPath = Auto_Path.Turn1;// starts next phase
 
 				break;
@@ -108,7 +104,7 @@ public class Auto {
 					drive.move(Pronstants.WEAK_SPEED, Pronstants.SHORT_DISTANCE);// driving forward after the first turn
 				} // sqaure and triangle dont need to be differentiated because their side lengths
 					// are the same
-				if (encL.get() >= Pronstants.SHORT_DISTANCE && encR.get() >= Pronstants.SHORT_DISTANCE) {
+				if (encL.getDistance() >= Pronstants.SHORT_DISTANCE && encR.getDistance() >= Pronstants.SHORT_DISTANCE) {
 					drive.stop();// when the encoders reach fifteen rotations, the robot will stop
 					impPath = Auto_Path.Turn2;// advances to the next action
 				}
@@ -138,7 +134,7 @@ public class Auto {
 					drive.move(Pronstants.WEAK_SPEED, Pronstants.ZERO);
 				} // when the motors have rotated Pronstants.SHORT_DISTANCE times, robot will stop
 					// and move on to next step
-				if (encL.get() >= Pronstants.SHORT_DISTANCE && encR.get() >= Pronstants.SHORT_DISTANCE) {
+				if (encL.getDistance() >= Pronstants.SHORT_DISTANCE && encR.getDistance()>= Pronstants.SHORT_DISTANCE) {
 					drive.stop();
 					impPath = Auto_Path.Turn3;
 				}
@@ -160,7 +156,7 @@ public class Auto {
 																		// rotations, stopping and moving on to the next
 																		// step
 				}
-				if (encL.get() >= Pronstants.SHORT_DISTANCE && encR.get() >= Pronstants.SHORT_DISTANCE) {
+				if (encL.getDistance()>= Pronstants.SHORT_DISTANCE && encR.getDistance()>= Pronstants.SHORT_DISTANCE) {
 					drive.stop();
 					impPath = Auto_Path.Turn4;
 				}

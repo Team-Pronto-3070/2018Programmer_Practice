@@ -61,7 +61,7 @@ public class Drive {
 	 */
 	void move(double moving, int rotations) {
 
-		if (encR.get() < rotations && encL.get() < rotations) {
+		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {
