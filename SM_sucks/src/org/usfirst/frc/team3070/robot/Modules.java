@@ -11,8 +11,12 @@ public class Modules {
 	Encoder encL, encR, encLift; //Encoders
 	AnalogGyro gyro; //Gyro
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
+<<<<<<< HEAD
 	Joystick JoyR; //Joysticks
 	Joystick JoyL;
+=======
+	Joystick JoyR, JoyL; //Joysticks
+>>>>>>> parent of c870df3... clearing list 2/2
 
 	/**
 	 * Constructor for sensors init
@@ -34,13 +38,5 @@ public class Modules {
 		
 		JoyR = new Joystick(0); //Right flight joystick
 		JoyL = new Joystick(1); //Left flight joystick
-	}
-
-	public Joystick getJoyR() {
-		return JoyR;
-	}
-
-	public void setJoyR(Joystick joyR) {
-		JoyR = joyR;
 	}
 }

@@ -22,16 +22,16 @@ public class Grabber_for_Pronto {
 
 	public void Grabber_For_Pronto() {
 		LimitSwitch = new DigitalInput(Pronstants.PORT_LS); // Sets limit switch port
-		if (modules.getJoyR().getRawButton(1) || modules.JoyL.getRawButton(1)) { // If the trigger is
+		if (modules.JoyR.getRawButton(1) || modules.JoyL.getRawButton(1)) { // If the trigger is
 			setGrabs(Pronstants.STRONG_SPEED);
 		}
 		if (LimitSwitch.get()) { // If limit switch is pressed
 			setGrabs(0); // Stops motors
 		}
-		if (modules.getJoyR().getRawButton(4) || modules.JoyL.getRawButton(4)) { // If button 4 is pressed
+		if (modules.JoyR.getRawButton(4) || modules.JoyL.getRawButton(4)) { // If button 4 is pressed
 			modules.TalGrabL.set(ControlMode.PercentOutput, Pronstants.STANDARD_SPEED); // Sets left motor
 		}
-		if (modules.getJoyR().getRawButton(5) || modules.getJoyR().getRawButton(5)) { // If button 5 is pressed
+		if (modules.JoyR.getRawButton(5) || modules.JoyR.getRawButton(5)) { // If button 5 is pressed
 			modules.TalGrabR.set(ControlMode.PercentOutput, Pronstants.STANDARD_SPEED); // Sets right motor
 		}
 	}

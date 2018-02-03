@@ -12,6 +12,13 @@ public class Extendy_Bit {
 	boolean state;
 	Pronstants.positions position = Pronstants.positions.Ground;
 
+	/*
+	 * public Extendy_Bit(Joystick joy) { this.joy = joy; }
+	 * 
+	 * public void loop() { state = this.joy.getUpButton(); if(state) {
+	 * joy.setMotor(ControlMode.PercentOutput, .5); } }
+	 * 
+	 */
 	public Extendy_Bit(Joystick JoyR, Joystick JoyL, Encoder encLift, TalonSRX TalExt) {
 		this.JoyR = JoyR;
 		this.JoyL = JoyL;
