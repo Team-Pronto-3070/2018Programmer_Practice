@@ -57,8 +57,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", m_chooser);
 		
 		modules = new Modules();
-		auto = new Auto(drive, modules);
 		drive = new Drive(modules);
+		auto = new Auto(drive, modules);
 		Extendy_Bit = new Extendy_Bit(modules);
 		//Grabber_for_Pronto = new Grabber_for_Pronto(modules);
 		Timer timer = new Timer();
@@ -96,7 +96,7 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
-		
+		auto.encValue = 0;
 		drive.setLeft(Pronstants.STANDARD_SPEED);
 	}
 
@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		
 		auto.moveFeetForward(3);
+		
 	
 		
 		//21989 is 9 feet

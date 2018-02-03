@@ -30,12 +30,12 @@ public class Auto {
 	int case_number = 1;
 	boolean square = true;
 	boolean triHeading = false;
-	double feet = 0;
+	
 	double circum = 18.85;
 	double distInch = 0;
 	double revolutions = 0;
 	double encValue = 0;
-	final int deAccel = 6;
+	double deAccel = 3;
 	int currentLDis;
 	int currentRDis;
 	int initLDistance = 0;
@@ -87,8 +87,10 @@ public class Auto {
 				else if (triHeading) {
 					drive.setRight(Pronstants.STRONG_SPEED);// turning for specifically the triHeading
 					drive.setLeft(Pronstants.WEAK_SPEED);// these speeds cause robot to turn
-					if (modules.gyro.getHeading() >= 60) {// when the robot turns 60 degrees, the gyro will stop the robot
-						drive.setRight(0);// the robot will stop at 60 degrees in hopes to make an equilateral triHeading
+					if (modules.gyro.getHeading() >= 60) {// when the robot turns 60 degrees, the gyro will stop the
+															// robot
+						drive.setRight(0);// the robot will stop at 60 degrees in hopes to make an equilateral
+											// triHeading
 						drive.setLeft(0);
 						impPath = Auto_Path.Forward2;// advances to the next step
 					}
@@ -101,7 +103,8 @@ public class Auto {
 		case Forward2:
 			if (square) {
 				drive.move(.3, 15);// driving forward after the first turn
-			} // sqaure and triHeading dont need to be differentiated because their side lengths
+			} // sqaure and triHeading dont need to be differentiated because their side
+				// lengths
 				// are the same
 			if (modules.encL.get() >= 15 && modules.encR.get() >= 15) {
 				drive.stop();// when the encoders reach fifteen rotations, the robot will stop
@@ -172,39 +175,37 @@ public class Auto {
 	public void Drive9feet() {
 		currentLDis = modules.TalLM.getSelectedSensorPosition(0);
 		currentRDis = modules.TalRM.getSelectedSensorPosition(0);
-		if(currentLDis - initLDistance <= 21989) {
+		if (currentLDis - initLDistance <= 21989) {
 			drive.setLeft(Pronstants.TEST_SPEED);
 			System.out.println(currentLDis - initLDistance);
-		}
-		else {
+		} else {
 			drive.stop();
 		}
-		if(currentRDis - initRDistance <= 21989) {
+		if (currentRDis - initRDistance <= 21989) {
 			drive.setRight(Pronstants.TEST_SPEED);
 			System.out.println(currentRDis - initRDistance);
-		}
-		else {
+		} else {
 			drive.stop();
 		}
 	}
-	//public turn90() {
-		//currentGyro = 
+
+	// public turn90() {
+	// currentGyro =
 	void moveFeetForward(double feet) {
-	distInch = (feet*12) - deAccel;
-	revolutions = circum/distInch;
-	encValue = revolutions*4096;
-	if(modules.TalLM.getSelectedSensorPosition(0) <= encValue) {
-		drive.setLeft(Pronstants.TEST_SPEED);
+		distInch = (feet * 12) - deAccel;
+		revolutions = circum / distInch;
+		encValue = revolutions * Pronstants.encTicks;
+		if (modules.TalLM.getSelectedSensorPosition(0) <= encValue) {
+			drive.setLeft(Pronstants.TEST_SPEED);
+		}
+		if (modules.TalRM.getSelectedSensorPosition(0) <= encValue) {
+			drive.setRight(Pronstants.TEST_SPEED);
+		} else {
+			drive.stop();
+		}
 	}
-	if(modules.TalRM.getSelectedSensorPosition(0) <= encValue) {
-		drive.setRight(Pronstants.TEST_SPEED);
-	}
-	else {
-		drive.stop();
-	}
-	}
-		
-	//}
+
+	// }
 	/**
 	 * Code for RCR
 	 * 

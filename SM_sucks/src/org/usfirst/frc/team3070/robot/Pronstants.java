@@ -22,7 +22,7 @@ public interface Pronstants {
 	final int PORT_ENC_L2 = 8; // Left encoder second port
 	
 	final int PORT_LS = 16;//limit switch port
-
+	final int encTicks = 4096;
 	final double STANDARD_SPEED = .3;
 	final double WEAK_SPEED = -.5;
 	final double STRONG_SPEED = .5;
