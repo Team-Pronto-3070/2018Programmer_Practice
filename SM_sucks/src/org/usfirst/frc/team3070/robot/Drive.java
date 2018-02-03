@@ -3,14 +3,12 @@ package org.usfirst.frc.team3070.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
-
 public class Drive {
 	
 	TalonSRX TalRM, TalRF, TalLM, TalLF;
-	Encoder encL, encR;
+	CompEnc encL, encR;
 
-	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, Encoder encL, Encoder encR) {
+	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, CompEnc encL, CompEnc encR) {
 		this.TalRM = TalRM;
 		this.TalRF = TalRF;
 		this.TalLM = TalLM;

@@ -1,27 +1,22 @@
-/*package org.usfirst.frc.team3070.robot.test;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
+package org.usfirst.frc.team3070.robot.test;
 
 public class FakeJoystick implements Joystick {
-
+	Joystick joy;
 	boolean state = true;
-	public ControlMode cm;
-	public double power; 
 	RealJoystick rj = new RealJoystick();
+	
 	@Override
-	public boolean getUpButton() {
+	public boolean getRawButton(int ButNum) {
 		setState();
 		return state;
 	}
 	
 	public void setState() {
-		if(state) {
-			state = false;
-		}
-		if(!state) {
+		if((Math.random() * 10) % 2 == 0) {
 			state = true;
+		} else {
+			state = false;
 		}
 	}
 
 }
-*/
