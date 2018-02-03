@@ -155,7 +155,7 @@ public class Robot extends IterativeRobot {
 		} else {
 			drive.stop();// stops robot if joystick is in the dead zone
 		} // right joystick driving the robot
-		double amountR = (-1 * (modules.getJoyR().getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
+		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
 		if (amountR >= .2 || amountR <= -.2) {
 			drive.setRight(amountR);
 		} else {// sets motor to joysticks position, with a dead zone of |.2|
