@@ -9,7 +9,7 @@ public class CompEnc {
 
 	public CompEnc(Encoder enc) {
 		this.enc = enc;
-		enc.setDistancePerPulse(4096);
+		this.enc.setDistancePerPulse(4096);
 		encInit = this.enc.getDistance();
 	}
 
@@ -19,5 +19,6 @@ public class CompEnc {
 
 	public void reset() {
 		enc.reset();
+		encInit = 0;
 	}
 }
