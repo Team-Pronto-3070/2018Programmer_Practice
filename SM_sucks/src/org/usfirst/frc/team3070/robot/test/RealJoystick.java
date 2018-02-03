@@ -8,6 +8,6 @@ public class RealJoystick implements Joystick {
 	Modules modules = new Modules();
 	@Override
 	public boolean getRawButton(int ButNum) {
-		return modules.getJoyR().getRawButton(ButNum);
+		return modules.JoyR.getRawButton(ButNum);
 	}
 }

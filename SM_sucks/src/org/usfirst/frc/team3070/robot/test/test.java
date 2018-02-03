@@ -19,9 +19,4 @@ public class test {
 		}
 		System.out.println("Test end");
 	}
-<<<<<<< HEAD
 }*/
-=======
-}
-*/
->>>>>>> parent of c870df3... clearing list 2/2

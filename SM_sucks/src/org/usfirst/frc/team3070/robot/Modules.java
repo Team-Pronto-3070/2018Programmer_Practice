@@ -11,7 +11,8 @@ public class Modules {
 	Encoder encL, encR, encLift; //Encoders
 	AnalogGyro gyro; //Gyro
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
-	Joystick JoyR, JoyL; //Joysticks=
+	public Joystick JoyR; //Joysticks=
+	Joystick JoyL;
 
 	/**
 	 * Constructor for sensors init
