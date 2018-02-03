@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.Encoder;
 public class Drive {
 	
 	TalonSRX TalRM, TalRF, TalLM, TalLF;
-	Encoder encL, encR;
+	CompEnc encL, encR;
 
-	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, Encoder encL, Encoder encR) {
+	public Drive(TalonSRX TalRM, TalonSRX TalRF, TalonSRX TalLM, TalonSRX TalLF, CompEnc encL, CompEnc encR) {
 		this.TalRM = TalRM;
 		this.TalRF = TalRF;
 		this.TalLM = TalLM;
@@ -61,7 +61,7 @@ public class Drive {
 	 */
 	void move(double moving, int rotations) {
 
-		if (encR.getDistance() < rotations && encL.getDistance() < rotations) {
+		if (encR.get() < rotations && encL.get() < rotations) {
 			setRight(moving);
 			setLeft(moving);
 		} else {

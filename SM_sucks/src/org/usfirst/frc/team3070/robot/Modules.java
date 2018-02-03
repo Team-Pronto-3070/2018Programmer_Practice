@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Modules {
-	//Initializing modules
-	Encoder encL, encR, encLift; //Encoders
-	AnalogGyro gyro; //Gyro
-	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
-	public Joystick JoyR; //Joysticks=
+	// Initializing modules
+	Encoder encLBase, encRBase, encLiftBase; // Encoders
+	CompEnc encL, encR, encLift;
+	AnalogGyro gyro; // Gyro
+	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; // Talons
+	public Joystick JoyR; // Joysticks=
 	Joystick JoyL;
 
 	/**
@@ -19,7 +20,7 @@ public class Modules {
 	 */
 	public Modules() {
 
-		//Setting modules
+		// Setting modules
 		TalRM = new TalonSRX(Pronstants.PORT_RM); // Right master Talon
 		TalRF = new TalonSRX(Pronstants.PORT_RF); // Right follower Talon
 		TalLM = new TalonSRX(Pronstants.PORT_LM); // Left master Talon
@@ -27,12 +28,16 @@ public class Modules {
 		TalGrabL = new TalonSRX(Pronstants.PORT_GL); // Left master Talon
 		TalGrabR = new TalonSRX(Pronstants.PORT_GR); // Left follower Talon
 		TalExt = new TalonSRX(Pronstants.PORT_EXT); // Extendy Talon
-		
-		encR = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
-		encL = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
-		encLift = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false); //Lift encoder
-		
-		JoyR = new Joystick(0); //Right flight joystick
-		JoyL = new Joystick(1); //Left flight joystick
+
+		encRBase = new Encoder(Pronstants.PORT_ENC_R1, Pronstants.PORT_ENC_R2, false); // Right encoder
+		encLBase = new Encoder(Pronstants.PORT_ENC_L1, Pronstants.PORT_ENC_L2, false); // Left encoder
+		encLiftBase = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false); // Lift encoder
+
+		encR = new CompEnc(encRBase);
+		encL = new CompEnc(encLBase);
+		encLift = new CompEnc(encLiftBase);
+
+		JoyR = new Joystick(0); // Right flight joystick
+		JoyL = new Joystick(1); // Left flight joystick
 	}
 }
