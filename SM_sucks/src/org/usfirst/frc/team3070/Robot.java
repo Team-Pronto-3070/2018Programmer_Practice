@@ -6,11 +6,13 @@
 /*----------------------------------------------------------------------------*/
 package org.usfirst.frc.team3070;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.Timer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -31,12 +33,12 @@ public class Robot extends IterativeRobot {
 	Extendy_Bit Extendy_Bit;//lifting class
 	Pronstants Pronstants; //constant class
 	Grabber_for_Pronto Grabber_for_Pronto;//grabbing class
-
+	Timer timer;
 	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
 
 	// Initializing Gyros
 	AnalogGyro gyro = new AnalogGyro(Pronstants.PORT_GYRO); // gyro used for turning in auto
-	Pronstants.Auto_Path impPath = Pronstants.Auto_Path.PATH_LCL;// initializing the auto path
+
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -55,8 +57,9 @@ public class Robot extends IterativeRobot {
 		drive = new Drive(modules);
 		Extendy_Bit = new Extendy_Bit(modules);
 		Grabber_for_Pronto = new Grabber_for_Pronto(modules);
-		
-		
+		Timer timer = new Timer();
+		System.out.println("startup");
+		timer.start();
 	}
 
 	/**
@@ -94,7 +97,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
+		drive.setLeft(.5);
+		drive.setRight(.5);
+		System.out.println("auto periodic");
+		//auto.AutoCode();
+		/*switch (m_autoSelected) {
 		case kCustomAuto:
 			// Put custom auto code here
 			break;
@@ -126,7 +133,7 @@ public class Robot extends IterativeRobot {
 			case PATH_CWR:
 
 				break;
-			case PATH_RCL:
+			case PATH_RCL: 
 
 				break;
 			case PATH_RWL:
@@ -156,30 +163,55 @@ public class Robot extends IterativeRobot {
 				break;
 			}
 			break;
-		}
+		}*/
 	}
 
 	/**
 	 * This function is called periodically during operator control.
 	 */
 	@Override
-	public void teleopPeriodic() {// left joystick driving for the robot
-		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
-		if (amountL >= .2 || amountL <= -.2) {
-			drive.setLeft(amountL); // sets the motors to the joysticks position, with a dead zone of |.2|
-		} else {
-			drive.stop();// stops robot if joystick is in the dead zone
-		} // right joystick driving the robot
-		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
-		if (amountR >= .2 || amountR <= -.2) {
-			drive.setRight(amountR);
-		} else {// sets motor to joysticks position, with a dead zone of |.2|
-			drive.stop();// stops robot if joystick is in the dead zone
+	public void teleopPeriodic() {
+		//modules.TalLM.set(ControlMode.PercentOutput, .5);
+		// left joystick driving for the robot
+		
+//		double amountL = (-1 * (modules.JoyL.getRawAxis(1)/* * (-1 * (modules.JoyL.getRawAxis(2) / 2)) */));
+//		if (amountL >= .2 || amountL <= -.2) {
+//			drive.setLeft(amountL); // sets the motors to the joysticks position, with a dead zone of |.2|
+//		} else {
+//			drive.stop();// stops robot if joystick is in the dead zone
+//		} // right joystick driving the robot
+//		double amountR = (-1 * (modules.JoyR.getRawAxis(1)/* * (-1 * (modules.JoyR.getRawAxis(2) / 2)) */));
+//		if (amountR >= .2 || amountR <= -.2) {
+//			drive.setRight(amountR);
+//		} else {// sets motor to joysticks position, with a dead zone of |.2|
+//			drive.stop();// stops robot if joystick is in the dead zone
+//		}
+		if(modules.JoyL.getRawButton(1)) {
+			modules.TalLM.set(ControlMode.PercentOutput, .5);
+			System.out.println("Left master");
+		}
+		if(modules.JoyL.getRawButton(2)) {
+			modules.TalLF.set(ControlMode.PercentOutput, .5);
+			System.out.println("Left follower");
+		}
+		if(modules.JoyL.getRawButton(3)) {
+			modules.TalRM.set(ControlMode.PercentOutput, .5);
+			System.out.println("RIght master");
+		}
+		if(modules.JoyL.getRawButton(4)) {
+			modules.TalRF.set(ControlMode.PercentOutput, .5);
+			System.out.println("Right Follower");
 		}
 
+	}
+	void Disabled() {
+		while(isDisabled()) {}
 	}
 
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putString("DB/String 2", "encL value" + Double.toString(modules.encL.get()));
+		SmartDashboard.putString("DB/String 3", "encR value" + Double.toString(modules.encR.get()));
+		SmartDashboard.putString("DB/String 4", "gyro value" + Double.toString(modules.gyro.getAngle()));
 	}
 }

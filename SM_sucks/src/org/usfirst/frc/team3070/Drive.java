@@ -17,9 +17,10 @@ public class Drive {
 	 *            right amount
 	 */
 
-	void setRight(double amountR) {
+	public void setRight(double amountR) {
 		modules.TalRM.set(ControlMode.PercentOutput, amountR);
-		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RF);
+		modules.TalRF.set(ControlMode.Follower, Pronstants.PORT_RM);
+		System.out.println("setright");
 	}
 
 	/**
@@ -28,16 +29,18 @@ public class Drive {
 	 * @param amountL
 	 *            left amount
 	 */
-	void setLeft(double amountL) {
+	public void setLeft(double amountL) {
 		modules.TalLM.set(ControlMode.PercentOutput, amountL);
-		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LF);
+		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
+		System.out.println("setleft");
 	}
 
-	void stop() { // Sets both sides to 0
+	public void stop() { // Sets both sides to 0
 		setRight(0);
-		setLeft(0);
+		setLeft(0); 
+		System.out.println("stop");
 	}
-
+	
 	/**
 	 * Sets both side to a certain speed, and continues for a certain amount of
 	 * rotations
