@@ -1,7 +1,7 @@
 // Welcome to the Auto class here we have all the auto code in an easy!
 package org.usfirst.frc.team3070.robot;
 
-import org.usfirst.frc.team3070.robot.Pronstants.Auto_Path;
+import org.usfirst.frc.team3070.robot.Pronstants;
 
 //drive and modules
 public class Auto {
@@ -30,6 +30,16 @@ public class Auto {
 	int case_number = 1;
 	boolean square = true;
 	boolean triHeading = false;
+	double feet = 0;
+	double circum = 18.85;
+	double distInch = 0;
+	double revolutions = 0;
+	double encValue = 0;
+	final int deAccel = 6;
+	int currentLDis;
+	int currentRDis;
+	int initLDistance = 0;
+	int initRDistance = 0;
 	Drive drive;
 	Modules modules;
 	Auto_Path impPath;
@@ -41,6 +51,8 @@ public class Auto {
 		this.drive = drive;
 		this.modules = modules;
 		impPath = Auto_Path.Forward1;
+		initLDistance = 0;
+		initRDistance = 0;
 	}
 
 	public void AutoCode() {
@@ -158,16 +170,16 @@ public class Auto {
 	}
 
 	public void Drive9feet() {
-		modules.currentLDis = modules.TalLM.getSelectedSensorPosition(0);
-		modules.currentRDis = modules.TalRM.getSelectedSensorPosition(0);
-		if(modules.currentLDis - modules.initLDistance <= 21989) {
+		currentLDis = modules.TalLM.getSelectedSensorPosition(0);
+		currentRDis = modules.TalRM.getSelectedSensorPosition(0);
+		if(currentLDis - initLDistance <= 21989) {
 			drive.setLeft(Pronstants.TEST_SPEED);
 			System.out.println(currentLDis - initLDistance);
 		}
 		else {
 			drive.stop();
 		}
-		if(modules.currentRDis - modules.initRDistance <= 21989) {
+		if(currentRDis - initRDistance <= 21989) {
 			drive.setRight(Pronstants.TEST_SPEED);
 			System.out.println(currentRDis - initRDistance);
 		}
@@ -177,7 +189,20 @@ public class Auto {
 	}
 	//public turn90() {
 		//currentGyro = 
-		
+	void moveFeetForward(double feet) {
+	distInch = (feet*12) - deAccel;
+	revolutions = circum/distInch;
+	encValue = revolutions*4096;
+	if(modules.TalLM.getSelectedSensorPosition(0) <= encValue) {
+		drive.setLeft(Pronstants.TEST_SPEED);
+	}
+	if(modules.TalRM.getSelectedSensorPosition(0) <= encValue) {
+		drive.setRight(Pronstants.TEST_SPEED);
+	}
+	else {
+		drive.stop();
+	}
+	}
 		
 	//}
 	/**

@@ -13,7 +13,7 @@ public class Modules {
 	 //Gyro
 	TalonSRX TalRM, TalRF, TalLM, TalLF, TalGrabL, TalGrabR, TalExt; //Talons
 	Joystick JoyR, JoyL; //Joysticks
-	//BNO055 gyro;
+	BNO055 gyro;
 	/**
 	 * Constructor for sensors init
 	 */
@@ -31,8 +31,8 @@ public class Modules {
 		TalRM.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		TalLM.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		encLift = new Encoder(Pronstants.PORT_ENC_LIFT1, Pronstants.PORT_ENC_LIFT2, false); //Lift encoder
-		//gyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
-		//		        		BNO055.vector_type_t.VECTOR_EULER);
+		gyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+				        		BNO055.vector_type_t.VECTOR_EULER);
 		JoyR = new Joystick(0); //Right flight joystick
 		JoyL = new Joystick(1); //Left flight joystick
 	}

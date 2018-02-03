@@ -2,7 +2,7 @@ package org.usfirst.frc.team3070.robot;
 //modules
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class Drive {
+public class Drive implements Pronstants{
 	Modules modules;
 	public Drive(Modules modules) {
 		this.modules = modules;
@@ -27,6 +27,7 @@ public class Drive {
 	 * @param amountL
 	 *            left amount
 	 */
+	
 	public void setLeft(double amountL) {
 		modules.TalLM.set(ControlMode.PercentOutput, amountL);
 		modules.TalLF.set(ControlMode.Follower, Pronstants.PORT_LM);
@@ -66,6 +67,7 @@ public class Drive {
 
 		}
 	}
+	
 
 	/**
 	 * Sets both sides to a certain value

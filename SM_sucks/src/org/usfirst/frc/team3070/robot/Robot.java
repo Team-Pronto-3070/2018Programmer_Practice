@@ -37,8 +37,7 @@ public class Robot extends IterativeRobot {
 	boolean Turned = false; // for telling if robot has turned or not (just sorta here)
 	int initLDistance;
 	int initRDistance; 
-	int currentLDis;
-	int currentRDis;
+	
 	int initGyro;
 	int currentGyro;
 	// Initializing Gyros
@@ -65,8 +64,7 @@ public class Robot extends IterativeRobot {
 		Timer timer = new Timer();
 		System.out.println("startup");
 		timer.start();
-		initLDistance = 0;
-		initRDistance = 0;
+		
 		initGyro = 0;
 	}
 
@@ -90,7 +88,7 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional comparisons to the
 	 * switch structure below with additional strings. If using the SendableChooser
 	 * make sure to add them to the chooser code above as well.
-	 * 
+	 * `
 	 */
 	@Override
 	public void autonomousInit() {
@@ -98,9 +96,8 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
-		initLDistance = drive.getLeftEnc();
-		initRDistance = drive.getRightEnc();
-		drive.setLeft(Prontstants.STANDARD_SPEED);
+		
+		drive.setLeft(Pronstants.STANDARD_SPEED);
 	}
 
 	/**
@@ -109,26 +106,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		
-		currentLDis = modules.TalLM.getSelectedSensorPosition(0);
-		currentRDis = modules.TalRM.getSelectedSensorPosition(0);
-		if(currentLDis - initLDistance <= 5000) {
-			drive.setLeft(Pronstants.TEST_SPEED);
-			System.out.println(currentLDis - initLDistance);
-		}
-		else {
-			drive.stop();
-		}
-		if(modules.currentRDis - modules.initRDistance <= 5000) {
-			
-			drive.setRight(Pronstants.TEST_SPEED);
-			System.out.println(currentRDis - initRDistance);
-		}
-		else {
-			drive.stop();
-			timer.wait(1);
-			modules.initRDistance =  modules.TalRM.getSelectedSensorPosition(0);
-			modules.initLDistance =  modules.TalLM.getSelectedSensorPosition(0);
-		}
+		auto.moveFeetForward(3);
+	
+		
 		//21989 is 9 feet
 		
 		/*switch (m_autoSelected) {
